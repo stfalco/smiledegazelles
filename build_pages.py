@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Génère les pages intérieures du site Smile de Gazelles (préfixe ../ pour les assets)."""
+"""Génère les pages intérieures du site Smile de Gazelles (préfixe ../ pour les assets).
+
+Note : index.html n'est PAS généré par ce script. La page d'accueil est maintenue
+à la main ; l'en-tête, le pied de page et les liens sociaux ci-dessous sont alignés
+sur elle et doivent le rester si elle évolue.
+"""
 import os
 
 PAGES_DIR = os.path.join(os.path.dirname(__file__), "pages")
@@ -12,6 +17,10 @@ LOGO_IMG = '''<img class="logo__img logo__img--light" src="../assets/logo.png" a
 # Emblème officiel pour le footer — bascule clair/sombre
 LOGO_EMBLEM = '''<img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
             <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />'''
+
+# Réseaux sociaux officiels de l'équipage
+URL_FACEBOOK = "https://www.facebook.com/smiledegazelles"
+URL_INSTAGRAM = "https://www.instagram.com/smiledegazelles2027"
 
 NAV_ITEMS = [
     ("index.html", "Accueil", "accueil"),
@@ -59,8 +68,8 @@ FOOTER = f'''  <footer class="footer">
           </a>
           <p>Deux femmes, un défi, mille sourires à partager. Équipage engagé au Rallye Aïcha des Gazelles 2027 — l'énergie du défi au service d'une aventure solidaire.</p>
           <div class="socials">
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="{URL_INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="{URL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
             <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
@@ -83,7 +92,22 @@ FOOTER = f'''  <footer class="footer">
     </div>
   </footer>'''
 
-def page(current, title, desc, page_hero, body):
+def page(current, title, desc, page_hero, body, og_desc=None, og_image="../assets/hero-desert.png",
+         hero_photo=None, hero_eyebrow=None, hero_stamp=None):
+    """Assemble une page intérieure.
+
+    page_hero   : (titre H1, chapô)
+    og_desc     : description Open Graph si elle diffère de la meta description
+    og_image    : visuel de partage
+    hero_photo  : chemin d'une photo affichée en bandeau derrière l'en-tête
+    hero_eyebrow: étiquette affichée au-dessus du H1
+    hero_stamp  : logo posé en aplat transparent sur le bandeau (ex. logo team RAG)
+    """
+    hero_class = "page-hero page-hero--photo" if hero_photo else "page-hero"
+    hero_style = f''' style="--page-hero-img:url('{hero_photo}')"''' if hero_photo else ""
+    eyebrow = f'\n        <span class="page-hero__eyebrow">{hero_eyebrow}</span>' if hero_eyebrow else ""
+    stamp = (f'\n      <img class="page-hero__stamp" src="{hero_stamp}" alt="" aria-hidden="true" />'
+             if hero_stamp else "")
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -92,8 +116,8 @@ def page(current, title, desc, page_hero, body):
   <title>{title} — Smile de Gazelles</title>
   <meta name="description" content="{desc}" />
   <meta property="og:title" content="{title} — Smile de Gazelles" />
-  <meta property="og:description" content="{desc}" />
-  <meta property="og:image" content="../assets/hero-desert.png" />
+  <meta property="og:description" content="{og_desc or desc}" />
+  <meta property="og:image" content="{og_image}" />
   <link rel="icon" href="../assets/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
@@ -102,12 +126,12 @@ def page(current, title, desc, page_hero, body):
 <body>
 {header(current)}
   <main>
-    <section class="page-hero">
+    <section class="{hero_class}"{hero_style}>
       <div class="container container-default">
-        <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>
+        <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>{eyebrow}
         <h1>{page_hero[0]}</h1>
         <p>{page_hero[1]}</p>
-      </div>
+      </div>{stamp}
     </section>
 {body}
   </main>
@@ -123,60 +147,330 @@ PAGES = {}
 # ---- ÉQUIPAGE ----
 PAGES["equipage.html"] = page(
     "equipage", "L'équipage",
-    "Rencontrez Sandra Aversenq et Stéphanie Falco, l'équipage Smile de Gazelles.",
+    "Sandra Aversenq et Stéphanie Falco, équipage 134 du Rallye Aïcha des Gazelles 2027 : "
+    "leurs portraits, leur préparation, le budget détaillé et l'association Smile de Gazelles.",
     ("L'alliance de la maîtrise et de l'instinct",
-     "Deux femmes, un défi, mille sourires à partager. L'idée est née il y a un an, entre deux discussions sur les voyages de Sandra."),
-    '''    <section>
+     "Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye "
+     "Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription "
+     "pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action."),
+    '''
+    <!-- ============ LES PORTRAITS ============ -->
+    <section id="portraits">
       <div class="container">
         <div class="crew-grid reveal">
           <article class="crew-card">
             <div class="crew-card__photo">
-              <span class="crew-card__initials">SA</span>
-              <span class="crew-card__placeholder-note">[Photo à ajouter]</span>
+              <img src="../assets/portrait-sandra.jpg" alt="Portrait de Sandra Aversenq" loading="lazy" />
             </div>
             <div class="crew-card__body">
               <h2 class="crew-card__name">Sandra Aversenq</h2>
               <span class="crew-card__role">« Wonder Sandra »</span>
-              <div class="crew-card__meta"><span>53 ans</span><span>Chef d'Entreprise</span></div>
-              <p class="crew-card__bio">Entrepreneuse ambitieuse et structurée, elle est, lors de ses nombreux voyages, toujours en quête d'échanges et de rencontres humaines authentiques. Elle apporte sa vision pragmatique des affaires, son leadership naturel et sa réactivité face aux crises terrain.</p>
+              <div class="crew-card__meta"><span>53 ans</span><span>Chef d'entreprise</span></div>
+              <p class="crew-card__bio">Entrepreneuse instinctive, fonceuse et structurée — un mélange rare. Ses nombreux voyages l'ont façonnée : elle y cherche moins les paysages que les échanges et les rencontres humaines authentiques.</p>
+              <p class="crew-card__bio">Elle apporte à l'équipage sa vision pragmatique des affaires, son leadership naturel et sa réactivité face aux crises de terrain. Là où d'autres hésitent, elle décide.</p>
+              <!-- Citation personnelle à recueillir auprès de Sandra : une phrase sur ce que ce rallye représente pour elle. -->
+              <div class="crew-card__strengths">
+                <span class="crew-card__strengths-title">Ce qu'elle apporte</span>
+                <ul class="chips">
+                  <li class="chip">Leadership</li>
+                  <li class="chip">Décision rapide</li>
+                  <li class="chip">Sens du contact</li>
+                </ul>
+              </div>
             </div>
           </article>
           <article class="crew-card">
             <div class="crew-card__photo">
-              <span class="crew-card__initials">SF</span>
-              <span class="crew-card__placeholder-note">[Photo à ajouter]</span>
+              <img src="../assets/portrait-stephanie.jpg" alt="Portrait de Stéphanie Falco" loading="lazy" />
             </div>
             <div class="crew-card__body">
               <h2 class="crew-card__name">Stéphanie Falco</h2>
-              <span class="crew-card__role">Collectif « Les Biches »</span>
-              <div class="crew-card__meta"><span>49 ans</span><span>Data Analyst</span></div>
-              <p class="crew-card__bio">Co-fondatrice du collectif « Les Biches » mettant en avant les femmes artistes, elle est profondément animée par la force du collectif. Bercée dès son plus jeune âge par le ronflement des 4x4 de son papa, habitué des rallyes de franchissement, elle allie sérénité et sens de la mécanique. Face à l'imprévu, elle apporte le calme et l'énergie.</p>
+              <span class="crew-card__role">Cadre supérieur RH</span>
+              <div class="crew-card__meta"><span>49 ans</span><span>Collectif « Les Biches »</span></div>
+              <p class="crew-card__bio">Co-fondatrice du collectif « Les Biches », qui met en avant les femmes artistes, elle est profondément animée par la force du collectif. Bercée dès son plus jeune âge par le ronflement des 4x4 de son père, habitué des rallyes de franchissement, elle allie sérénité et sens de la mécanique.</p>
+              <p class="crew-card__bio">Face à l'imprévu, elle apporte le calme et l'énergie, avec une capacité d'analyse qui, dans une épreuve où tout se joue sur la précision du pilotage, n'a rien d'un détail.</p>
+              <blockquote class="crew-card__quote">« Ils ne savaient pas que c'était impossible, alors ils l'ont fait. »</blockquote>
+              <div class="crew-card__strengths">
+                <span class="crew-card__strengths-title">Ce qu'elle apporte</span>
+                <ul class="chips">
+                  <li class="chip">Rigueur d'analyse</li>
+                  <li class="chip">Mécanique</li>
+                  <li class="chip">Sang-froid</li>
+                </ul>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- ============ NOTRE BINÔME ============ -->
     <section class="section-alt">
-      <div class="container container-default">
-        <div class="reveal">
-          <span class="eyebrow">Notre histoire</span>
-          <h2 class="section-title">Comment tout a commencé</h2>
-          <p style="color:var(--color-text-muted);margin-bottom:var(--space-4)">L'idée est née il y a un an, entre deux discussions sur les voyages de Sandra. Ce qui n'était qu'un rêve s'est transformé en une inscription pour 2027. Notre déclic&nbsp;? Ne plus attendre pour vivre les aventures dont on a toujours rêvé.</p>
-          <p style="color:var(--color-text-muted)">Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure qui s'annonce déjà inoubliable, jalonnée d'obstacles et d'imprévus, mais surtout riche de sens et d'émotions.</p>
+      <div class="container">
+        <div class="split reveal">
+          <div class="split__media">
+            <img src="../assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco, l'équipage Smile de Gazelles" loading="lazy" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Notre binôme</span>
+            <h2>Deux tempéraments, une même trajectoire</h2>
+            <p>Dans le désert, l'équipage compte autant que le véhicule. Pendant sept jours de course, il faut décider vite et bien, se relayer au volant et à la carte, gérer la fatigue, les erreurs et les imprévus — sans jamais se retourner l'une contre l'autre. C'est l'entraide qui fait la différence, bien plus que la performance individuelle.</p>
+            <blockquote class="quote">« Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure qui s'annonce déjà inoubliable, jalonnée d'obstacles et d'imprévus, mais surtout riche de sens, de rencontres et d'émotions. »</blockquote>
+            <p><strong>Deux femmes — un défi — mille sourires à partager.</strong></p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <!-- ============ DU RÊVE AU DÉPART ============ -->
+    <section id="parcours">
       <div class="container">
-        <div class="text-center reveal">
-          <span class="eyebrow">Notre devise</span>
-          <h2 class="section-title">Deux femmes – un défi – mille sourires à partager</h2>
-          <p class="section-lead mx-auto">Animées par des valeurs communes de solidarité, d'engagement, de respect, de dépassement de soi et de partage, nous inscrivons chacune de nos actions dans une démarche porteuse de sens.</p>
+        <div class="reveal">
+          <span class="eyebrow">Notre parcours</span>
+          <h2 class="section-title">Du rêve au départ</h2>
+          <p class="section-lead">Chaque étape nous rapproche du désert.</p>
+        </div>
+        <div class="roadmap reveal">
+          <div class="roadmap__item roadmap__item--done">
+            <div class="roadmap__step">✓ Réalisé</div>
+            <div class="roadmap__title">Le déclic</div>
+            <div class="roadmap__label">Été 2024 — et si on se lançait&nbsp;?</div>
+          </div>
+          <div class="roadmap__item roadmap__item--done">
+            <div class="roadmap__step">✓ Réalisé</div>
+            <div class="roadmap__title">L'association</div>
+            <div class="roadmap__label">Smile de Gazelles est créée en juillet 2026.</div>
+          </div>
+          <div class="roadmap__item roadmap__item--done">
+            <div class="roadmap__step">✓ Réalisé</div>
+            <div class="roadmap__title">L'inscription</div>
+            <div class="roadmap__label">Team 134 : le départ est confirmé.</div>
+          </div>
+          <div class="roadmap__item roadmap__item--current">
+            <div class="roadmap__step">◉ En cours</div>
+            <div class="roadmap__title">La préparation</div>
+            <div class="roadmap__label">Physique, mentale et logistique.</div>
+            <span class="roadmap__here">Vous êtes ici</span>
+          </div>
+          <div class="roadmap__item roadmap__item--todo">
+            <div class="roadmap__step">○ À venir</div>
+            <div class="roadmap__title">La préparation technique</div>
+            <div class="roadmap__label">Navigation, 4x4 et pilotage.</div>
+          </div>
+          <div class="roadmap__item roadmap__item--todo roadmap__item--goal">
+            <div class="roadmap__step">⚑ Objectif</div>
+            <div class="roadmap__title">Le départ</div>
+            <div class="roadmap__label">20 mars 2027.</div>
+          </div>
+        </div>
+        <ul class="roadmap-legend reveal">
+          <li><span class="dot dot--done"></span> Réalisé</li>
+          <li><span class="dot dot--current"></span> En cours</li>
+          <li><span class="dot dot--todo"></span> À venir</li>
+        </ul>
+        <div class="actions reveal">
+          <a href="sponsors.html" class="btn btn-primary">Aidez-nous à franchir ces étapes</a>
+        </div>
+        <div class="band band--rounded reveal" style="margin-top:var(--space-12)">
+          <img src="../assets/equipage_parcours.jpg" alt="L'équipage Smile de Gazelles en préparation" loading="lazy" />
         </div>
       </div>
-    </section>''')
+    </section>
+
+    <!-- ============ NOTRE PRÉPARATION ============ -->
+    <section class="section-alt" id="preparation">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Se préparer</span>
+          <h2 class="section-title">Rien n'est laissé au hasard</h2>
+          <p class="section-lead">Primo-participantes, nous abordons ce rallye avec méthode : quatre chantiers menés de front jusqu'à la ligne de départ.</p>
+        </div>
+        <div class="cards-grid reveal">
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h3>Physique</h3>
+            <p>Endurance et résistance à la chaleur, gainage, préparation au manque de sommeil. Sept jours d'effort continu, sous quarante degrés, avec des nuits courtes au bivouac.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/></svg></div>
+            <h3>Navigation</h3>
+            <p>Stage dédié à la lecture de carte, à l'utilisation du compas et au calcul de cap. C'est la compétence décisive : le classement récompense la précision, pas la vitesse.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18"/><path d="M5 17l1.5-5.5A2 2 0 0 1 8.4 10h7.2a2 2 0 0 1 1.9 1.5L19 17"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
+            <h3>Pilotage</h3>
+            <p>Stage au Maroc, sur le terrain réel : franchissement, passage de dunes, désensablement, lecture du sable.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0 5 5l-8.4 8.4a2.8 2.8 0 0 1-4-4L15.7 7.3z"/><path d="M9.3 17.7l-4 4"/></svg></div>
+            <h3>Mécanique et matériel</h3>
+            <p>Préparation du véhicule, pièces de rechange, équipement de bivouac, balise satellite IRITRACK, odomètre, boussole, casques.</p>
+          </div>
+        </div>
+        <div class="gallery reveal">
+          <img src="../assets/accueil-teaser-rallye-1.jpg" alt="Franchissement de dunes en 4x4 lors du rallye" loading="lazy" />
+          <img src="../assets/navigation.png" alt="Navigation à la carte et à la boussole, sans GPS" loading="lazy" />
+          <img src="../assets/equipage_prepa.jpg" alt="L'équipage pendant sa préparation" loading="lazy" />
+        </div>
+        <div class="actions reveal">
+          <a href="#budget" class="btn btn-outline">Le détail de notre budget</a>
+          <a href="sponsors.html" class="btn btn-primary">Financer notre préparation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE BUDGET ============ -->
+    <section id="budget">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Un projet construit avec vous</span>
+          <h2 class="section-title">Chaque contribution donne vie à l'aventure</h2>
+          <p class="section-lead">Participer au Rallye Aïcha des Gazelles représente un budget global de <strong>42 000 €</strong>. Cette somme couvre l'ensemble de notre participation : le véhicule, les frais d'inscription, la préparation, la sécurité, la logistique et la communication. Chaque dépense répond à un besoin concret pour nous permettre de prendre le départ dans les meilleures conditions.</p>
+        </div>
+        <div class="budget-bars reveal">
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Frais d'inscription</span>
+              <span class="budget-line__amount">14 500 €<span>34,5 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:34.5%"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Location du 4x4, préparation, pièces, assurances</span>
+              <span class="budget-line__amount">11 000 €<span>26,2 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:26.2%"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Stages de pilotage et de navigation, équipement</span>
+              <span class="budget-line__amount">5 000 €<span>11,9 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:11.9%"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Aller et retour jusqu'au désert marocain</span>
+              <span class="budget-line__amount">4 300 €<span>10,2 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:10.2%"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Sécurité : balise IRITRACK, odomètre, casques, boussole</span>
+              <span class="budget-line__amount">3 800 €<span>9,0 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:9%"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line__head">
+              <span class="budget-line__label">Communication, animations, covering</span>
+              <span class="budget-line__amount">3 400 €<span>8,1 %</span></span>
+            </div>
+            <div class="budget-line__track"><div class="budget-line__fill" style="width:8.1%"></div></div>
+          </div>
+        </div>
+        <div class="budget-total reveal">
+          <span class="budget-total__label">Budget total de participation</span>
+          <span class="budget-total__value">42 000 €</span>
+        </div>
+        <details class="accordion reveal">
+          <summary>Que couvrent les frais d'inscription&nbsp;?</summary>
+          <div class="accordion__body">
+            <ul>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Encadrement</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Assistance médicale</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Assistance mécanique</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Vie au bivouac</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Sécurité et assurances</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Communication et médias</li>
+            </ul>
+          </div>
+        </details>
+        <div class="pledge reveal">
+          <h3>Notre engagement</h3>
+          <p>L'association Smile de Gazelles est l'unique organisme collecteur des sommes versées pour couvrir le budget de participation au rallye. Le reliquat sera versé en intégralité à l'association Cœur de Gazelles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ L'ASSOCIATION ============ -->
+    <section class="section-alt" id="association">
+      <div class="container">
+        <div class="split split--reverse reveal">
+          <div class="split__media split__media--portrait" style="display:flex;align-items:center;justify-content:center">
+            <img src="../assets/logo.png" alt="Logo de l'association Smile de Gazelles" style="aspect-ratio:auto;box-shadow:none;border-radius:0;max-width:320px" loading="lazy" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Notre association</span>
+            <h2>Défendre des valeurs qui nous animent</h2>
+            <p>L'association Smile de Gazelles est née de la volonté de deux amies de faire d'une aventure sportive un véritable projet humain. Animées par des valeurs communes de solidarité, d'engagement, de respect, de dépassement de soi et de partage, nous inscrivons chacune de nos actions dans une démarche porteuse de sens.</p>
+            <p>Participer au Rallye Aïcha des Gazelles s'est imposé comme une évidence. Bien plus qu'une compétition, ce rallye incarne l'entraide, l'autonomie et l'engagement solidaire, notamment à travers les actions de Cœur de Gazelles auprès des populations locales.</p>
+            <p>Notre objectif : sortir de notre zone de confort, repousser les limites, et prouver qu'avec de la détermination, de l'audace, de la persévérance, de l'entraide et de la bonne humeur, il est possible de déplacer des montagnes — même au cœur du désert.</p>
+            <ul class="chips" style="margin-top:var(--space-6)">
+              <li class="chip chip--gold">Solidarité</li>
+              <li class="chip chip--gold">Engagement</li>
+              <li class="chip chip--gold">Respect</li>
+              <li class="chip chip--gold">Dépassement de soi</li>
+              <li class="chip chip--gold">Partage</li>
+            </ul>
+            <blockquote class="quote">« Un gagnant est un rêveur qui n'abandonne jamais. »</blockquote>
+          </div>
+        </div>
+        <div class="id-card reveal" style="margin-top:clamp(var(--space-12), 6vw, var(--space-20))">
+          <h3>Fiche d'identité</h3>
+          <dl>
+            <dt>Nom</dt><dd>Association Smile de Gazelles — association loi 1901 à but non lucratif</dd>
+            <dt>Déclaration</dt><dd>Préfecture n° W343034911 · SIREN 108 320 961</dd>
+            <dt>Siège social</dt><dd>453 Enclos des Palourdes, 34130 Carnon</dd>
+            <dt>Objet</dt><dd>Participation au Rallye Aïcha des Gazelles et actions solidaires associées</dd>
+            <dt>Collecte</dt><dd>Unique organisme collecteur des sommes versées pour la participation au rallye</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUIVEZ L'AVENTURE ============ -->
+    <section class="section--compact">
+      <div class="container container-default text-center">
+        <div class="reveal">
+          <span class="eyebrow" style="justify-content:center">Suivez l'aventure</span>
+          <h2 class="section-title" style="font-size:var(--text-xl)">Photos, coulisses et avancées du projet</h2>
+          <p class="section-lead mx-auto">Photos de préparation, coulisses, avancées du projet : nous partageons tout sur nos réseaux.</p>
+          <div class="social-links">
+            <a class="social-link" href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              facebook.com/smiledegazelles
+            </a>
+            <a class="social-link" href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              instagram.com/smiledegazelles2027
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Rejoignez l'aventure et donnez du sens à votre engagement</h2>
+          <p>Devenez sponsor ou faites un don : chaque contribution nous rapproche de la ligne de départ et du reliquat reversé à Cœur de Gazelles.</p>
+          <div class="hero__cta">
+            <a href="sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
+            <a href="soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Faire un don</a>
+          </div>
+        </div>
+      </div>
+    </section>''',
+    og_desc="Deux tempéraments, une même trajectoire. Découvrez l'équipage 134, "
+            "sa préparation, son budget et son association.",
+    og_image="../assets/equipage_hero.JPG",
+    hero_photo="../assets/equipage_hero.JPG",
+    hero_eyebrow="Équipage 134 · Smile de Gazelles",
+    hero_stamp="../assets/logo-team-rag.png")
 
 # ---- LE RALLYE ----
 PAGES["le-rallye.html"] = page(
@@ -203,7 +497,7 @@ PAGES["le-rallye.html"] = page(
       </div>
     </section>
 
-    <section class="section-alt">
+    <section class="section-alt" id="edition2027">
       <div class="container">
         <div class="text-center reveal" style="margin-bottom:var(--space-12)">
           <span class="eyebrow">Édition 2027</span>
@@ -229,7 +523,7 @@ PAGES["le-rallye.html"] = page(
       </div>
     </section>
 
-    <section class="section-alt">
+    <section class="section-alt" id="responsable">
       <div class="container">
         <div class="text-center reveal" style="margin-bottom:var(--space-12)">
           <span class="eyebrow">Responsable par engagement</span>
