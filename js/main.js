@@ -5,7 +5,7 @@
   /* ----- Thème clair/sombre ----- */
   const toggle = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
-  let mode = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  let mode = 'light';
   root.setAttribute('data-theme', mode);
   function iconFor(m) {
     return m === 'dark'
