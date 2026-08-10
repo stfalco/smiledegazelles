@@ -87,13 +87,14 @@ FOOTER = f'''  <footer class="footer">
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
+        <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
     </div>
   </footer>'''
 
 def page(current, title, desc, page_hero, body, og_desc=None, og_image="../assets/hero-desert.png",
-         hero_photo=None, hero_eyebrow=None, hero_stamp=None):
+         hero_photo=None, hero_eyebrow=None, hero_stamp=None, hero_actions=None):
     """Assemble une page intérieure.
 
     page_hero   : (titre H1, chapô)
@@ -102,12 +103,14 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
     hero_photo  : chemin d'une photo affichée en bandeau derrière l'en-tête
     hero_eyebrow: étiquette affichée au-dessus du H1
     hero_stamp  : logo posé en aplat transparent sur le bandeau (ex. logo team RAG)
+    hero_actions: bloc HTML (boutons, mention) inséré sous le chapô du bandeau
     """
     hero_class = "page-hero page-hero--photo" if hero_photo else "page-hero"
     hero_style = f''' style="--page-hero-img:url('{hero_photo}')"''' if hero_photo else ""
     eyebrow = f'\n        <span class="page-hero__eyebrow">{hero_eyebrow}</span>' if hero_eyebrow else ""
     stamp = (f'\n      <img class="page-hero__stamp" src="{hero_stamp}" alt="" aria-hidden="true" />'
              if hero_stamp else "")
+    actions = f'\n{hero_actions}' if hero_actions else ""
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -130,7 +133,7 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>{eyebrow}
         <h1>{page_hero[0]}</h1>
-        <p>{page_hero[1]}</p>
+        <p>{page_hero[1]}</p>{actions}
       </div>{stamp}
     </section>
 {body}
@@ -589,67 +592,332 @@ PAGES["solidarite.html"] = page(
     </section>''')
 
 # ---- SPONSORS ----
+# Coche verte réutilisée dans les listes de contreparties
+CHECK = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+         'stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>')
+
 PAGES["sponsors.html"] = page(
     "sponsors", "Sponsors",
-    "Devenez partenaire de l'équipage Smile de Gazelles : offres de sponsoring et visibilité.",
+    "Devenez partenaire de l'équipage Smile de Gazelles : retombées médias du rallye, "
+    "cinq formules de sponsoring, visibilité sur le véhicule et les équipements, modalités et contact.",
     ("Devenez partenaire",
      "Associez votre image à une aventure humaine, sportive et solidaire porteuse de valeurs fortes."),
-    '''    <section>
+    '''    <!-- ============ POURQUOI NOUS SOUTENIR ============ -->
+    <section id="pourquoi">
       <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-8)">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
           <span class="eyebrow">Pourquoi nous soutenir</span>
-          <h2 class="section-title">Une vitrine porteuse de sens</h2>
-          <p class="section-lead mx-auto">Le rallye bénéficie chaque année d'une forte médiatisation (TV, presse, radio, web) à l'échelle nationale et internationale.</p>
+          <h2 class="section-title">Quatre raisons de nous accompagner</h2>
         </div>
         <div class="cards-grid reveal">
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><h3>Visibilité médiatique</h3><p>Un événement fortement relayé dans les médias, à toutes les échelles.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Valeurs positives</h3><p>Sport féminin, dépassement, solidarité, écoresponsabilité&nbsp;: une image valorisante.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Avantage fiscal</h3><p>Le mécénat peut ouvrir droit à une réduction d'impôt <em>[à préciser selon le statut de l'association]</em>.</p></div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Associez votre marque</h3>
+            <p>Un rallye international porteur de sens&nbsp;: audace, engagement, partage, responsabilité. Vous ne serez pas seulement sponsor, mais acteur d'un projet humain qui fédère, inspire et crée de l'émotion.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Optimisez votre fiscalité</h3>
+            <p>Les sommes versées au titre du sponsoring sont considérées comme des dépenses de communication et peuvent être déduites du résultat imposable de votre entreprise, au titre de l'article 39.1.7 du Code général des impôts.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 8a5 5 0 0 1 0 8"/><path d="M20 5a9 9 0 0 1 0 14"/></svg></div>
+            <h3>Bénéficiez de notre couverture</h3>
+            <p>Réseaux sociaux, site internet, newsletters, visuels sur notre véhicule et nos équipements, presse locale.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg></div>
+            <h3>Profitez d'une exposition d'envergure</h3>
+            <p>Le rallye dépasse largement les frontières&nbsp;: presse, télévision, radio et réseaux sociaux, en France comme à l'international.</p>
+          </div>
+        </div>
+
+        <div class="eco-panel reveal" style="margin-top:clamp(var(--space-12), 6vw, var(--space-20))">
+          <span class="eyebrow">Bilan officiel</span>
+          <h2>Les retombées médias de la 35<sup>e</sup> édition</h2>
+          <p>Une audience mesurée, chiffrée et vérifiable — dont <strong>4,63 M€ de valeur média générée</strong>, le seul indicateur qui traduit la visibilité en euros, comparable à un budget de communication.</p>
+          <div class="eco-stats">
+            <div class="eco-stat"><div class="eco-stat__num">1 676</div><div class="eco-stat__label">Retombées médias</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">435,6 M</div><div class="eco-stat__label">Personnes atteintes</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">4,63 M€</div><div class="eco-stat__label">De valeur média générée</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">+ de 10 M</div><div class="eco-stat__label">De vues sur les réseaux sociaux</div></div>
+          </div>
+          <p class="source-note">Source&nbsp;: 35<sup>e</sup> édition, retombées mesurées du 1<sup>er</sup> mai 2025 au 30 avril 2026, source Onclusive. Données réseaux sociaux du 27 mars au 11 avril 2026.</p>
+        </div>
+
+        <details class="accordion reveal">
+          <summary>Presse — 1 052 retombées</summary>
+          <div class="accordion__body">
+            <p>1 052 retombées, dont 469 en presse écrite et 583 en presse en ligne, pour 389 millions de personnes atteintes et 3,36 M€ de valeur média. La presse représente 77&nbsp;% des retombées totales.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary>Télévision et radio — 348 retombées</summary>
+          <div class="accordion__body">
+            <p>261 retombées télévisées&nbsp;: 161 diffusions sur les chaînes du groupe M6, 11 sur L'Équipe TV et 10 sur 2M, pour 16,8 M de personnes atteintes. Côté radio, 87 retombées dont 42 diffusions nationales sur Chérie FM, pour 4,9 M de personnes atteintes.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary>Réseaux sociaux et site live — 1 216 contenus</summary>
+          <div class="accordion__body">
+            <p>1 216 contenus publiés, plus de 10 M de vues et plus de 2 M de personnes atteintes, pour une communauté de plus de 170 000 abonnés.</p>
+          </div>
+        </details>
+
+        <div class="note reveal">
+          <h3>L'effet communauté</h3>
+          <p>Au-delà des retombées médias, le rallye mobilise un écosystème entier&nbsp;: 320 Gazelles ambassadrices cumulant plus de 200 000 abonnés, environ 20 000 contenus générés sur une année de préparation, et plus de 6 000 acteurs économiques engagés autour des équipages. <strong>Une mobilisation continue sur douze mois</strong>, pas seulement pendant la course.</p>
+          <p class="source-note">Ces chiffres illustrent la capacité d'amplification des Gazelles et des partenaires du rallye, et ne sont pas intégrés aux audiences médias mesurées par Onclusive.</p>
+        </div>
+
+        <div class="gallery gallery--quad reveal">
+          <img src="../assets/sponsor_01.jpg" alt="Couverture médiatique du Rallye Aïcha des Gazelles" loading="lazy" />
+          <img src="../assets/sponsors-02.jpg" alt="Équipages et véhicules relayés par les médias" loading="lazy" />
+          <img src="../assets/sponsors-03.JPG" alt="Reportage sur le Rallye Aïcha des Gazelles" loading="lazy" />
+          <img src="../assets/sponsors-04.JPG" alt="Visibilité des partenaires sur le rallye" loading="lazy" />
         </div>
       </div>
     </section>
 
+    <!-- ============ UN PARTENARIAT GAGNANT-GAGNANT ============ -->
     <section class="section-alt">
       <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-4)">
-          <span class="eyebrow">Nos formules</span>
-          <h2 class="section-title">Choisissez votre niveau de partenariat</h2>
-          <p class="section-lead mx-auto"><em>Montants et contreparties provisoires — à ajuster selon votre dossier de sponsoring.</em></p>
+        <div class="split reveal">
+          <div class="split__media">
+            <img src="../assets/sponsors_rallye.jpg" alt="Un 4x4 du Rallye Aïcha des Gazelles dans le désert marocain" loading="lazy" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Un partenariat gagnant-gagnant</span>
+            <h2>Nous recherchons un partenaire, pas un simple sponsor</h2>
+            <ul class="feature-list">
+              <li>''' + CHECK + ''' Une mise en avant de votre entreprise sur nos réseaux sociaux avant, pendant et après le rallye.</li>
+              <li>''' + CHECK + ''' Votre logo sur notre véhicule, nos tenues et nos équipements, avec une exposition auprès des médias et du grand public.</li>
+              <li>''' + CHECK + ''' La possibilité d'organiser une rencontre dans vos locaux, pour partager cette aventure avec vos collaborateurs et vos clients.</li>
+            </ul>
+            <blockquote class="quote">« Un partenaire que nous mettrons en lumière tout au long de cette formidable aventure. »</blockquote>
+          </div>
+        </div>
+        <div class="band band--rounded reveal" style="margin-top:clamp(var(--space-12), 6vw, var(--space-20))">
+          <img src="../assets/sponsors_rallye-02.jpg" alt="Le Rallye Aïcha des Gazelles au cœur des dunes" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LES FORMULES ============ -->
+    <section id="formules">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Comment nous soutenir</span>
+          <h2 class="section-title">Cinq formules, une progression d'engagement</h2>
+          <p class="section-lead">Du logo sur le véhicule au partenariat titre&nbsp;: chaque formule ouvre droit aux contreparties de la précédente.</p>
         </div>
         <div class="sponsor-tiers reveal">
           <div class="tier">
-            <div class="tier__name">Bronze</div>
-            <div class="tier__price">[€]</div>
+            <div class="tier__name">Pack Solidaire</div>
+            <div class="tier__range">500 € à 2 000 €</div>
             <ul class="tier__list">
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Logo sur le site web</li>
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Remerciements sur les réseaux</li>
-            </ul>
-          </div>
-          <div class="tier tier--featured">
-            <div class="tier__name">Argent</div>
-            <div class="tier__price">[€]</div>
-            <ul class="tier__list">
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Tout le niveau Bronze</li>
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Logo sur le véhicule</li>
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Publications dédiées</li>
+              <li>''' + CHECK + ''' Logo 10 × 20 cm sur le véhicule</li>
+              <li>''' + CHECK + ''' Mention sur nos réseaux sociaux</li>
             </ul>
           </div>
           <div class="tier">
-            <div class="tier__name">Or</div>
-            <div class="tier__price">[€]</div>
+            <div class="tier__name">Pack Cool</div>
+            <div class="tier__range">2 001 € à 5 000 €</div>
             <ul class="tier__list">
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Tout le niveau Argent</li>
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Emplacement premium (capot, casques)</li>
-              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Journée de communication en entreprise</li>
+              <li>''' + CHECK + ''' Logo 20 × 35 cm sur zone à forte visibilité</li>
+              <li>''' + CHECK + ''' Relais régulier de votre marque sur nos réseaux</li>
+            </ul>
+          </div>
+          <div class="tier">
+            <div class="tier__name">Pack Audacieux</div>
+            <div class="tier__range">5 001 € à 10 000 €</div>
+            <ul class="tier__list">
+              <li>''' + CHECK + ''' Logo 30 × 50 cm sur zone à forte visibilité</li>
+              <li>''' + CHECK + ''' Relais régulier sur nos réseaux</li>
+              <li>''' + CHECK + ''' Une journée conférence ou retour d'expérience dans vos locaux</li>
+            </ul>
+          </div>
+          <div class="tier">
+            <div class="tier__name">Pack Dépassement de soi</div>
+            <div class="tier__range">10 001 € à 30 000 €</div>
+            <ul class="tier__list">
+              <li>''' + CHECK + ''' Logo grand format 40 × 70 cm sur capot, ailes latérales ou toit</li>
+              <li>''' + CHECK + ''' Communiqué de presse conjoint</li>
+              <li>''' + CHECK + ''' Relais régulier sur nos réseaux</li>
+              <li>''' + CHECK + ''' Une journée conférence ou retour d'expérience dans vos locaux</li>
+            </ul>
+          </div>
+          <div class="tier tier--major">
+            <div class="tier__name">La Totale</div>
+            <div class="tier__range">Au-delà de 30 000 €</div>
+            <p class="tier__note">Partenaire titre majeur — jusqu'à la couverture intégrale du budget, soit 42 000 €.</p>
+            <ul class="tier__list">
+              <li>''' + CHECK + ''' Covering intégral du 4x4</li>
+              <li>''' + CHECK + ''' Marquage exclusif des gilets et des casques</li>
+              <li>''' + CHECK + ''' Invitation VIP à l'arrivée à Essaouira, soirée de gala</li>
+              <li>''' + CHECK + ''' L'ensemble des contreparties des formules précédentes</li>
             </ul>
           </div>
         </div>
-        <div class="text-center" style="margin-top:var(--space-12)">
-          <a href="contact.html" class="btn btn-primary btn-lg">Recevoir le dossier de sponsoring</a>
+        <div class="note reveal">
+          <h3>Partenariats en nature</h3>
+          <p>Casques, covering, location du 4x4, équipement, prestations&nbsp;: les partenariats en nature sont les bienvenus et donnent droit aux mêmes contreparties, à valeur équivalente.</p>
+        </div>
+        <div class="actions reveal">
+          <a href="#contact" class="btn btn-primary">Construire notre partenariat</a>
+          <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline" download>Télécharger le dossier</a>
         </div>
       </div>
     </section>
 
+    <!-- ============ VOTRE VISIBILITÉ ============ -->
+    <section class="section-alt" id="visibilite">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Où vous serez visible</span>
+          <h2 class="section-title">Sur le véhicule, sur nous, sur nos réseaux</h2>
+        </div>
+
+        <h3 class="subhead reveal">Le véhicule</h3>
+        <p class="section-lead reveal">Emplacements publicitaires officiels, avec leurs zones et leurs dimensions maximales.</p>
+        <div class="table-wrap reveal">
+          <table class="spec-table">
+            <thead><tr><th scope="col">Zone</th><th scope="col">Dimensions maximales</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Capot avant et toit</th><td>80 × 100 cm</td></tr>
+              <tr><th scope="row">Portières arrière, ailes, vitres latérales</th><td>40 × 60 cm</td></tr>
+              <tr><th scope="row">Arrière du 4x4</th><td>30 × 40 cm</td></tr>
+              <tr><th scope="row">Vitre arrière</th><td>20 × 30 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note reveal">
+          <h3>Emplacements réservés</h3>
+          <p>Conformément au règlement du rallye, les trois plaques «&nbsp;Rallye Aïcha des Gazelles&nbsp;», les numéros d'équipage (12 × 7 cm) et la plaque d'identification de toit (42 × 27 cm) sont strictement réservés à l'organisation. Toutes les autres surfaces sont à votre disposition.</p>
+        </div>
+
+        <h3 class="subhead reveal" style="margin-top:clamp(var(--space-12), 6vw, var(--space-16))">Les équipements</h3>
+        <div class="table-wrap reveal">
+          <table class="spec-table">
+            <thead><tr><th scope="col">Support</th><th scope="col">Emplacement</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">T-shirts</th><td>Manches, dos et poitrine</td></tr>
+              <tr><th scope="row">Gilets officiels</th><td>Zone dorsale, portée pendant toute la compétition</td></tr>
+              <tr><th scope="row">Casques</th><td>Jusqu'à 10 × 20 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="figure-grid reveal">
+          <figure class="figure">
+            <img src="../assets/sponsors_covering02.jpg" alt="Gilet officiel, casque et t-shirt d'un équipage du rallye" loading="lazy" />
+            <figcaption>Exemple&nbsp;: gilet officiel, casque et t-shirt d'un équipage — édition précédente.</figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="../assets/sponsors_covering.jpg" alt="Covering publicitaire d'un 4x4 engagé sur le rallye" loading="lazy" />
+            <figcaption>Exemple de covering — édition précédente.</figcaption>
+          </figure>
+        </div>
+        <div class="note reveal">
+          <h3>Une remarque sur les formats</h3>
+          <p>Nos formats sont volontairement calibrés en dessous du maximum autorisé, afin de pouvoir accueillir plusieurs partenaires sur une même zone. Un emplacement plus grand reste possible pour les formules supérieures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MODALITÉS ============ -->
+    <section id="modalites">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Modalités</span>
+          <h2 class="section-title">Comment procéder</h2>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="spec-table">
+            <thead><tr><th scope="col">Moyen</th><th scope="col">Détail</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Virement bancaire</th><td>Coordonnées communiquées sur demande — <a href="contact.html">nous écrire</a></td></tr>
+              <tr><th scope="row">Paiement en ligne</th><td>Formulaire sécurisé HelloAsso</td></tr>
+              <tr><th scope="row">Partenariat en nature</th><td>Casques, covering, location du 4x4, prestations — à définir ensemble</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="id-card reveal" style="margin-top:var(--space-10)">
+          <h3>Facturation et cadre juridique</h3>
+          <p style="color:var(--color-text-muted);margin-bottom:var(--space-6)">Une facture est émise pour tout versement, vous permettant de comptabiliser votre soutien en dépense de communication. Une convention de sponsoring est signée entre l'association et l'entreprise partenaire, précisant les engagements réciproques, les contreparties et leur valorisation. Les sommes versées relèvent du régime du parrainage, article 39.1.7 du Code général des impôts.</p>
+          <dl>
+            <dt>Nom</dt><dd>Association Smile de Gazelles — loi 1901, à but non lucratif</dd>
+            <dt>Déclaration</dt><dd>Préfecture n° W343034911 · SIREN 108 320 961</dd>
+            <dt>Siège social</dt><dd>453 Enclos des Palourdes, 34130 Carnon</dd>
+            <dt>Contact</dt><dd><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARLONS-EN ============ -->
+    <section class="section-alt" id="contact">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Parlons-en</span>
+          <h2 class="section-title">Prenons rendez-vous</h2>
+          <p class="section-lead">En présentiel à Montpellier et alentours, ou en visioconférence. Nous vous présentons le projet, écoutons vos attentes et construisons ensemble un partenariat sur mesure.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-item">
+              <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM22 6l-10 7L2 6"/></svg></div>
+              <div><h4>Email</h4><p><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+              <div><h4>Rendez-vous</h4><p>En présentiel à Montpellier et alentours, ou en visioconférence.</p></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div><h4>Le dossier de sponsoring</h4><p><a href="../assets/dossier-sponsoring.pdf" download>Télécharger le dossier (PDF)</a></p></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <div><h4>Vous êtes un particulier&nbsp;?</h4><p><a href="soutenir.html">Découvrez les autres façons de nous soutenir</a></p></div>
+            </div>
+          </div>
+          <form class="form reveal" onsubmit="return false">
+            <div class="form__row">
+              <label>Nom<input type="text" name="nom" placeholder="Votre nom" required /></label>
+              <label>Entreprise<input type="text" name="entreprise" placeholder="Votre entreprise" required /></label>
+            </div>
+            <label>Email<input type="email" name="email" placeholder="vous@entreprise.fr" required /></label>
+            <div class="form__row">
+              <label>Objet
+                <select name="objet">
+                  <option>Devenir sponsor</option>
+                  <option>Demander les coordonnées bancaires</option>
+                  <option>Partenariat en nature</option>
+                  <option>Autre</option>
+                </select>
+              </label>
+              <label>Formule envisagée
+                <select name="formule">
+                  <option>Je ne sais pas encore</option>
+                  <option>Pack Solidaire — 500 € à 2 000 €</option>
+                  <option>Pack Cool — 2 001 € à 5 000 €</option>
+                  <option>Pack Audacieux — 5 001 € à 10 000 €</option>
+                  <option>Pack Dépassement de soi — 10 001 € à 30 000 €</option>
+                  <option>La Totale — au-delà de 30 000 €</option>
+                </select>
+              </label>
+            </div>
+            <label>Message<textarea name="message" rows="5" placeholder="Votre projet, vos attentes, vos questions…"></textarea></label>
+            <label class="form__consent"><input type="checkbox" name="consentement" required /> J'accepte que ces informations soient utilisées par l'association Smile de Gazelles pour répondre à ma demande.</label>
+            <button type="submit" class="btn btn-primary btn-lg">Envoyer <em style="font-style:normal;opacity:.7">[formulaire à connecter]</em></button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ILS NOUS FONT CONFIANCE ============
+         Grille de logos volontairement masquée tant qu'aucun partenaire n'est signé :
+         une grille vide est un signal négatif. À réactiver dès le premier partenaire.
     <section>
       <div class="container text-center">
         <div class="reveal">
@@ -657,12 +925,35 @@ PAGES["sponsors.html"] = page(
           <h2 class="section-title">Nos partenaires</h2>
         </div>
         <div class="logo-wall reveal">
-          <div class="logo-slot">Votre logo</div><div class="logo-slot">Votre logo</div>
-          <div class="logo-slot">Votre logo</div><div class="logo-slot">Votre logo</div>
-          <div class="logo-slot">Votre logo</div><div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
         </div>
       </div>
-    </section>''')
+    </section>
+    ============================================================ -->
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Traçons le chemin ensemble</h2>
+          <p>Face à l'imprévu, on improvise. Face aux obstacles, on sourit. Ensemble, on transforme chaque défi en terrain de jeu.</p>
+          <div class="hero__cta">
+            <a href="#contact" class="btn btn-light btn-lg">Nous contacter</a>
+            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)" download>Télécharger le dossier</a>
+          </div>
+        </div>
+      </div>
+    </section>''',
+    og_desc="4,63 M€ de valeur média générée, 435,6 M de personnes atteintes : associez votre entreprise "
+            "à l'équipage 134 du Rallye Aïcha des Gazelles 2027.",
+    og_image="../assets/sponsoring-272-recalibr%C3%A9e.png",
+    hero_photo="../assets/sponsoring-272-recalibr%C3%A9e.png",
+    hero_eyebrow="Entreprises · Sponsoring 2027",
+    hero_actions='''        <div class="actions">
+          <a href="#formules" class="btn btn-primary">Voir les formules</a>
+          <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline" download>Télécharger le dossier</a>
+        </div>
+        <p class="page-hero__aside">Vous êtes un particulier&nbsp;? <a href="soutenir.html">Découvrez comment nous soutenir</a>.</p>''')
 
 # ---- SOUTENIR ----
 PAGES["soutenir.html"] = page(
