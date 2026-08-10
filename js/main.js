@@ -102,6 +102,36 @@
     });
   }
 
+  /* ----- Ancres internes : scroll précis sous header sticky ----- */
+  const scrollToHashTarget = (hash, smooth) => {
+    if (!hash || hash === '#') return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    const headerEl = document.querySelector('.header');
+    const headerHeight = headerEl ? headerEl.getBoundingClientRect().height : 0;
+    const top = window.scrollY + target.getBoundingClientRect().top - headerHeight - 12;
+    window.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
+  };
+
+  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const hash = link.getAttribute('href');
+      if (!hash) return;
+      e.preventDefault();
+      if (window.location.hash !== hash) history.pushState(null, '', hash);
+      scrollToHashTarget(hash, true);
+    });
+  });
+
+  window.addEventListener('hashchange', () => {
+    scrollToHashTarget(window.location.hash, false);
+  });
+
+  if (window.location.hash && window.location.hash !== '#') {
+    requestAnimationFrame(() => scrollToHashTarget(window.location.hash, false));
+  }
+
   /* ----- Année dynamique footer ----- */
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
