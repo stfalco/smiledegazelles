@@ -77,11 +77,11 @@
     </section>
 
     <!-- ============ CHIFFRES CLÉS ============ -->
-    <section>
+    <section class="section--compact">
       <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
+        <div class="text-center reveal" style="margin-bottom:var(--space-6)">
           <span class="eyebrow">Le rallye en bref</span>
-          <h2 class="section-title">Le défi en quelques chiffres</h2>
+          <h2 class="section-title" style="font-size:var(--text-xl);margin-bottom:0">Le défi en quelques chiffres</h2>
         </div>
         <div class="stats-grid reveal">
           <div class="stat"><div class="stat__num">100 %</div><div class="stat__label">Féminin</div></div>
@@ -90,21 +90,30 @@
           <div class="stat"><div class="stat__num">14</div><div class="stat__label">Jours d'aventure</div></div>
         </div>
       </div>
-    </section>  
+    </section>
+
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="assets/accueil-bandeau.jpg" alt="L'action au cœur du rallye : franchissement de dunes en 4x4 dans le désert marocain" loading="lazy" />
+    </div>
 
     <!-- ============ QUI SOMMES-NOUS (aperçu) ============ -->
     <section class="section-alt">
       <div class="container">
         <div class="split reveal">
-          <div class="split__media">
-            <img src="assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco signant leur engagement pour le rallye" />
+          <div class="split__media split__media--portrait">
+            <img class="portrait" src="assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco signant leur engagement pour le rallye" loading="lazy" />
+            <div class="media-inset">
+              <img src="assets/logo.png" alt="Logo de l'équipage Smile de Gazelles" width="56" height="56" />
+              <img class="media-inset__rag" src="assets/logo-team-rag.png" alt="Team officielle du Rallye Aïcha des Gazelles" />
+            </div>
           </div>
           <div class="split__body">
-            <span class="eyebrow">L'équipage</span>
+            <span class="eyebrow">L'équipage 134</span>
             <h2>Smile de Gazelles</h2>
             <p>Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action.</p>
             <p><strong>Un binôme solide :</strong> Sandra, alias « Wonder Sandra », apporte son leadership et sa vision pragmatique, et Stéphanie, bercée par les 4x4 de son père, allie sérénité et sens de la mécanique.</p>
-            <p><em>"Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure riche de sens, de rencontres et d'émotions."</em></p>
+            <blockquote class="quote">« Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure riche de sens, de rencontres et d'émotions. »</blockquote>
             <ul class="feature-list">
               <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Un binôme soudé, organisé et déterminé</li>
               <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Une aventure au service d'une cause qui nous tient à cœur</li>
@@ -122,7 +131,7 @@
         <div class="text-center reveal" style="margin-bottom:var(--space-12)">
           <span class="eyebrow">Nos valeurs</span>
           <h2 class="section-title">Pourquoi nous participons</h2>
-          <p class="section-lead mx-auto">Un rallye qui met les femmes à l'honneur dans le sport et porte des valeurs qui nous ressemblent.</p>
+          <p class="section-lead mx-auto">Un rallye qui met le dépassement de soi à l'honneur et porte des valeurs qui nous ressemblent.</p>
         </div>
         <div class="cards-grid reveal">
           <div class="card">
@@ -141,11 +150,32 @@
             <p>Nous avons fait le choix du seul rallye au monde certifié ISO 14001.</p>
           </div>
         </div>
+        <div class="text-center reveal" style="margin-top:var(--space-10)">
+          <a href="pages/soutenir.html" class="btn btn-primary">Nous soutenir</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE RALLYE (aperçu) ============ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="split reveal">
+          <div class="split__media">
+            <img src="assets/accueil-teaser-rallye-3.png" alt="Navigation à la carte et à la boussole lors du Rallye Aïcha des Gazelles" loading="lazy" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Un rallye pas comme les autres</span>
+            <h2>La précision avant la vitesse</h2>
+            <p>Créé en 1990, le Rallye Aïcha des Gazelles est un rallye-raid de navigation hors-piste sans équivalent. Ni GPS, ni téléphone : une carte des années 1950, une boussole et une règle. Le classement récompense celle qui rallie le plus de balises en parcourant le moins de kilomètres — la performance se mesure à la précision, jamais à la rapidité.</p>
+            <p>C'est aussi le seul rallye au monde certifié ISO 14001&nbsp;!</p>
+            <a href="pages/le-rallye.html" class="btn btn-primary" style="margin-top:var(--space-4)">Tout savoir sur le rallye</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ============ SOLIDARITÉ (aperçu) ============ -->
-    <section class="section-alt">
+    <section>
       <div class="container">
         <div class="split split--reverse reveal">
           <div class="split__media">
@@ -155,19 +185,100 @@
             <span class="eyebrow">Un rallye solidaire</span>
             <h2>Redonner, durablement</h2>
             <p>Depuis 2001, une caravane médicale itinérante de soixante bénévoles suit le rallye et soigne gratuitement les populations les plus isolées du Maroc. En vingt-quatre ans, 99 370 patients ont été soignés.</p>
-            <p><em><strong>Parce que se soigner ne devrait jamais être un privilège.</strong></em></p>
+            <blockquote class="quote">« Parce que se soigner ne devrait jamais être un privilège. »</blockquote>
             <div class="cause-box">
-              <h3>Notre cause : <em>Cœur de Gazelles</em></h3>
-              <p>Nous soutenons Cœur de Gazelles, association d'intérêt général qui apporte soins, éducation et aide matérielle aux populations les plus isolées du sud marocain.</p>
+              <h3>Notre engagement</h3>
+              <p>Le reliquat de notre budget, une fois les frais de participation couverts, sera intégralement reversé à Cœur de Gazelles — association d'intérêt général qui apporte soins, éducation et aide matérielle aux populations les plus isolées du sud marocain.</p>
             </div>
-            <a href="pages/solidarite.html" class="btn btn-primary" style="margin-top:var(--space-6)">En savoir plus</a>
+            <a href="pages/solidarite.html" class="btn btn-primary" style="margin-top:var(--space-6)">Découvrir le volet solidaire</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ SPONSORS (aperçu) ============ -->
+    <!-- ============ RESPONSABLE ============ -->
     <section>
+      <div class="container">
+        <div class="eco-panel reveal">
+          <span class="eyebrow">Responsable par engagement</span>
+          <h2>La plus belle trace est celle que l'on ne laisse pas</h2>
+          <p>Unique rallye certifié ISO 14001 depuis 2010, le Rallye Aïcha des Gazelles est un pionnier mondial de l'événementiel responsable. Chaque édition transforme l'engagement en impact mesurable.</p>
+          <div class="eco-stats">
+            <div class="eco-stat"><div class="eco-stat__num">17 456</div><div class="eco-stat__label">Palmiers dattiers plantés</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">64 t</div><div class="eco-stat__label">De CO₂ évitées en 2024-2025</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">0</div><div class="eco-stat__label">Déchet abandonné dans le désert</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">150 000</div><div class="eco-stat__label">Bouteilles plastique upcyclées</div></div>
+          </div>
+          <div class="hero__cta">
+            <a href="pages/le-rallye.html#responsable" class="btn btn-light">Le détail de la démarche RSE</a>
+            <a href="pages/sponsors.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5)">Devenir partenaire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE DÉFI ============ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Le défi</span>
+          <h2 class="section-title">Un défi sportif hors norme</h2>
+          <p class="section-lead mx-auto">Navigation à l'estime, endurance, résilience mentale. Ici, la vitesse ne fait pas la différence.</p>
+        </div>
+        <div class="steps-grid reveal">
+          <div class="step">
+            <div class="step__num">01</div>
+            <h3>Navigation — sans GPS</h3>
+            <p>Carte, boussole, règle. Pointer un maximum de balises en parcourant le moins de kilomètres.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">02</div>
+            <h3>Endurance — un prologue et 5 étapes</h3>
+            <p>Dont deux étapes marathon, en autonomie complète, à la belle étoile.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">03</div>
+            <h3>Mental — en binôme</h3>
+            <p>Sang-froid, cohésion, détermination. Chaque décision compte, l'entraide fait le reste.</p>
+          </div>
+        </div>
+        <div class="text-center reveal" style="margin-top:var(--space-12)">
+          <blockquote class="quote quote--center">« Sublimer la difficulté et s'ouvrir à tous les possibles. »</blockquote>
+          <a href="pages/soutenir.html" class="btn btn-primary">Nous aider à prendre le départ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DATES & BUDGET ============ -->
+    <section>
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">D'ici le départ</span>
+          <h2 class="section-title">Du 20 mars au 3 avril 2027</h2>
+          <p class="section-lead">Quinze jours entre le briefing dans le sud de la France et l'arrivée officielle à Essaouira. Il nous reste plusieurs mois pour être prêtes — et pour boucler le budget.</p>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline__item"><div class="timeline__date">20 mars</div><div class="timeline__label">Départ du sud de la France</div></div>
+          <div class="timeline__item"><div class="timeline__date">21 mars</div><div class="timeline__label">Embarquement pour le Maroc</div></div>
+          <div class="timeline__item"><div class="timeline__date">25 mars</div><div class="timeline__label">Caravane Cœur de Gazelles</div></div>
+          <div class="timeline__item"><div class="timeline__date">26 mars → 1ᵉʳ avril</div><div class="timeline__label">Les étapes du rallye</div></div>
+          <div class="timeline__item"><div class="timeline__date">3 avril</div><div class="timeline__label">Arrivée à Essaouira</div></div>
+        </div>
+        <div class="reveal" style="margin-top:var(--space-10)">
+          <a href="pages/le-rallye.html#edition2027" class="btn btn-outline">Le programme complet</a>
+        </div>
+        <div class="budget-box reveal">
+          <div>
+            <h3>Pour être au départ, il nous faut réunir 42 000 €</h3>
+            <p>Nous publions notre budget poste par poste : vous savez exactement à quoi sert votre contribution, et ce qu'il advient de ce qui dépasse.</p>
+          </div>
+          <a href="pages/equipage.html#budget" class="btn btn-primary">Voir le budget détaillé</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPONSORS (aperçu) — masqué tant qu'aucun partenaire n'est signé ============ -->
+    <section hidden>
       <div class="container text-center">
         <div class="reveal">
           <span class="eyebrow">Nos partenaires</span>
