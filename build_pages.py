@@ -5,13 +5,13 @@ import os
 PAGES_DIR = os.path.join(os.path.dirname(__file__), "pages")
 os.makedirs(PAGES_DIR, exist_ok=True)
 
-# Logo officiel (wordmark) — bascule clair/sombre, préfixe ../ pour les pages intérieures
-LOGO_IMG = '''<img class="logo__img logo__img--light" src="../assets/logo-wordmark-dark.png" alt="Smile de Gazelles" width="150" height="109" />
-        <img class="logo__img logo__img--dark" src="../assets/logo-wordmark-white.png" alt="Smile de Gazelles" width="150" height="109" />'''
+# Logo officiel — bascule clair/sombre, préfixe ../ pour les pages intérieures
+LOGO_IMG = '''<img class="logo__img logo__img--light" src="../assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
+        <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />'''
 
-# Emblème officiel (rose des vents) pour le footer — bascule clair/sombre
-LOGO_EMBLEM = '''<img class="logo__emblem logo__emblem--light" src="../assets/logo-embleme.png" alt="Smile de Gazelles" width="96" height="96" />
-            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-embleme-light.png" alt="Smile de Gazelles" width="96" height="96" />'''
+# Emblème officiel pour le footer — bascule clair/sombre
+LOGO_EMBLEM = '''<img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
+            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />'''
 
 NAV_ITEMS = [
     ("index.html", "Accueil", "accueil"),

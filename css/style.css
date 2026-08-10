@@ -228,14 +228,17 @@ section { padding-block: clamp(var(--space-16), 8vw, var(--space-32)); }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); height: 72px; }
 /* Logo officiel : wordmark 4x4 « SMILE / DE / GAZELLES » (header) + emblème rose des vents (footer) */
 .logo { display: flex; align-items: center; gap: var(--space-3); color: var(--color-text); }
-.logo__img { height: 46px; width: auto; display: block; }
+.logo__img { height: 62px; width: auto; display: block; }
 .logo:hover .logo__img { opacity: 0.85; }
 /* Bascule clair/sombre du wordmark */
 .logo__img--dark { display: none; }
 [data-theme="dark"] .logo__img--light { display: none; }
 [data-theme="dark"] .logo__img--dark { display: block; }
 /* Emblème (footer) */
-.logo__emblem { height: 84px; width: auto; display: block; }
+.logo__emblem { height: 130px; width: auto; display: block; }
+.logo__emblem--dark { display: none; }
+[data-theme="dark"] .logo__emblem--light { display: none; }
+[data-theme="dark"] .logo__emblem--dark { display: block; }
 .logo__emblem--dark { display: none; }
 [data-theme="dark"] .logo__emblem--light { display: none; }
 [data-theme="dark"] .logo__emblem--dark { display: block; }
@@ -262,7 +265,7 @@ section { padding-block: clamp(var(--space-16), 8vw, var(--space-32)); }
 
 /* ---------- HERO ---------- */
 .hero {
-  position: relative; min-height: 92vh; display: flex; align-items: flex-end;
+  position: relative; min-height: 70vh; display: flex; align-items: center;
   color: #fff; overflow: hidden;
 }
 .hero__bg { position: absolute; inset: 0; z-index: -2; }
