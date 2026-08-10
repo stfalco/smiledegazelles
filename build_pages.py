@@ -712,23 +712,28 @@ PAGES["sponsors.html"] = page(
           <p class="section-lead">Du logo sur le véhicule au partenariat titre&nbsp;: chaque formule ouvre droit aux contreparties de la précédente.</p>
         </div>
         <div class="sponsor-tiers reveal">
-          <div class="tier">
+          <div class="tier tier--step tier--step1">
+            <div class="tier__level">Formule 01</div>
             <div class="tier__name">Pack Solidaire</div>
             <div class="tier__range">500 € à 2 000 €</div>
             <ul class="tier__list">
               <li>''' + CHECK + ''' Logo 10 × 20 cm sur le véhicule</li>
               <li>''' + CHECK + ''' Mention sur nos réseaux sociaux</li>
             </ul>
+            <a href="#contact" class="btn btn-outline tier__cta" data-formule="solidaire">Choisir cette formule</a>
           </div>
-          <div class="tier">
+          <div class="tier tier--step tier--step2">
+            <div class="tier__level">Formule 02</div>
             <div class="tier__name">Pack Cool</div>
             <div class="tier__range">2 001 € à 5 000 €</div>
             <ul class="tier__list">
               <li>''' + CHECK + ''' Logo 20 × 35 cm sur zone à forte visibilité</li>
               <li>''' + CHECK + ''' Relais régulier de votre marque sur nos réseaux</li>
             </ul>
+            <a href="#contact" class="btn btn-outline tier__cta" data-formule="cool">Choisir cette formule</a>
           </div>
-          <div class="tier">
+          <div class="tier tier--step tier--step3">
+            <div class="tier__level">Formule 03</div>
             <div class="tier__name">Pack Audacieux</div>
             <div class="tier__range">5 001 € à 10 000 €</div>
             <ul class="tier__list">
@@ -736,8 +741,10 @@ PAGES["sponsors.html"] = page(
               <li>''' + CHECK + ''' Relais régulier sur nos réseaux</li>
               <li>''' + CHECK + ''' Une journée conférence ou retour d'expérience dans vos locaux</li>
             </ul>
+            <a href="#contact" class="btn btn-outline tier__cta" data-formule="audacieux">Choisir cette formule</a>
           </div>
-          <div class="tier">
+          <div class="tier tier--step tier--step4">
+            <div class="tier__level">Formule 04</div>
             <div class="tier__name">Pack Dépassement de soi</div>
             <div class="tier__range">10 001 € à 30 000 €</div>
             <ul class="tier__list">
@@ -746,26 +753,29 @@ PAGES["sponsors.html"] = page(
               <li>''' + CHECK + ''' Relais régulier sur nos réseaux</li>
               <li>''' + CHECK + ''' Une journée conférence ou retour d'expérience dans vos locaux</li>
             </ul>
+            <a href="#contact" class="btn btn-primary tier__cta" data-formule="depassement">Choisir cette formule</a>
           </div>
-          <div class="tier tier--major">
-            <div class="tier__name">La Totale</div>
-            <div class="tier__range">Au-delà de 30 000 €</div>
-            <p class="tier__note">Partenaire titre majeur — jusqu'à la couverture intégrale du budget, soit 42 000 €.</p>
-            <ul class="tier__list">
-              <li>''' + CHECK + ''' Covering intégral du 4x4</li>
-              <li>''' + CHECK + ''' Marquage exclusif des gilets et des casques</li>
-              <li>''' + CHECK + ''' Invitation VIP à l'arrivée à Essaouira, soirée de gala</li>
-              <li>''' + CHECK + ''' L'ensemble des contreparties des formules précédentes</li>
-            </ul>
+        </div>
+
+        <div class="tier-hero reveal">
+          <span class="tier-hero__badge">Formule 05 · Partenaire titre majeur</span>
+          <h3 class="tier-hero__name">La Totale</h3>
+          <div class="tier-hero__range">Au-delà de 30 000 €</div>
+          <p class="tier-hero__note">Jusqu'à la couverture intégrale du budget de participation, soit 42 000 € — le véhicule, l'équipage et l'aventure portent vos couleurs, du départ à l'arrivée.</p>
+          <ul class="tier-hero__list">
+            <li>''' + CHECK + ''' Covering intégral du 4x4</li>
+            <li>''' + CHECK + ''' Marquage exclusif des gilets et des casques</li>
+            <li>''' + CHECK + ''' Invitation VIP à l'arrivée à Essaouira, soirée de gala</li>
+            <li>''' + CHECK + ''' L'ensemble des contreparties des formules précédentes</li>
+          </ul>
+          <div class="actions">
+            <a href="#contact" class="btn btn-light" data-formule="totale">Choisir cette formule</a>
+            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline" download>Télécharger le dossier</a>
           </div>
         </div>
         <div class="note reveal">
           <h3>Partenariats en nature</h3>
           <p>Casques, covering, location du 4x4, équipement, prestations&nbsp;: les partenariats en nature sont les bienvenus et donnent droit aux mêmes contreparties, à valeur équivalente.</p>
-        </div>
-        <div class="actions reveal">
-          <a href="#contact" class="btn btn-primary">Construire notre partenariat</a>
-          <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline" download>Télécharger le dossier</a>
         </div>
       </div>
     </section>
@@ -890,20 +900,20 @@ PAGES["sponsors.html"] = page(
             <div class="form__row">
               <label>Objet
                 <select name="objet">
-                  <option>Devenir sponsor</option>
-                  <option>Demander les coordonnées bancaires</option>
-                  <option>Partenariat en nature</option>
-                  <option>Autre</option>
+                  <option value="sponsor">Devenir sponsor</option>
+                  <option value="rib">Demander les coordonnées bancaires</option>
+                  <option value="nature">Partenariat en nature</option>
+                  <option value="autre">Autre</option>
                 </select>
               </label>
               <label>Formule envisagée
                 <select name="formule">
-                  <option>Je ne sais pas encore</option>
-                  <option>Pack Solidaire — 500 € à 2 000 €</option>
-                  <option>Pack Cool — 2 001 € à 5 000 €</option>
-                  <option>Pack Audacieux — 5 001 € à 10 000 €</option>
-                  <option>Pack Dépassement de soi — 10 001 € à 30 000 €</option>
-                  <option>La Totale — au-delà de 30 000 €</option>
+                  <option value="indecis">Je ne sais pas encore</option>
+                  <option value="solidaire">Pack Solidaire — 500 € à 2 000 €</option>
+                  <option value="cool">Pack Cool — 2 001 € à 5 000 €</option>
+                  <option value="audacieux">Pack Audacieux — 5 001 € à 10 000 €</option>
+                  <option value="depassement">Pack Dépassement de soi — 10 001 € à 30 000 €</option>
+                  <option value="totale">La Totale — au-delà de 30 000 €</option>
                 </select>
               </label>
             </div>

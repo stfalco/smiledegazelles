@@ -82,6 +82,26 @@
     reveals.forEach((r) => r.classList.add('is-visible'));
   }
 
+  /* ----- Formules : présélection dans le formulaire de contact -----
+     Chaque carte porte un [data-formule] dont la valeur correspond à l'option
+     du <select name="formule">. Le lien reste un simple ancrage vers #contact
+     si le script n'est pas exécuté. */
+  const formuleSelect = document.querySelector('select[name="formule"]');
+  const formuleLinks = document.querySelectorAll('[data-formule]');
+  if (formuleSelect && formuleLinks.length) {
+    const objetSelect = document.querySelector('select[name="objet"]');
+    let flashTimer;
+    formuleLinks.forEach((link) => {
+      link.addEventListener('click', function () {
+        formuleSelect.value = link.dataset.formule;
+        if (objetSelect) objetSelect.value = 'sponsor';
+        formuleSelect.classList.add('is-prefilled');
+        clearTimeout(flashTimer);
+        flashTimer = setTimeout(() => formuleSelect.classList.remove('is-prefilled'), 2600);
+      });
+    });
+  }
+
   /* ----- Année dynamique footer ----- */
   const yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
