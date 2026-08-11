@@ -411,7 +411,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   opacity: 0.92; pointer-events: none;
 }
 .page-hero h1 { font-size: var(--text-2xl); margin-bottom: var(--space-4); color: #fff; }
-.page-hero p { color: rgba(255,255,255,0.85); font-size: var(--text-lg); max-width: 60ch; margin: 0; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: var(--text-lg); line-height: 1.65; max-width: 60ch; margin: 0; }
 .breadcrumb { font-family: var(--font-eyebrow); font-size: var(--text-xs); color: var(--color-primary); margin-bottom: var(--space-4); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
 .breadcrumb a { color: rgba(255,255,255,0.7); }
 .breadcrumb a:hover { color: #fff; }
