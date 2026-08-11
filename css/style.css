@@ -412,6 +412,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 }
 .page-hero h1 { font-size: var(--text-2xl); margin-bottom: var(--space-4); color: #fff; }
 .page-hero p { color: rgba(255,255,255,0.85); font-size: var(--text-lg); line-height: 1.65; max-width: 60ch; margin: 0; }
+.page-hero > .container.container-default { max-width: var(--content-wide); }
 .breadcrumb { font-family: var(--font-eyebrow); font-size: var(--text-xs); color: var(--color-primary); margin-bottom: var(--space-4); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
 .breadcrumb a { color: rgba(255,255,255,0.7); }
 .breadcrumb a:hover { color: #fff; }
@@ -674,7 +675,8 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .page-hero .btn-outline { color: #fff; border-color: rgba(255,255,255,0.6); }
 .page-hero .btn-outline:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,0.12); }
 .page-hero--sponsors {
-  padding-block: clamp(var(--space-12), 7vw, var(--space-16)) clamp(var(--space-8), 5vw, var(--space-12));
+  padding-top: clamp(var(--space-16), 10vw, var(--space-24));
+  padding-bottom: clamp(var(--space-8), 5vw, var(--space-12));
 }
 .page-hero--sponsors h1 { margin-bottom: var(--space-3); }
 .page-hero--sponsors .actions { margin-top: var(--space-6); }
