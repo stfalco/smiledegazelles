@@ -673,8 +673,14 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .page-hero .actions { margin-top: var(--space-8); }
 .page-hero .btn-outline { color: #fff; border-color: rgba(255,255,255,0.6); }
 .page-hero .btn-outline:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,0.12); }
-.page-hero__aside { margin-top: var(--space-6); font-size: var(--text-sm); color: rgba(255,255,255,0.7); }
-.page-hero__aside a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.page-hero--sponsors {
+  padding-block: clamp(var(--space-12), 7vw, var(--space-16)) clamp(var(--space-8), 5vw, var(--space-12));
+}
+.page-hero--sponsors h1 { margin-bottom: var(--space-3); }
+.page-hero--sponsors .actions { margin-top: var(--space-6); }
+.page-hero .page-hero__aside { margin-top: clamp(var(--space-10), 7vw, var(--space-20)); font-size: var(--text-xs); color: var(--color-gold); }
+.page-hero .page-hero__aside a { color: var(--color-gold); text-decoration: underline; text-underline-offset: 3px; }
+.page-hero--sponsors .page-hero__aside { margin-top: clamp(var(--space-6), 4vw, var(--space-10)); }
 
 /* ---------- SOUS-TITRE DE BLOC ---------- */
 .subhead { font-size: var(--text-xl); margin-top: clamp(var(--space-10), 5vw, var(--space-12)); margin-bottom: var(--space-3); }
