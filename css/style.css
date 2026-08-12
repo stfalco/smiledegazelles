@@ -778,7 +778,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .tier--step4 { box-shadow: var(--shadow-md); border-color: var(--color-primary); border-width: 2px; }
 .tier--step4 .tier__level { color: var(--color-primary); }
 .tier--step4 .tier__name { font-size: var(--text-lg); }
-.tier--step4 .tier__range { font-size: var(--text-xl); }
+.tier--step4 .tier__range { font-size: var(--text-lg); white-space: nowrap; }
 .tier--step4 .tier__list li { font-size: var(--text-base); }
 
 @media (min-width: 900px) {
