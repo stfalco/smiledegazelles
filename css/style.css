@@ -1045,3 +1045,26 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 @media (max-width: 760px) {
   .keyfact__grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   PAGE NOUS SOUTENIR
+   Ajouts uniquement — aucun sélecteur existant n'est modifié ici.
+   ========================================================================== */
+
+/* ---------- CADRE DU FORMULAIRE DE DON ----------
+   Accueille le widget HelloAsso, seule dépendance externe du site. Le contenu de
+   l'iframe n'est pas stylable depuis ici : le cadre reste donc neutre et se
+   contente de poser le widget dans la page.
+   La largeur et la hauteur de l'iframe sont pilotées par le code d'intégration
+   HelloAsso lui-même (attribut style inline + redimensionnement par postMessage) :
+   ne rien imposer ici qui les contredise. min-height ne sert qu'à réserver la
+   place avant l'arrivée du premier message de hauteur. */
+.donation-embed {
+  max-width: 30rem; margin-inline: auto;
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-xl); padding: clamp(var(--space-4), 2vw, var(--space-6));
+}
+.donation-embed iframe {
+  display: block; min-height: 30rem;
+  border-radius: var(--radius-lg); background: var(--color-surface);
+}

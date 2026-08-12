@@ -1329,48 +1329,169 @@ PAGES["sponsors.html"] = page(
         <p class="page-hero__aside">Vous êtes un particulier&nbsp;? <a href="soutenir.html">Découvrez comment nous soutenir</a>.</p>''')
 
 # ---- SOUTENIR ----
+# Formulaire de don HelloAsso de l'association (formulaire n° 3). L'URL du widget
+# est celle du code d'intégration fourni par la plateforme ; l'URL publique sert
+# de repli si l'iframe est bloquée (bloqueur de traceurs, refus de cookies tiers).
+URL_HELLOASSO_FORM = "https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3"
+URL_HELLOASSO_WIDGET = URL_HELLOASSO_FORM + "/widget?view=form"
+
+# Page volontairement courte : chaque paragraphe de trop éloigne du bouton.
+# Le widget HelloAsso est la seule dépendance externe du site — tant que le
+# formulaire n'est pas créé côté HelloAsso, le cadre affiche un substitut et
+# renvoie vers le contact. Ne jamais laisser entendre qu'un don de particulier
+# ouvre droit à une réduction d'impôt : l'association n'est pas reconnue
+# d'intérêt général.
 PAGES["soutenir.html"] = page(
     "soutenir", "Nous soutenir",
-    "Faites un don, participez à nos événements ou devenez partenaire de Smile de Gazelles.",
-    ("Rejoignez l'aventure",
-     "Chaque contribution, petite ou grande, nous rapproche de la ligne de départ."),
-    '''    <section>
+    "Faire un don à l'équipage 134 du Rallye Aïcha des Gazelles, donner du matériel, "
+    "relayer le projet ou rejoindre nos actions de collecte : toutes les façons de nous aider.",
+    ("Chaque geste compte",
+     "Vous n'avez pas besoin d'être une entreprise pour faire partie de cette aventure. "
+     "Un don, un coup de main, un partage&nbsp;: tout nous rapproche de la ligne de départ."),
+    '''    <!-- ============ FAIRE UN DON ============ -->
+    <section id="don">
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Faire un don</span>
+          <h2 class="section-title">Un coup de pouce, quel qu'il soit</h2>
+          <p class="section-lead">Un don, même modeste, compte réellement. Chaque contribution s'additionne aux autres et finance une ligne précise de notre budget.</p>
+        </div>
+        <div class="stats-grid reveal" style="margin-bottom:var(--space-10)">
+          <div class="stat"><div class="stat__num">480 €</div><div class="stat__label">Un stage de navigation financé</div></div>
+          <div class="stat"><div class="stat__num">3 800 €</div><div class="stat__label">Toute notre sécurité couverte&nbsp;: balise satellite, odomètre, casques, boussole</div></div>
+        </div>
+        <div class="donation-embed reveal">
+          <!-- Widget de don HelloAsso, code d'intégration fourni par la plateforme
+               (formulaire n° 3 de l'association, vue « formulaire »). Conservé tel
+               quel : le script inline redimensionne l'iframe à la hauteur réelle du
+               formulaire, que HelloAsso transmet par postMessage à chaque étape.
+               Seuls le title (accessibilité) et le loading ont été ajoutés.
+               Attention : ce widget est susceptible de déposer des cookies tiers,
+               ce qui peut rendre un bandeau de consentement obligatoire — à vérifier
+               auprès de HelloAsso avant la mise en ligne. C'est la seule dépendance
+               externe du site. -->
+          <iframe id="haWidgetLight" allowtransparency="true" allow="payment" scrolling="auto" loading="lazy" title="Formulaire de don — Association Smile de Gazelles" src="''' + URL_HELLOASSO_WIDGET + '''" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight');
+  if (dataHeight > parseFloat(haWidgetElement.height || 0)) { haWidgetElement.height = dataHeight + 'px';}})"></iframe>
+        </div>
+        <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="''' + URL_HELLOASSO_FORM + '''" target="_blank" rel="noopener">Donner directement sur HelloAsso</a>.</p>
+        <div class="note reveal">
+          <h3>Précision importante</h3>
+          <p>L'association Smile de Gazelles n'étant pas reconnue d'intérêt général, les dons des particuliers <strong>n'ouvrent pas droit à une réduction d'impôt</strong>. En revanche, le sponsoring d'entreprise relève du régime du parrainage et constitue une dépense de communication déductible du résultat imposable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NOUS AIDER AUTREMENT ============ -->
+    <section class="section-alt" id="autrement">
       <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Nous aider autrement</span>
+          <h2 class="section-title">Il n'y a pas que l'argent</h2>
+        </div>
         <div class="cards-grid reveal">
           <div class="card">
-            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-            <h3>Faire un don</h3>
-            <p>Soutenez-nous directement via notre cagnotte en ligne. Chaque euro compte&nbsp;!</p>
-            <a href="#" class="btn btn-primary" style="margin-top:var(--space-4)">Accéder à la cagnotte <em>[lien à venir]</em></a>
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 8a5 5 0 0 1 0 8"/><path d="M20 5a9 9 0 0 1 0 14"/></svg></div>
+            <h3>Parlez de nous</h3>
+            <p>Partagez notre aventure autour de vous, sur vos réseaux, à votre entreprise. Un équipage se finance beaucoup par le bouche-à-oreille, et c'est souvent la mise en relation qui débloque un partenariat.</p>
           </div>
           <div class="card">
-            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-            <h3>Devenir sponsor</h3>
-            <p>Votre entreprise peut nous accompagner et gagner en visibilité. Découvrez nos formules.</p>
-            <a href="sponsors.html" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M4 12v9h16v-9M12 7v14M12 7S10.5 3 8 3a2.5 2.5 0 0 0 0 5M12 7s1.5-4 4-4a2.5 2.5 0 0 1 0 5"/></svg></div>
+            <h3>Donnez du matériel</h3>
+            <p>Fournitures scolaires, vêtements, matériel médical&nbsp;: nous acheminons les dons jusqu'au Maroc et les remettons à Cœur de Gazelles lors de la caravane du 25 mars.</p>
           </div>
           <div class="card">
             <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h3>Participer à nos événements</h3>
-            <p>Tombola, loto, soirées&nbsp;: rejoignez-nous lors de nos actions de récolte de fonds.</p>
-            <a href="contact.html" class="btn btn-outline" style="margin-top:var(--space-4)">Être informé</a>
+            <h3>Rejoignez nos actions de collecte</h3>
+            <p>Tombolas, ventes, événements&nbsp;: nous cherchons des bras et des idées.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <h3>Vous travaillez en entreprise&nbsp;?</h3>
+            <p>Parlez-en à votre direction. Le sponsoring est déductible du résultat imposable, et la première formule démarre à 500&nbsp;€.</p>
+            <a href="sponsors.html" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-alt">
+    <!-- ============ OÙ VA VOTRE ARGENT ============ -->
+    <section id="budget">
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Où va votre argent</span>
+          <h2 class="section-title">42 000 € pour prendre le départ</h2>
+          <p class="section-lead">Nous publions notre budget poste par poste. Vous savez exactement à quoi sert votre contribution — et ce qu'il advient de ce qui dépasse.</p>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat"><div class="stat__num">42 000 €</div><div class="stat__label">Budget de participation</div></div>
+          <div class="stat"><div class="stat__num">20 mars 2027</div><div class="stat__label">Date à laquelle il doit être réuni</div></div>
+          <div class="stat"><div class="stat__num">100 %</div><div class="stat__label">Du reliquat reversé à Cœur de Gazelles</div></div>
+        </div>
+        <div class="actions reveal">
+          <a href="equipage.html#budget" class="btn btn-outline">Le budget détaillé</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUESTIONS FRÉQUENTES ============ -->
+    <section class="section-alt" id="questions">
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Questions fréquentes</span>
+          <h2 class="section-title">Ce qu'on nous demande le plus souvent</h2>
+        </div>
+        <details class="accordion reveal" open>
+          <summary>Mon don est-il déductible de mes impôts&nbsp;?</summary>
+          <div class="accordion__body">
+            <p>Non. Notre association n'est pas reconnue d'intérêt général, les dons des particuliers n'ouvrent donc pas droit à une réduction fiscale. En revanche, le sponsoring d'entreprise relève du régime du parrainage et constitue une dépense de communication déductible.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary>Que devient l'argent si vous dépassez votre objectif&nbsp;?</summary>
+          <div class="accordion__body">
+            <p>Le reliquat est intégralement reversé à Cœur de Gazelles, l'association caritative du rallye, reconnue d'intérêt général, qui déploie une caravane médicale dans le sud du Maroc depuis 2001.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary>Puis-je donner autrement qu'en ligne&nbsp;?</summary>
+          <div class="accordion__body">
+            <p>Oui, par virement bancaire. <a href="contact.html">Écrivez-nous</a> et nous vous transmettons les coordonnées.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary>Recevrai-je des nouvelles du projet&nbsp;?</summary>
+          <div class="accordion__body">
+            <p>Nous partageons la préparation et la course sur <a href="''' + URL_INSTAGRAM + '''" target="_blank" rel="noopener">Instagram</a> et <a href="''' + URL_FACEBOOK + '''" target="_blank" rel="noopener">Facebook</a>, et le suivi officiel du rallye permet de nous suivre étape par étape pendant l'épreuve.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
       <div class="container">
         <div class="cta-banner reveal">
-          <h2>Ensemble, on va plus loin</h2>
-          <p>Votre soutien finance l'inscription, le véhicule, l'équipement et notre engagement solidaire. Merci&nbsp;!</p>
+          <h2>Merci de faire partie de l'aventure</h2>
+          <p>Un don, un partage, un coup de main&nbsp;: chaque geste nous rapproche du départ — et de ceux qui nous attendent là-bas.</p>
           <div class="hero__cta">
-            <a href="#" class="btn btn-light btn-lg">Faire un don</a>
-            <a href="contact.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Nous contacter</a>
+            <a href="#don" class="btn btn-light btn-lg">Faire un don</a>
+            <a href="contact.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Nous écrire</a>
           </div>
         </div>
       </div>
-    </section>''')
+    </section>''',
+    og_desc="Un don, du matériel, un partage : toutes les façons d'aider l'équipage 134 "
+            "à prendre le départ du Rallye Aïcha des Gazelles 2027.",
+    og_image="../assets/rallye_feminin.JPG",
+    hero_photo="../assets/rallye_feminin.JPG",
+    hero_eyebrow="Nous soutenir",
+    hero_actions='''        <div class="actions">
+          <a href="#don" class="btn btn-primary">Faire un don</a>
+          <a href="#autrement" class="btn btn-outline">Aider autrement</a>
+        </div>''')
+# Pas de .page-hero__aside ici : sur cette photo, le bas du bandeau est très clair
+# et l'ambre de la mention y devient illisible. Le renvoi vers le sponsoring est
+# porté par la carte « Vous travaillez en entreprise ? » de la section suivante.
 
 # ---- CONTACT ----
 PAGES["contact.html"] = page(
