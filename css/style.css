@@ -957,3 +957,51 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   .eco-stats, .timeline { grid-template-columns: 1fr; }
   .media-inset { position: static; margin-top: var(--space-4); display: inline-flex; }
 }
+
+/* ==========================================================================
+   PAGE LE RALLYE
+   Ajouts uniquement — aucun sélecteur existant n'est modifié ici.
+   ========================================================================== */
+
+/* ---------- CARTE ILLUSTRÉE (les trois traits du concept) ---------- */
+.card--photo { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.card--photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.card--photo .card__body { padding: var(--space-6); }
+
+/* ---------- AGENDA DÉPLIABLE (les trois actes de l'édition) ---------- */
+.acte__title { font-family: var(--font-display); font-size: var(--text-lg); }
+.acte__title em { display: block; font-size: var(--text-sm); font-weight: 400; color: var(--color-text-muted); margin-top: var(--space-1); }
+.accordion__body .agenda { grid-template-columns: 1fr; gap: var(--space-5); }
+.accordion__body .agenda li { display: block; }
+.agenda__date { display: block; font-family: var(--font-display); font-weight: 600; font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-1); }
+.agenda__aside { font-style: italic; color: var(--color-text-faint); }
+.agenda__aside a { color: var(--color-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- FRISE HISTORIQUE DÉPLIABLE ---------- */
+.timeline--history { grid-template-columns: repeat(4, 1fr); gap: var(--space-8) var(--space-6); }
+.timeline--history .timeline__item > summary { cursor: pointer; list-style: none; }
+.timeline--history .timeline__item > summary::-webkit-details-marker { display: none; }
+.timeline--history .timeline__label { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.timeline--history .timeline__label::after { content: "+"; font-family: var(--font-display); color: var(--color-primary); line-height: 1; }
+.timeline--history .timeline__item[open] .timeline__label::after { content: "–"; }
+.timeline__detail { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-divider); }
+
+/* ---------- LIEN DANS UNE MENTION DE SOURCE ---------- */
+.source-note a { color: var(--color-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.eco-panel .source-note a { color: var(--color-gold); }
+
+/* ---------- ENCADRÉS APPARIÉS ---------- */
+.note-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+.note-pair .note { margin-top: 0; }
+
+/* ---------- CITATION ET ACTIONS SUR PANNEAU SOMBRE ---------- */
+.eco-panel .quote { color: rgba(255,255,255,0.9); border-left-color: var(--color-gold); max-width: 62ch; }
+.eco-panel .actions { margin-top: var(--space-8); }
+
+@media (max-width: 900px) {
+  .timeline--history { grid-template-columns: repeat(2, 1fr); }
+  .note-pair { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .timeline--history { grid-template-columns: 1fr; }
+}
