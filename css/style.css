@@ -213,8 +213,28 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 /* Logo officiel : wordmark 4x4 « SMILE / DE / GAZELLES » (header) + emblème rose des vents (footer) */
 .logo { display: flex; align-items: center; gap: var(--space-3); color: var(--color-text); }
 .logo__img { height: 62px; width: auto; display: block; }
-.logo__img[src$="TEAMRallyeDesGazelles_Logo-01.png"] { margin-left: -1.5rem; }
+.logo__team-text {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  position: relative;
+  bottom: 3px;
+  margin-left: -0.45rem;
+  color: var(--color-gold);
+  font-size: clamp(0.66rem, 0.6rem + 0.2vw, 0.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.logo__team-text span:last-child {
+  font-weight: 600;
+  margin-top: 0.22rem;
+  padding-top: 0.22rem;
+  border-top: 1px solid var(--color-gold);
+}
 .logo:hover .logo__img { opacity: 0.85; }
+.logo:hover .logo__team-text { opacity: 0.85; }
 /* Bascule clair/sombre du wordmark */
 .logo__img--dark { display: none; }
 [data-theme="dark"] .logo__img--light { display: none; }
