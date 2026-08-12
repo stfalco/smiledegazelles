@@ -831,7 +831,78 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .figure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-top: var(--space-10); }
 .figure { margin: 0; }
 .figure img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
+.figure--schema img {
+  width: min(100%, 860px);
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
 .figure figcaption { margin-top: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+/* ---------- LE VÉHICULE : tableau + photo à gauche, schéma toute hauteur à droite ----------
+   La hauteur de la colonne droite est donnée par la colonne gauche : le schéma est en
+   position absolue dans son cadre, il ne pèse donc pas dans le calcul des lignes. */
+.vehicle-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(var(--space-6), 3vw, var(--space-8));
+  align-items: start;
+  margin-top: var(--space-8);
+}
+.vehicle-layout > .table-wrap { margin-top: 0; }
+.vehicle-layout__photo { margin: 0; }
+.vehicle-layout__schema {
+  grid-column: 2; grid-row: 1 / span 2;
+  align-self: stretch;
+  display: flex; flex-direction: column; min-height: 0;
+}
+.vehicle-layout__schema .figure__frame {
+  display: block; position: relative; flex: 1 1 auto; min-height: 320px;
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-xl);
+}
+.vehicle-layout__schema .figure__frame img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; padding: var(--space-4);
+  aspect-ratio: auto; object-fit: contain;
+  border-radius: 0; box-shadow: none;
+}
+@media (max-width: 900px) {
+  .vehicle-layout { grid-template-columns: 1fr; }
+  .vehicle-layout__schema { grid-column: 1; grid-row: auto; }
+  .vehicle-layout__schema .figure__frame { min-height: min(80vh, 620px); }
+}
+
+/* Figures empilées, centrées : pour un visuel seul ou un schéma en pied de section. */
+.figure-stack { display: grid; gap: clamp(var(--space-8), 5vw, var(--space-12)); margin-top: var(--space-10); }
+.figure--center { width: min(100%, 760px); margin-inline: auto; }
+.figure--center img { aspect-ratio: 16 / 10; }
+.figure--schema { text-align: center; }
+.figure--schema img { display: block; }
+
+/* ---------- TABLEAU + SCHÉMA APPARIÉS ----------
+   Le schéma est cadré comme le tableau (même carte, même hauteur) pour que
+   les deux se lisent comme un seul bloc de spécifications. */
+.spec-pair {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space-6); align-items: stretch; margin-top: var(--space-8);
+}
+.spec-pair > .table-wrap { margin-top: 0; }
+/* La hauteur de la ligne est donnée par le tableau seul : le schéma est en
+   position absolue, il ne pèse pas dans le calcul et vient remplir la carte. */
+.spec-pair .figure--schema {
+  position: relative; min-height: 260px;
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-xl);
+}
+.spec-pair .figure--schema img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; padding: var(--space-5);
+  object-fit: contain; border-radius: 0; box-shadow: none;
+}
+@media (max-width: 900px) {
+  .spec-pair { grid-template-columns: 1fr; }
+  .spec-pair .figure--schema { min-height: min(70vh, 520px); }
+}
 
 /* ---------- GALERIE 4 VISUELS ---------- */
 .gallery--quad { grid-template-columns: repeat(4, 1fr); }
