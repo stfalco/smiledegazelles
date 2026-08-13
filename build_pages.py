@@ -91,6 +91,7 @@ FOOTER = f'''  <footer class="footer">
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales</a></span>
         <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
@@ -1516,18 +1517,67 @@ PAGES["soutenir.html"] = page(
 # porté par la carte « Vous travaillez en entreprise ? » de la section suivante.
 
 # ---- CONTACT ----
+# Page d'aiguillage avant d'être une page de formulaire : beaucoup arrivent ici
+# parce qu'ils cherchent comment aider, pas parce qu'ils veulent écrire. D'où les
+# trois entrées en tête de page, qui renvoient vers sponsors et soutenir ; le
+# formulaire ne récupère que le reste.
+#
+# Formulaire branché sur Netlify Forms (data-netlify) : le POST natif suffit et
+# fonctionne sans JavaScript — Netlify affiche alors sa page de confirmation.
+# main.js l'intercepte seulement pour afficher la confirmation sans quitter la
+# page. Deux points à régler côté Netlify avant la mise en ligne : activer la
+# notification par email (sans quoi les messages s'accumulent dans l'interface
+# sans que personne ne le sache) et surveiller la limite de 100 soumissions par
+# mois du plan gratuit. Le champ « bot-field » est le piège anti-spam ; il doit
+# rester dans le HTML pour que Netlify le détecte au déploiement.
+#
+# Aucun numéro de téléphone n'est affiché : l'email est le seul canal direct.
 PAGES["contact.html"] = page(
     "contact", "Contact",
-    "Contactez l'équipage Smile de Gazelles pour toute question, partenariat ou soutien.",
-    ("Contactez-nous",
-     "Une question, une envie de nous soutenir ou de nous rejoindre ? Écrivez-nous."),
-    '''    <section>
+    "Une question, une proposition de partenariat ou une envie de nous aider autrement : "
+    "écrivez à l'équipage 134 du Rallye Aïcha des Gazelles, nous répondons à tous les messages.",
+    ("Une question&nbsp;? On vous répond",
+     "Une proposition de partenariat, une envie de nous aider autrement, ou simplement de la "
+     "curiosité&nbsp;: écrivez-nous, nous répondons à tous les messages."),
+    '''    <!-- ============ AIGUILLAGE ============ -->
+    <section>
       <div class="container">
+        <div class="cards-grid reveal">
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <h3>Nous sponsoriser</h3>
+            <p>Formules, visibilité, modalités&nbsp;: tout est détaillé sur la page dédiée.</p>
+            <a href="sponsors.html" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Faire un don</h3>
+            <p>Formulaire de don sécurisé, du montant de votre choix.</p>
+            <a href="soutenir.html" class="btn btn-outline" style="margin-top:var(--space-4)">Faire un don</a>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Autre demande</h3>
+            <p>Presse, partenariat en nature, coup de main, curiosité.</p>
+            <a href="#ecrire" class="btn btn-outline" style="margin-top:var(--space-4)">Écrivez-nous</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE FORMULAIRE ============ -->
+    <section class="section-alt" id="ecrire">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Nous écrire</span>
+          <h2 class="section-title">Écrivez-nous</h2>
+          <p class="section-lead">Une question sur le projet, une envie de nous accompagner, une proposition à laquelle nous n'avons pas pensé&nbsp;? Ce formulaire arrive directement dans notre boîte mail. Nous répondons sous quelques jours — souvent bien plus vite.</p>
+        </div>
         <div class="contact-grid">
           <div class="contact-info reveal">
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM22 6l-10 7L2 6"/></svg></div>
-              <div><h4>Email</h4><p><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p></div>
+              <div><h4>Contact direct</h4><p><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p></div>
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -1535,23 +1585,223 @@ PAGES["contact.html"] = page(
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-              <div><h4>Association Smile de Gazelles</h4><p>453, Enclos des Palourdes, Carnon, 34130 Mauguio</p></div>
+              <div><h4>Association Smile de Gazelles</h4><p>453 Enclos des Palourdes, 34130 Carnon</p></div>
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-              <div><h4>Prenons rendez-vous</h4><p>En présentiel (Montpellier) ou en visioconférence, à votre convenance.</p></div>
+              <div><h4>Prenons rendez-vous</h4><p>En présentiel à Montpellier et alentours, ou en visioconférence, à votre convenance.</p></div>
             </div>
           </div>
-          <form class="form reveal" onsubmit="return false">
-            <label>Nom<input type="text" name="nom" placeholder="Votre nom" required /></label>
-            <label>Email<input type="email" name="email" placeholder="vous@exemple.fr" required /></label>
-            <label>Sujet<input type="text" name="sujet" placeholder="Sponsoring, don, question…" /></label>
-            <label>Message<textarea name="message" rows="5" placeholder="Votre message"></textarea></label>
-            <button type="submit" class="btn btn-primary btn-lg">Envoyer <em style="font-style:normal;opacity:.7">[formulaire à connecter]</em></button>
-          </form>
+          <div>
+            <form class="form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-contact-form>
+              <input type="hidden" name="form-name" value="contact" />
+              <p class="sr-only"><label>Ne remplissez pas ce champ <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <div class="form__row">
+                <label>Nom et prénom<input type="text" name="nom" placeholder="Votre nom" required /></label>
+                <label>Entreprise ou organisation<input type="text" name="entreprise" placeholder="Facultatif" /></label>
+              </div>
+              <div class="form__row">
+                <label>Adresse email<input type="email" name="email" placeholder="vous@exemple.fr" required /></label>
+                <label>Téléphone<input type="tel" name="telephone" placeholder="Facultatif" /></label>
+              </div>
+              <label>Objet
+                <select name="objet" required>
+                  <option value="" disabled selected>Choisissez un objet</option>
+                  <option value="sponsor">Devenir sponsor</option>
+                  <option value="nature">Partenariat en nature</option>
+                  <option value="rib">Demander les coordonnées bancaires</option>
+                  <option value="presse">Demande presse</option>
+                  <option value="benevolat">Proposition de coup de main ou de bénévolat</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </label>
+              <label>Message<textarea name="message" rows="6" placeholder="Votre message" required></textarea></label>
+              <label class="form__consent"><input type="checkbox" name="consentement" required /> J'accepte que les informations saisies soient utilisées pour répondre à ma demande. Elles ne sont ni cédées ni exploitées à d'autres fins.</label>
+              <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+              <p class="source-note" data-form-error hidden>L'envoi n'a pas abouti. Écrivez-nous directement à <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a>.</p>
+            </form>
+            <div class="note" data-form-success hidden tabindex="-1" style="margin-top:0">
+              <h3>Merci, votre message est parti</h3>
+              <p>Nous vous répondons sous quelques jours — souvent bien plus vite.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>''')
+    </section>
+
+    <!-- ============ NOUS SUIVRE ============ -->
+    <section class="section--compact">
+      <div class="container container-default text-center">
+        <div class="reveal">
+          <span class="eyebrow" style="justify-content:center">Nous suivre</span>
+          <h2 class="section-title" style="font-size:var(--text-xl)">L'aventure se raconte au quotidien</h2>
+          <p class="section-lead mx-auto">Photos de préparation, coulisses, avancées du projet, et bientôt le désert en direct&nbsp;: nous partageons tout sur nos réseaux.</p>
+          <div class="social-links">
+            <a class="social-link" href="''' + URL_FACEBOOK + '''" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              facebook.com/smiledegazelles
+            </a>
+            <a class="social-link" href="''' + URL_INSTAGRAM + '''" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              instagram.com/smiledegazelles2027
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPACE PRESSE ============
+         Même minimal, un espace presse identifié donne à un journaliste le
+         sentiment d'être attendu. Le bouton « photos en haute définition »
+         ouvre le formulaire avec l'objet « Demande presse » présélectionné
+         (data-objet, géré dans main.js) ; sans script, l'ancre suffit. -->
+    <section class="section-alt" id="presse">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Espace presse</span>
+          <h2 class="section-title">Vous êtes journaliste&nbsp;?</h2>
+          <p class="section-lead">Nous sommes disponibles pour toute demande d'interview, de reportage ou d'information. Le dossier de présentation et des photos en haute définition sont à votre disposition.</p>
+          <div class="actions">
+            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-primary" download>Télécharger le dossier</a>
+            <a href="#ecrire" class="btn btn-outline" data-objet="presse">Demander des photos en haute définition</a>
+          </div>
+          <p style="margin-top:var(--space-6);color:var(--color-text-muted)">Contact presse&nbsp;: <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ L'ASSOCIATION ============ -->
+    <section>
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">L'association</span>
+          <h2 class="section-title">Qui reçoit vos messages et vos dons</h2>
+        </div>
+        <div class="id-card reveal">
+          <h3>Association Smile de Gazelles</h3>
+          <dl>
+            <dt>Statut</dt><dd>Association loi 1901 à but non lucratif</dd>
+            <dt>Déclaration</dt><dd>Préfecture n° W343034911 · SIREN 108 320 961</dd>
+            <dt>Siège social</dt><dd>453 Enclos des Palourdes, 34130 Carnon</dd>
+            <dt>Objet</dt><dd>Participation au Rallye Aïcha des Gazelles et actions solidaires associées</dd>
+            <dt>Collecte</dt><dd>Unique organisme collecteur des sommes versées pour la participation au rallye</dd>
+            <dt>Contact</dt><dd><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></dd>
+          </dl>
+        </div>
+        <div class="actions reveal">
+          <a href="equipage.html" class="btn btn-outline">Découvrir l'équipage et nos valeurs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Rejoignez l'aventure et donnez du sens à votre engagement</h2>
+          <p>Une entreprise qui nous accompagne, un don qui nous rapproche du départ&nbsp;: il y a une place pour chacun dans cette aventure.</p>
+          <div class="hero__cta">
+            <a href="sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
+            <a href="soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Faire un don</a>
+          </div>
+        </div>
+      </div>
+    </section>''',
+    og_desc="Une question, une proposition de partenariat ou une envie de nous aider autrement : "
+            "écrivez à l'équipage 134 du Rallye Aïcha des Gazelles 2027.",
+    hero_eyebrow="Contact")
+
+# ---- MENTIONS LÉGALES ----
+# Page annexe : pas dans la navigation principale, accessible depuis le renvoi
+# du pied de page (voir FOOTER, et le même lien ajouté à la main dans index.html).
+# Le paragraphe « Cookies » décrit l'état réel du site : la seule dépendance
+# externe est le formulaire de don HelloAsso de la page soutenir. Si HelloAsso
+# confirme le dépôt de cookies tiers, il faudra ajouter un bandeau de
+# consentement et mettre ce paragraphe à jour en conséquence.
+PAGES["mentions-legales.html"] = page(
+    "mentions-legales", "Mentions légales",
+    "Mentions légales du site de l'association Smile de Gazelles : éditeur, hébergeur, "
+    "données personnelles, cookies et propriété intellectuelle.",
+    ("Mentions légales",
+     "Qui édite ce site, qui l'héberge, et ce que deviennent les informations que vous nous confiez."),
+    '''    <!-- ============ ÉDITEUR ============ -->
+    <section>
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Éditeur</span>
+          <h2 class="section-title">Qui édite ce site</h2>
+        </div>
+        <div class="id-card reveal">
+          <h3>Association Smile de Gazelles</h3>
+          <dl>
+            <dt>Statut</dt><dd>Association loi 1901 à but non lucratif</dd>
+            <dt>Déclaration</dt><dd>Préfecture n° W343034911 · SIREN 108 320 961</dd>
+            <dt>Siège social</dt><dd>453 Enclos des Palourdes, 34130 Carnon</dd>
+            <dt>Publication</dt><dd>Directrices de la publication&nbsp;: Sandra Aversenq et Stéphanie Falco</dd>
+            <dt>Contact</dt><dd><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HÉBERGEUR ============ -->
+    <section class="section-alt">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Hébergeur</span>
+          <h2 class="section-title">Où ce site est hébergé</h2>
+          <p class="section-lead">Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DONNÉES PERSONNELLES ============ -->
+    <section>
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Données personnelles</span>
+          <h2 class="section-title">Ce que deviennent vos informations</h2>
+          <p class="section-lead">Les informations collectées via le formulaire de contact sont utilisées uniquement pour répondre aux demandes. Elles sont conservées douze mois au maximum et ne font l'objet d'aucune cession.</p>
+          <p class="section-lead" style="margin-top:var(--space-4)">Vous disposez d'un droit d'accès, de rectification et de suppression de ces données, exerçable à tout moment par email à <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COOKIES ============ -->
+    <section class="section-alt">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Cookies</span>
+          <h2 class="section-title">Cookies et services tiers</h2>
+          <p class="section-lead">Ce site ne dépose aucun cookie de mesure d'audience ni de publicité. Le formulaire de don HelloAsso, intégré à la page <a href="soutenir.html">Nous soutenir</a>, est susceptible de déposer des cookies tiers nécessaires au paiement sécurisé.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROPRIÉTÉ INTELLECTUELLE ============ -->
+    <section>
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Propriété intellectuelle</span>
+          <h2 class="section-title">Crédits et droits d'usage</h2>
+          <p class="section-lead">Les photographies du rallye sont © Maïenga et © Cœur de Gazelles, utilisées avec autorisation dans le cadre de la promotion de l'équipage. Le logo et les contenus rédactionnels sont la propriété de l'association Smile de Gazelles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Une question sur ces informations&nbsp;?</h2>
+          <p>Nous répondons à tous les messages, y compris ceux qui portent sur vos données.</p>
+          <div class="hero__cta">
+            <a href="contact.html" class="btn btn-light btn-lg">Nous écrire</a>
+          </div>
+        </div>
+      </div>
+    </section>''',
+    hero_eyebrow="Informations légales")
 
 for name, html in PAGES.items():
     with open(os.path.join(PAGES_DIR, name), "w", encoding="utf-8") as f:

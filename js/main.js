@@ -102,6 +102,63 @@
     });
   }
 
+  /* ----- Objet présélectionné dans le formulaire de contact -----
+     Les liens [data-objet] (espace presse notamment) pointent vers #ecrire et
+     positionnent la liste « Objet » sur la bonne valeur. Sans script, l'ancre
+     fonctionne toujours : la liste reste simplement sur son option par défaut. */
+  const objetSelectContact = document.querySelector('select[name="objet"]');
+  const objetLinks = document.querySelectorAll('[data-objet]');
+  if (objetSelectContact && objetLinks.length) {
+    let objetTimer;
+    objetLinks.forEach((link) => {
+      link.addEventListener('click', function () {
+        objetSelectContact.value = link.dataset.objet;
+        objetSelectContact.classList.add('is-prefilled');
+        clearTimeout(objetTimer);
+        objetTimer = setTimeout(() => objetSelectContact.classList.remove('is-prefilled'), 2600);
+      });
+    });
+  }
+
+  /* ----- Formulaire de contact (Netlify Forms) -----
+     Le formulaire est un POST classique : sans JavaScript, Netlify enregistre
+     le message et affiche sa propre page de confirmation. Le script ci-dessous
+     ne fait qu'envoyer les mêmes données en arrière-plan pour afficher la
+     confirmation sans quitter la page. En cas d'échec, on affiche l'adresse
+     email plutôt que de perdre le message en silence. */
+  const contactForm = document.querySelector('[data-contact-form]');
+  if (contactForm && window.fetch) {
+    const successBox = document.querySelector('[data-form-success]');
+    const errorBox = contactForm.querySelector('[data-form-error]');
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const submitLabel = submitBtn ? submitBtn.textContent : '';
+      if (errorBox) errorBox.hidden = true;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours…'; }
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(contactForm)).toString(),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Réponse ' + res.status);
+          // .form est en display:flex : l'attribut hidden ne suffirait pas à le masquer.
+          contactForm.style.display = 'none';
+          if (successBox) {
+            successBox.hidden = false;
+            successBox.focus();
+          }
+        })
+        .catch(function () {
+          if (errorBox) errorBox.hidden = false;
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitLabel; }
+        });
+    });
+  }
+
   /* ----- Ancres internes : scroll précis sous header sticky ----- */
   const scrollToHashTarget = (hash, smooth) => {
     if (!hash || hash === '#') return;

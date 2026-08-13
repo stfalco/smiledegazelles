@@ -416,6 +416,8 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .socials a { width: 40px; height: 40px; border-radius: var(--radius-full); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); }
 .socials a:hover { color: var(--color-primary); border-color: var(--color-primary); transform: translateY(-2px); }
 .footer__bottom { border-top: 1px solid var(--color-divider); padding-top: var(--space-6); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); font-size: var(--text-xs); color: var(--color-text-faint); }
+.footer__bottom a { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.footer__bottom a:hover { color: var(--color-primary); }
 
 /* ---------- PAGE HERO (pages intérieures) — bandeau brun façon dossier ---------- */
 .page-hero {
