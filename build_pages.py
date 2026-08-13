@@ -98,23 +98,30 @@ FOOTER = f'''  <footer class="footer">
   </footer>'''
 
 def page(current, title, desc, page_hero, body, og_desc=None, og_image="../assets/hero-desert.png",
-         hero_photo=None, hero_eyebrow=None, hero_stamp=None, hero_actions=None):
+         hero_photo=None, hero_eyebrow=None, hero_stamp=None, hero_actions=None,
+         hero_modifier=None, hero_lead_class=None):
     """Assemble une page intérieure.
 
-    page_hero   : (titre H1, chapô)
-    og_desc     : description Open Graph si elle diffère de la meta description
-    og_image    : visuel de partage
-    hero_photo  : chemin d'une photo affichée en bandeau derrière l'en-tête
-    hero_eyebrow: étiquette affichée au-dessus du H1
-    hero_stamp  : logo posé en aplat transparent sur le bandeau (ex. logo team RAG)
-    hero_actions: bloc HTML (boutons, mention) inséré sous le chapô du bandeau
+    page_hero      : (titre H1, chapô)
+    og_desc        : description Open Graph si elle diffère de la meta description
+    og_image       : visuel de partage
+    hero_photo     : chemin d'une photo affichée en bandeau derrière l'en-tête
+    hero_eyebrow   : étiquette affichée au-dessus du H1
+    hero_stamp     : logo posé en aplat transparent sur le bandeau (ex. logo team RAG)
+    hero_actions   : bloc HTML (boutons, mention) inséré sous le chapô du bandeau
+    hero_modifier  : classe supplémentaire sur le bandeau (ex. page-hero--sponsors,
+                     qui resserre les marges quand le bandeau porte des boutons)
+    hero_lead_class: classe posée sur le chapô du bandeau
     """
     hero_class = "page-hero page-hero--photo" if hero_photo else "page-hero"
+    if hero_modifier:
+        hero_class += f" {hero_modifier}"
     hero_style = f''' style="--page-hero-img:url('{hero_photo}')"''' if hero_photo else ""
     eyebrow = f'\n        <span class="page-hero__eyebrow">{hero_eyebrow}</span>' if hero_eyebrow else ""
     stamp = (f'\n      <img class="page-hero__stamp" src="{hero_stamp}" alt="" aria-hidden="true" />'
              if hero_stamp else "")
     actions = f'\n{hero_actions}' if hero_actions else ""
+    lead_class = f' class="{hero_lead_class}"' if hero_lead_class else ""
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -137,7 +144,7 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>{eyebrow}
         <h1>{page_hero[0]}</h1>
-        <p>{page_hero[1]}</p>{actions}
+        <p{lead_class}>{page_hero[1]}</p>{actions}
       </div>{stamp}
     </section>
 {body}
@@ -160,7 +167,10 @@ PAGES["equipage.html"] = page(
     "equipage", "L'équipage",
     "Sandra Aversenq et Stéphanie Falco, équipage 134 du Rallye Aïcha des Gazelles 2027 : "
     "leurs portraits, leur préparation, le budget détaillé et l'association Smile de Gazelles.",
-    ("L'alliance de la maîtrise et de l'instinct",
+    # Les deux titres ont été échangés à la relecture (commit « corrections sandra ») :
+    # « Deux tempéraments » ouvre la page, « L'alliance de la maîtrise et de l'instinct »
+    # titre la section Notre binôme plus bas. Ne pas les remettre dans l'autre sens.
+    ("Deux tempéraments, une même trajectoire",
      "Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye "
      "Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription "
      "pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action."),
@@ -175,11 +185,11 @@ PAGES["equipage.html"] = page(
             </div>
             <div class="crew-card__body">
               <h2 class="crew-card__name">Sandra Aversenq</h2>
-              <span class="crew-card__role">« Wonder Sandra »</span>
-              <div class="crew-card__meta"><span>53 ans</span><span>Chef d'entreprise</span></div>
+              <span class="crew-card__role">Chef d'entreprise</span>
+              <div class="crew-card__meta"><span>53 ans</span><span>aka Wonder Sandra</span></div>
               <p class="crew-card__bio">Entrepreneuse instinctive, fonceuse et structurée — un mélange rare. Ses nombreux voyages l'ont façonnée : elle y cherche moins les paysages que les échanges et les rencontres humaines authentiques.</p>
-              <p class="crew-card__bio">Elle apporte à l'équipage sa vision pragmatique des affaires, son leadership naturel et sa réactivité face aux crises de terrain. Là où d'autres hésitent, elle décide.</p>
-              <!-- Citation personnelle à recueillir auprès de Sandra : une phrase sur ce que ce rallye représente pour elle. -->
+              <p class="crew-card__bio">Elle apporte à l'équipage sa vision pragmatique des affaires, son leadership naturel et sa réactivité face aux crises de terrain. Là où d'autres hésitent, elle décide. Pour elle, chaque défi est une opportunité de grandir — et chaque rencontre, une leçon de vie.</p>
+              <blockquote class="crew-card__quote">« Un gagnant est un rêveur qui n'abandonne jamais. »</blockquote>
               <div class="crew-card__strengths">
                 <span class="crew-card__strengths-title">Ce qu'elle apporte</span>
                 <ul class="chips">
@@ -197,7 +207,7 @@ PAGES["equipage.html"] = page(
             <div class="crew-card__body">
               <h2 class="crew-card__name">Stéphanie Falco</h2>
               <span class="crew-card__role">Cadre supérieur RH</span>
-              <div class="crew-card__meta"><span>49 ans</span><span>Collectif « Les Biches »</span></div>
+              <div class="crew-card__meta"><span>49 ans</span><span>co-fondatrice du collectif les Biches</span></div>
               <p class="crew-card__bio">Co-fondatrice du collectif « Les Biches », qui met en avant les femmes artistes, elle est profondément animée par la force du collectif. Bercée dès son plus jeune âge par le ronflement des 4x4 de son père, habitué des rallyes de franchissement, elle allie sérénité et sens de la mécanique.</p>
               <p class="crew-card__bio">Face à l'imprévu, elle apporte le calme et l'énergie, avec une capacité d'analyse qui, dans une épreuve où tout se joue sur la précision du pilotage, n'a rien d'un détail.</p>
               <blockquote class="crew-card__quote">« Ils ne savaient pas que c'était impossible, alors ils l'ont fait. »</blockquote>
@@ -224,7 +234,7 @@ PAGES["equipage.html"] = page(
           </div>
           <div class="split__body">
             <span class="eyebrow">Notre binôme</span>
-            <h2>Deux tempéraments, une même trajectoire</h2>
+            <h2>L'alliance de la maîtrise et de l'instinct</h2>
             <p>Dans le désert, l'équipage compte autant que le véhicule. Pendant sept jours de course, il faut décider vite et bien, se relayer au volant et à la carte, gérer la fatigue, les erreurs et les imprévus — sans jamais se retourner l'une contre l'autre. C'est l'entraide qui fait la différence, bien plus que la performance individuelle.</p>
             <blockquote class="quote">« Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure qui s'annonce déjà inoubliable, jalonnée d'obstacles et d'imprévus, mais surtout riche de sens, de rencontres et d'émotions. »</blockquote>
             <p><strong>Deux femmes — un défi — mille sourires à partager.</strong></p>
@@ -261,7 +271,7 @@ PAGES["equipage.html"] = page(
             <div class="roadmap__step">◉ En cours</div>
             <div class="roadmap__title">La préparation</div>
             <div class="roadmap__label">Physique, mentale et logistique.</div>
-            <span class="roadmap__here">Vous êtes ici</span>
+            <span class="roadmap__here">Nous sommes ici</span>
           </div>
           <div class="roadmap__item roadmap__item--todo">
             <div class="roadmap__step">○ À venir</div>
@@ -479,9 +489,9 @@ PAGES["equipage.html"] = page(
     og_desc="Deux tempéraments, une même trajectoire. Découvrez l'équipage 134, "
             "sa préparation, son budget et son association.",
     og_image="../assets/equipage_hero.JPG",
-    hero_photo="../assets/equipage_hero.JPG",
-    hero_eyebrow="Équipage 134 · Smile de Gazelles",
-    hero_stamp="../assets/logo-team-rag.png")
+    # Pas de hero_photo ni de hero_stamp : le bandeau est repassé en fond sombre uni
+    # (commit « hero fond sombre »). La photo reste le visuel de partage Open Graph.
+    hero_eyebrow="Équipage 134 · Smile de Gazelles")
 
 # ---- LE RALLYE ----
 PAGES["le-rallye.html"] = page(
@@ -955,7 +965,7 @@ PAGES["sponsors.html"] = page(
     "sponsors", "Sponsors",
     "Devenez partenaire de l'équipage Smile de Gazelles : retombées médias du rallye, "
     "cinq formules de sponsoring, visibilité sur le véhicule et les équipements, modalités et contact.",
-    ("Devenez partenaire",
+    ("Faites partie de l'aventure",
      "Associez votre image à une aventure humaine, sportive et solidaire porteuse de valeurs fortes."),
     '''    <!-- ============ POURQUOI NOUS SOUTENIR ============ -->
     <section id="pourquoi">
@@ -1153,20 +1163,33 @@ PAGES["sponsors.html"] = page(
 
         <h3 class="subhead reveal">Le véhicule</h3>
         <p class="section-lead reveal">Emplacements publicitaires officiels, avec leurs zones et leurs dimensions maximales.</p>
-        <div class="table-wrap reveal">
-          <table class="spec-table">
-            <thead><tr><th scope="col">Zone</th><th scope="col">Dimensions maximales</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Capot avant et toit</th><td>80 × 100 cm</td></tr>
-              <tr><th scope="row">Portières arrière, ailes, vitres latérales</th><td>40 × 60 cm</td></tr>
-              <tr><th scope="row">Arrière du 4x4</th><td>30 × 40 cm</td></tr>
-              <tr><th scope="row">Vitre arrière</th><td>20 × 30 cm</td></tr>
-            </tbody>
-          </table>
+        <!-- Colonne gauche : tableau en haut, photo en bas. Colonne droite : schéma toute hauteur. -->
+        <div class="vehicle-layout reveal">
+          <div class="table-wrap">
+            <table class="spec-table">
+              <thead><tr><th scope="col">Zone</th><th scope="col">Dimensions maximales</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Capot avant et toit</th><td>80 × 100 cm</td></tr>
+                <tr><th scope="row">Portières arrière, ailes, vitres latérales</th><td>40 × 60 cm</td></tr>
+                <tr><th scope="row">Arrière du 4x4</th><td>30 × 40 cm</td></tr>
+                <tr><th scope="row">Vitre arrière</th><td>20 × 30 cm</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figure class="figure vehicle-layout__photo">
+            <img src="../assets/sponsors_covering.jpg" alt="Covering publicitaire d'un 4x4 engagé sur le rallye" loading="lazy" />
+            <figcaption>Exemple de covering — édition précédente.</figcaption>
+          </figure>
+          <figure class="figure vehicle-layout__schema">
+            <span class="figure__frame">
+              <img src="../assets/schema-vehicule.png" alt="Schéma du 4x4 situant les zones de sponsoring et leurs dimensions maximales" loading="lazy" />
+            </span>
+            <figcaption>Schéma des emplacements de stickers.</figcaption>
+          </figure>
         </div>
         <div class="note reveal">
-          <h3>Emplacements réservés</h3>
-          <p>Conformément au règlement du rallye, les trois plaques «&nbsp;Rallye Aïcha des Gazelles&nbsp;», les numéros d'équipage (12 × 7 cm) et la plaque d'identification de toit (42 × 27 cm) sont strictement réservés à l'organisation. Toutes les autres surfaces sont à votre disposition.</p>
+          <h3>Une remarque sur les formats</h3>
+          <p>Nos formats sont volontairement calibrés en dessous du maximum autorisé, afin de pouvoir accueillir plusieurs partenaires sur une même zone. Un emplacement plus grand reste possible pour les formules supérieures.</p>
         </div>
 
         <h3 class="subhead reveal" style="margin-top:clamp(var(--space-12), 6vw, var(--space-16))">Les équipements</h3>
@@ -1180,26 +1203,22 @@ PAGES["sponsors.html"] = page(
             </tbody>
           </table>
         </div>
-        <div class="figure-grid reveal">
+        <div class="figure-stack reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
           <figure class="figure">
             <img src="../assets/sponsors_covering02.jpg" alt="Gilet officiel, casque et t-shirt d'un équipage du rallye" loading="lazy" />
-            <figcaption>Exemple&nbsp;: gilet officiel, casque et t-shirt d'un équipage — édition précédente.</figcaption>
+            <figcaption>Gilet officiel, casque et t-shirt — édition précédente.</figcaption>
           </figure>
           <figure class="figure">
-            <img src="../assets/sponsors_covering.jpg" alt="Covering publicitaire d'un 4x4 engagé sur le rallye" loading="lazy" />
-            <figcaption>Exemple de covering — édition précédente.</figcaption>
+            <img src="../assets/sponsors-covering03.jpg" alt="Équipements et accessoires de sponsoring du rallye" loading="lazy" />
+            <figcaption>Équipements et accessoires de sponsoring — édition précédente.</figcaption>
           </figure>
-        </div>
-        <div class="note reveal">
-          <h3>Une remarque sur les formats</h3>
-          <p>Nos formats sont volontairement calibrés en dessous du maximum autorisé, afin de pouvoir accueillir plusieurs partenaires sur une même zone. Un emplacement plus grand reste possible pour les formules supérieures.</p>
         </div>
       </div>
     </section>
 
     <!-- ============ MODALITÉS ============ -->
     <section id="modalites">
-      <div class="container container-default">
+      <div class="container">
         <div class="reveal">
           <span class="eyebrow">Modalités</span>
           <h2 class="section-title">Comment procéder</h2>
@@ -1228,11 +1247,11 @@ PAGES["sponsors.html"] = page(
     </section>
 
     <!-- ============ PARLONS-EN ============ -->
-    <section class="section-alt" id="contact">
+    <section class="section-alt">
       <div class="container">
         <div class="reveal" style="margin-bottom:var(--space-10)">
           <span class="eyebrow">Parlons-en</span>
-          <h2 class="section-title">Prenons rendez-vous</h2>
+          <h2 class="section-title" id="contact">Prenons rendez-vous</h2>
           <p class="section-lead">En présentiel à Montpellier et alentours, ou en visioconférence. Nous vous présentons le projet, écoutons vos attentes et construisons ensemble un partenariat sur mesure.</p>
         </div>
         <div class="contact-grid">
@@ -1312,7 +1331,7 @@ PAGES["sponsors.html"] = page(
           <p>Face à l'imprévu, on improvise. Face aux obstacles, on sourit. Ensemble, on transforme chaque défi en terrain de jeu.</p>
           <div class="hero__cta">
             <a href="#contact" class="btn btn-light btn-lg">Nous contacter</a>
-            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)" download>Télécharger le dossier</a>
+            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)" download>Télécharger le dossier de sponsoring</a>
           </div>
         </div>
       </div>
@@ -1320,8 +1339,11 @@ PAGES["sponsors.html"] = page(
     og_desc="4,63 M€ de valeur média générée, 435,6 M de personnes atteintes : associez votre entreprise "
             "à l'équipage 134 du Rallye Aïcha des Gazelles 2027.",
     og_image="../assets/sponsoring-272-recalibr%C3%A9e.png",
-    hero_photo="../assets/sponsoring-272-recalibr%C3%A9e.png",
-    hero_eyebrow="Entreprises · Sponsoring 2027",
+    # Bandeau repassé en fond sombre uni (commit « hero fond sombre ») : plus de photo
+    # ni d'étiquette, mais la classe page-hero--sponsors qui resserre les marges autour
+    # des deux boutons. Le visuel reste l'image de partage Open Graph.
+    hero_modifier="page-hero--sponsors",
+    hero_lead_class="page-hero__lead",
     hero_actions='''        <div class="actions">
           <a href="#formules" class="btn btn-primary">Voir les formules</a>
           <a href="../assets/dossier-sponsoring.pdf" class="btn btn-outline" download>Télécharger le dossier</a>
