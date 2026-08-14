@@ -135,7 +135,9 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
   <meta property="og:image" content="{og_image}" />
   <link rel="icon" href="../assets/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../css/clash-display.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
