@@ -82,6 +82,51 @@
     reveals.forEach((r) => r.classList.add('is-visible'));
   }
 
+  /* ----- Carrousel (frise historique) -----
+     Un seul jalon visible à la fois, navigation par flèches et points.
+     Sans JavaScript, les jalons s'empilent (repli CSS via .is-enhanced). */
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector('.tl-carousel__track');
+    const slides = Array.from(carousel.querySelectorAll('.tl-carousel__slide'));
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    const dotsHost = carousel.querySelector('[data-carousel-dots]');
+    if (!track || slides.length < 2) return;
+
+    carousel.classList.add('is-enhanced');
+    let index = 0;
+
+    const dots = slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'tl-carousel__dot';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Jalon ' + (i + 1) + ' sur ' + slides.length);
+      dot.addEventListener('click', () => go(i));
+      dotsHost && dotsHost.appendChild(dot);
+      return dot;
+    });
+
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + -index * 100 + '%)';
+      slides.forEach((s, n) => s.setAttribute('aria-hidden', n === index ? 'false' : 'true'));
+      dots.forEach((d, n) => {
+        d.classList.toggle('is-active', n === index);
+        d.setAttribute('aria-selected', n === index ? 'true' : 'false');
+      });
+    }
+
+    prev && prev.addEventListener('click', () => go(index - 1));
+    next && next.addEventListener('click', () => go(index + 1));
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { go(index - 1); }
+      else if (e.key === 'ArrowRight') { go(index + 1); }
+    });
+
+    go(0);
+  });
+
   /* ----- Formules : présélection dans le formulaire de contact -----
      Chaque carte porte un [data-formule] dont la valeur correspond à l'option
      du <select name="formule">. Le lien reste un simple ancrage vers #contact
