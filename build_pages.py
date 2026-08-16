@@ -133,7 +133,10 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
   <meta property="og:title" content="{title} — Smile de Gazelles" />
   <meta property="og:description" content="{og_desc or desc}" />
   <meta property="og:image" content="{og_image}" />
-  <link rel="icon" href="../assets/favicon.png" type="image/png" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
   <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../css/clash-display.css" />
