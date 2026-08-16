@@ -348,7 +348,7 @@ PAGES["equipage.html"] = page(
 
     <!-- ============ LE BUDGET ============ -->
     <section id="budget">
-      <div class="container container-default">
+      <div class="container">
         <div class="reveal">
           <span class="eyebrow">Un projet construit avec vous</span>
           <h2 class="section-title">Chaque contribution donne vie à l'aventure</h2>
@@ -417,7 +417,7 @@ PAGES["equipage.html"] = page(
         </details>
         <div class="pledge reveal">
           <h3>Notre engagement</h3>
-          <p>L'association Smile de Gazelles est l'unique organisme collecteur des sommes versées pour couvrir le budget de participation au rallye. Le reliquat sera versé en intégralité à l'association Cœur de Gazelles.</p>
+          <p>L'association Smile de Gazelles (N° RNA W343034911) est l'unique organisme collecteur des sommes versées pour couvrir le budget de participation au rallye. Le reliquat sera versé en intégralité à l'association Cœur de Gazelles.</p>
         </div>
       </div>
     </section>
