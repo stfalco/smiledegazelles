@@ -83,10 +83,10 @@ FOOTER = f'''  <footer class="footer">
           <li><a href="solidarite.html">Solidarité et RSE</a></li>
           <li><a href="sponsors.html">Sponsors</a></li>
         </ul></div>
-        <div class="footer__col"><h4>Soutenir</h4><ul>
+        <div class="footer__col"><h4>Liens utiles</h4><ul>
           <li><a href="soutenir.html">Faire un don</a></li>
           <li><a href="sponsors.html">Devenir sponsor</a></li>
-          <li><a href="contact.html">Nous contacter</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul></div>
       </div>
       <div class="footer__bottom">
