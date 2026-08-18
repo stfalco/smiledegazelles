@@ -152,6 +152,7 @@
      positionnent la liste « Objet » sur la bonne valeur. Sans script, l'ancre
      fonctionne toujours : la liste reste simplement sur son option par défaut. */
   const objetSelectContact = document.querySelector('select[name="objet"]');
+  const messageFieldContact = document.querySelector('textarea[name="message"]');
   const objetLinks = document.querySelectorAll('[data-objet]');
   if (objetSelectContact && objetLinks.length) {
     let objetTimer;
@@ -159,6 +160,10 @@
       link.addEventListener('click', function () {
         objetSelectContact.value = link.dataset.objet;
         objetSelectContact.classList.add('is-prefilled');
+        if (messageFieldContact && link.dataset.message) {
+          messageFieldContact.value = link.dataset.message;
+          messageFieldContact.classList.add('is-prefilled');
+        }
         clearTimeout(objetTimer);
         objetTimer = setTimeout(() => objetSelectContact.classList.remove('is-prefilled'), 2600);
       });
