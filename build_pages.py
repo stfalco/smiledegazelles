@@ -936,7 +936,6 @@ PAGES["solidarite.html"] = page(
             <a class="btn btn-outline" href="https://www.rallyeaichadesgazelles.com" target="_blank" rel="noopener">Le site du rallye</a>
             <a class="btn btn-outline" href="''' + URL_RAPPORT_RSE + '''" target="_blank" rel="noopener">Télécharger le rapport RSE CAP 2024-2025 (PDF)</a>
           </div>
-          <p class="source-note" style="margin-top:var(--space-6)">Sources&nbsp;: rapport RSE Programme CAP, édition juin 2024 – juin 2025 (Maïenga), pages Trek'in Gazelles et Bab el Raid, publications de Cœur de Gazelles. Ces chiffres sont ceux de l'organisateur du rallye et de l'association&nbsp;; ils ne se confondent pas avec les chiffres de couverture médiatique présentés sur la <a href="sponsors.html">page Sponsors</a>.</p>
         </div>
       </div>
     </section>
