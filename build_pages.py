@@ -123,6 +123,15 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
              if hero_stamp else "")
     actions = f'\n{hero_actions}' if hero_actions else ""
     lead_class = f' class="{hero_lead_class}"' if hero_lead_class else ""
+    ha_overlay = '''
+  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
+    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+    </div>
+  </div>''' if current == "soutenir" else ""
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -155,6 +164,7 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
     </section>
 {body}
   </main>
+{ha_overlay}
 {FOOTER}
   <script src="../js/main.js"></script>
 </body>
@@ -1507,7 +1517,7 @@ PAGES["soutenir.html"] = page(
     hero_photo="../assets/rallye_feminin.JPG",
     hero_eyebrow="Nous soutenir",
     hero_actions='''        <div class="actions">
-          <a href="#don" class="btn btn-primary">Faire un don</a>
+          <button id="openHaOverlay" type="button" class="btn btn-primary">Faire un don</button>
           <a href="#autrement" class="btn btn-outline">Aider autrement</a>
         </div>''')
 # Pas de .page-hero__aside ici : sur cette photo, le bas du bandeau est très clair

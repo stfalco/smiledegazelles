@@ -22,6 +22,30 @@
     });
   }
 
+  /* ----- Formulaire de don HelloAsso en surimpression ----- */
+  const openHaOverlay = document.getElementById('openHaOverlay');
+  const haWidgetModal = document.getElementById('haWidgetModal');
+  const closeHaWidgetBtn = document.getElementById('closeHaWidgetBtn');
+  if (openHaOverlay && haWidgetModal && closeHaWidgetBtn) {
+    const closeHaOverlay = () => {
+      haWidgetModal.style.display = 'none';
+      document.body.style.overflow = '';
+      document.body.style.overscrollBehaviorY = '';
+    };
+    openHaOverlay.addEventListener('click', () => {
+      haWidgetModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.body.style.overscrollBehaviorY = 'none';
+    });
+    closeHaWidgetBtn.addEventListener('click', closeHaOverlay);
+    haWidgetModal.addEventListener('click', (event) => {
+      if (event.target === haWidgetModal) closeHaOverlay();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && haWidgetModal.style.display === 'flex') closeHaOverlay();
+    });
+  }
+
   /* ----- Header au scroll ----- */
   const header = document.querySelector('.header');
   if (header) {
