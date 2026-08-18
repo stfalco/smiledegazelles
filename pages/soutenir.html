@@ -74,14 +74,15 @@
                (formulaire n° 3 de l'association, vue « formulaire »). Conservé tel
                quel : le script inline redimensionne l'iframe à la hauteur réelle du
                formulaire, que HelloAsso transmet par postMessage à chaque étape.
-               Seuls le title (accessibilité) et le loading ont été ajoutés.
+               Seuls le title (accessibilité), le loading et le paramètre
+               lang=fr de l'URL (voir URL_HELLOASSO_WIDGET) ont été ajoutés.
                Attention : ce widget est susceptible de déposer des cookies tiers,
                ce qui peut rendre un bandeau de consentement obligatoire — à vérifier
                auprès de HelloAsso avant la mise en ligne. C'est la seule dépendance
                externe du site. -->
-          <iframe id="haWidgetLight" allowtransparency="true" allow="payment" scrolling="auto" loading="lazy" title="Formulaire de don — Association Smile de Gazelles" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=form" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight');
+          <iframe id="haWidgetLight" allowtransparency="true" allow="payment" scrolling="auto" loading="lazy" title="Formulaire de don — Association Smile de Gazelles" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=form&amp;lang=fr" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight');
   if (dataHeight > parseFloat(haWidgetElement.height || 0)) { haWidgetElement.height = dataHeight + 'px';}})"></iframe>
-          <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3" target="_blank" rel="noopener">Accédez directement au site HelloAsso</a>.</p>
+          <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3?lang=fr" target="_blank" rel="noopener">Accédez directement au site HelloAsso</a>.</p>
         </div>
         </div>
         <div class="note reveal">
@@ -197,7 +198,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
     </button>
     <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
-      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay&amp;lang=fr" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
     </div>
   </div>
   <footer class="footer">
@@ -212,7 +213,7 @@
           <div class="socials">
             <a href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
             <a href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://www.linkedin.com/company/smiledegazelles" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>

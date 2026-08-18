@@ -25,6 +25,19 @@ LOGO_EMBLEM = '''<img class="logo__emblem logo__emblem--light" src="../assets/lo
 # Réseaux sociaux officiels de l'équipage
 URL_FACEBOOK = "https://www.facebook.com/smiledegazelles"
 URL_INSTAGRAM = "https://www.instagram.com/smiledegazelles2027"
+URL_LINKEDIN = "https://www.linkedin.com/company/smiledegazelles"
+
+# Formulaire de don HelloAsso de l'association (formulaire n° 3). L'URL du widget
+# est celle du code d'intégration fourni par la plateforme ; l'URL publique sert
+# de repli si l'iframe est bloquée (bloqueur de traceurs, refus de cookies tiers).
+# lang=fr : sans ce paramètre, HelloAsso suit la langue du navigateur et affiche
+# « Select a donation / Donate » à tout visiteur dont le navigateur n'est pas en
+# français, alors que le reste du site l'est. Le paramètre est écrit « &amp; »
+# parce que ces URLs ne servent que dans du HTML (attribut src, href).
+URL_HELLOASSO_FORM = "https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3"
+URL_HELLOASSO_FORM_FR = URL_HELLOASSO_FORM + "?lang=fr"
+URL_HELLOASSO_WIDGET = URL_HELLOASSO_FORM + "/widget?view=form&amp;lang=fr"
+URL_HELLOASSO_OVERLAY = URL_HELLOASSO_FORM + "/widget?view=overlay&amp;lang=fr"
 
 NAV_ITEMS = [
     ("index.html", "Accueil", "accueil"),
@@ -74,7 +87,7 @@ FOOTER = f'''  <footer class="footer">
           <div class="socials">
             <a href="{URL_INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
             <a href="{URL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="{URL_LINKEDIN}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>
@@ -123,13 +136,13 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
              if hero_stamp else "")
     actions = f'\n{hero_actions}' if hero_actions else ""
     lead_class = f' class="{hero_lead_class}"' if hero_lead_class else ""
-    ha_overlay = '''
+    ha_overlay = f'''
   <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
     <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
     </button>
     <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
-      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="{URL_HELLOASSO_OVERLAY}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
     </div>
   </div>''' if current == "soutenir" else ""
     return f'''<!DOCTYPE html>
@@ -1377,11 +1390,6 @@ PAGES["sponsors.html"] = page(
         <p class="page-hero__aside">Vous êtes un particulier&nbsp;? <a href="soutenir.html">Découvrez comment nous soutenir</a>.</p>''')
 
 # ---- SOUTENIR ----
-# Formulaire de don HelloAsso de l'association (formulaire n° 3). L'URL du widget
-# est celle du code d'intégration fourni par la plateforme ; l'URL publique sert
-# de repli si l'iframe est bloquée (bloqueur de traceurs, refus de cookies tiers).
-URL_HELLOASSO_FORM = "https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3"
-URL_HELLOASSO_WIDGET = URL_HELLOASSO_FORM + "/widget?view=form"
 
 # Page volontairement courte : chaque paragraphe de trop éloigne du bouton.
 # Le widget HelloAsso est la seule dépendance externe du site — tant que le
@@ -1410,14 +1418,15 @@ PAGES["soutenir.html"] = page(
                (formulaire n° 3 de l'association, vue « formulaire »). Conservé tel
                quel : le script inline redimensionne l'iframe à la hauteur réelle du
                formulaire, que HelloAsso transmet par postMessage à chaque étape.
-               Seuls le title (accessibilité) et le loading ont été ajoutés.
+               Seuls le title (accessibilité), le loading et le paramètre
+               lang=fr de l'URL (voir URL_HELLOASSO_WIDGET) ont été ajoutés.
                Attention : ce widget est susceptible de déposer des cookies tiers,
                ce qui peut rendre un bandeau de consentement obligatoire — à vérifier
                auprès de HelloAsso avant la mise en ligne. C'est la seule dépendance
                externe du site. -->
           <iframe id="haWidgetLight" allowtransparency="true" allow="payment" scrolling="auto" loading="lazy" title="Formulaire de don — Association Smile de Gazelles" src="''' + URL_HELLOASSO_WIDGET + '''" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight');
   if (dataHeight > parseFloat(haWidgetElement.height || 0)) { haWidgetElement.height = dataHeight + 'px';}})"></iframe>
-          <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="''' + URL_HELLOASSO_FORM + '''" target="_blank" rel="noopener">Accédez directement au site HelloAsso</a>.</p>
+          <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="''' + URL_HELLOASSO_FORM_FR + '''" target="_blank" rel="noopener">Accédez directement au site HelloAsso</a>.</p>
         </div>
         </div>
         <div class="note reveal">
