@@ -755,7 +755,7 @@ PAGES["solidarite.html"] = page(
       <div class="container">
         <div class="reveal" style="margin-bottom:var(--space-12)">
           <span class="eyebrow">Quatre volets</span>
-          <h2 class="section-title">Nos actions</h2>
+          <h2 class="section-title">Les domaines d'intervention</h2>
         </div>
         <div class="volets">
           <div class="split reveal">
@@ -847,7 +847,7 @@ PAGES["solidarite.html"] = page(
           <span class="eyebrow">Une RSE mesurable, pas une promesse</span>
           <h2>Le seul rallye au monde certifié ISO 14001</h2>
           <p>Depuis 2010, l'organisateur du Rallye Aïcha des Gazelles est la seule agence événementielle au monde, dans le domaine du sport automobile, à détenir une certification attestant de la conformité de son système de management environnemental à la norme ISO 14001. Cette certification est réévaluée chaque année et a été renouvelée en 2025.</p>
-          <p class="source-note" style="margin-top:var(--space-6)">Cette section s'adresse aux directions RSE, RH et communication qui doivent justifier un partenariat en interne. Tous les chiffres proviennent du <a href="''' + URL_RAPPORT_RSE + '''" target="_blank" rel="noopener">rapport RSE Programme CAP, édition juin 2024 – juin 2025</a>.</p>
+          <p class="source-note" style="margin-top:var(--space-6)">Tous les chiffres proviennent du <a href="''' + URL_RAPPORT_RSE + '''" target="_blank" rel="noopener">rapport RSE Programme CAP, édition juin 2024 – juin 2025</a>.</p>
         </div>
 
         <h3 class="subhead">Quatre axes de travail, avec des résultats mesurés chaque année</h3>
