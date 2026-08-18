@@ -1374,14 +1374,11 @@ PAGES["soutenir.html"] = page(
     '''    <!-- ============ FAIRE UN DON ============ -->
     <section id="don">
       <div class="container container-default">
-        <div class="reveal" style="margin-bottom:var(--space-10)">
+        <div class="donation-intro-grid">
+        <div class="reveal">
           <span class="eyebrow">Faire un don</span>
           <h2 class="section-title">Un coup de pouce, quel qu'il soit</h2>
           <p class="section-lead">Un don, même modeste, compte réellement. Chaque contribution s'additionne aux autres et finance une ligne précise de notre budget.</p>
-        </div>
-        <div class="stats-grid reveal" style="margin-bottom:var(--space-10)">
-          <div class="stat"><div class="stat__num">480 €</div><div class="stat__label">Un stage de navigation financé</div></div>
-          <div class="stat"><div class="stat__num">3 800 €</div><div class="stat__label">Toute notre sécurité couverte&nbsp;: balise satellite, odomètre, casques, boussole</div></div>
         </div>
         <div class="donation-embed reveal">
           <!-- Widget de don HelloAsso, code d'intégration fourni par la plateforme
@@ -1396,7 +1393,8 @@ PAGES["soutenir.html"] = page(
           <iframe id="haWidgetLight" allowtransparency="true" allow="payment" scrolling="auto" loading="lazy" title="Formulaire de don — Association Smile de Gazelles" src="''' + URL_HELLOASSO_WIDGET + '''" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight');
   if (dataHeight > parseFloat(haWidgetElement.height || 0)) { haWidgetElement.height = dataHeight + 'px';}})"></iframe>
         </div>
-        <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="''' + URL_HELLOASSO_FORM + '''" target="_blank" rel="noopener">Donner directement sur HelloAsso</a>.</p>
+        </div>
+        <p class="source-note" style="margin-top:var(--space-6)">Paiement sécurisé. HelloAsso est gratuit pour les associations&nbsp;: la plateforme se finance grâce à une contribution volontaire, que vous restez libre d'ajuster ou de retirer au moment du paiement. L'intégralité de votre don nous revient. Le formulaire ne s'affiche pas&nbsp;? <a href="''' + URL_HELLOASSO_FORM + '''" target="_blank" rel="noopener">Accédez directement au site HelloAsso</a>.</p>
         <div class="note reveal">
           <h3>Précision importante</h3>
           <p>L'association Smile de Gazelles n'étant pas reconnue d'intérêt général, les dons des particuliers <strong>n'ouvrent pas droit à une réduction d'impôt</strong>. En revanche, le sponsoring d'entreprise relève du régime du parrainage et constitue une dépense de communication déductible du résultat imposable.</p>
