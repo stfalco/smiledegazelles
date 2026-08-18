@@ -12,8 +12,8 @@
   <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
-  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../css/clash-display.css" />
   <link rel="stylesheet" href="../css/general-sans.css" />
   <link rel="stylesheet" href="../css/style.css" />
@@ -237,5 +237,116 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
+<script>
+(function () {
+  function rect(el){ const r = el.getBoundingClientRect(); return {x:Math.round(r.left),y:Math.round(r.top),w:Math.round(r.width),h:Math.round(r.height)}; }
+  function name(el){
+    if(!el) return 'null';
+    let n = el.tagName.toLowerCase();
+    if(el.id) n += '#'+el.id;
+    if(el.className && typeof el.className==='string' && el.className.trim()) n += '.'+el.className.trim().split(/\s+/).join('.');
+    return n.slice(0,60);
+  }
+  const out = {};
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.nav');
+  const logo = document.querySelector('.logo');
+  const toggle = document.querySelector('[data-theme-toggle]');
+
+  function probe(){
+    const res = {};
+    [['logo', logo], ['toggle', toggle], ['burger', burger]].forEach(function(p){
+      const r = p[1].getBoundingClientRect();
+      const hit = document.elementFromPoint(r.left + r.width/2, r.top + r.height/2);
+      res[p[0]] = (hit && (hit === p[1] || p[1].contains(hit))) ? 'CLIQUABLE' : 'BLOQUÉ par ' + name(hit);
+    });
+    const ns = getComputedStyle(nav);
+    res.nav = nav.className + ' | ' + ns.visibility + ' | pointer-events:' + ns.pointerEvents + ' | ' + ns.transform;
+    res.navRect = rect(nav);
+    res.burgerA11y = burger.getAttribute('aria-label') + ' / aria-expanded=' + burger.getAttribute('aria-expanded');
+    return res;
+  }
+
+  function statics(){
+    const vw = window.innerWidth;
+    out.viewport = vw + 'x' + window.innerHeight;
+    out.docScrollWidth = document.documentElement.scrollWidth;
+    const over = [];
+    document.querySelectorAll('body *').forEach(function(el){
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      if (r.right > vw + 1) over.push(name(el) + ' right=' + Math.round(r.right));
+    });
+    out.overflowCount = over.length;
+    out.overflowing = over.slice(0, 10);
+
+    out.longButtons = [];
+    document.querySelectorAll('.btn').forEach(function(b){
+      const r = b.getBoundingClientRect();
+      if (r.width === 0) return;
+      const cs = getComputedStyle(b);
+      const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.2;
+      const lines = Math.round((r.height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)) / lh);
+      const t = b.textContent.trim();
+      if (t.length > 24 || lines > 1 || r.right > vw + 1)
+        out.longButtons.push(t.slice(0,50) + ' | w=' + Math.round(r.width) + ' lines=' + lines + (r.right > vw + 1 ? ' >>> DEBORDE' : ''));
+    });
+
+    const dots = document.querySelectorAll('.tl-carousel__dot');
+    if (dots.length) {
+      const r0 = dots[0].getBoundingClientRect(), r1 = dots[1].getBoundingClientRect();
+      const cs = getComputedStyle(dots[0]);
+      out.dots = {
+        count: dots.length,
+        target: Math.round(r0.width) + 'x' + Math.round(r0.height),
+        centerGap: Math.round(r1.left + r1.width/2 - (r0.left + r0.width/2)),
+        style: 'clip=' + cs.backgroundClip + ' padding=' + cs.paddingTop + ' radius=' + cs.borderRadius,
+        rowWidth: Math.round(dots[dots.length-1].getBoundingClientRect().right - r0.left),
+        cornerHit: name(document.elementFromPoint(r0.left + 2, r0.top + 2))
+      };
+    }
+    const arrow = document.querySelector('.tl-carousel__arrow');
+    if (arrow) out.arrowTarget = Math.round(arrow.getBoundingClientRect().width) + 'px';
+  }
+
+  function done(){
+    const pre = document.createElement('pre');
+    pre.id = 'AUDIT_RESULT';
+    pre.textContent = JSON.stringify(out, null, 1);
+    document.body.appendChild(pre);
+  }
+
+  function run(){
+    // Le temps virtuel de Chrome headless ne fait pas avancer les transitions
+    // CSS : on les neutralise pour mesurer les états d'arrivée (ouvert/fermé),
+    // visibility et pointer-events s'appliquant de toute façon sans délai.
+    const st = document.createElement('style');
+    st.textContent = '*{transition:none !important}';
+    document.head.appendChild(st);
+    statics();
+    if (!(burger && nav && logo && toggle)) { done(); return; }
+    out.menuFerme = probe();
+    burger.click();
+    setTimeout(function(){
+      out.menuOuvert = probe();
+      const link = nav.querySelector('.nav__links a');
+      out.menuOuvert.premierLien = link ? rect(link) : null;
+      document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
+      setTimeout(function(){
+        out.apresEchap = probe();
+        // clic hors du panneau : on rouvre puis on clique dans le <main>
+        burger.click();
+        setTimeout(function(){
+          document.querySelector('main').dispatchEvent(new MouseEvent('click', {bubbles: true}));
+          setTimeout(function(){ out.apresClicExterieur = probe(); done(); }, 600);
+        }, 600);
+      }, 600);
+    }, 600);
+  }
+  if (document.readyState === 'complete') setTimeout(run, 50);
+  else window.addEventListener('load', function(){ setTimeout(run, 50); });
+})();
+</script>
+
 </body>
 </html>

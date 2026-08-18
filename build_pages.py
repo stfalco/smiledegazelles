@@ -159,8 +159,8 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
   <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
-  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/clash-display.css" />
   <link rel="stylesheet" href="../css/general-sans.css" />
   <link rel="stylesheet" href="../css/style.css" />

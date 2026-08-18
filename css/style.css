@@ -951,6 +951,11 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   .footer__grid { grid-template-columns: 1fr; gap: var(--space-8); }
 }
 @media (max-width: 760px) {
+  /* Libellés longs : le white-space:nowrap de .btn fait déborder le bouton hors
+     du viewport sur un écran de 375px (« Télécharger le rapport RSE CAP
+     2024-2025 (PDF) » sur la page Solidarité), et son bord droit est tronqué.
+     On laisse le texte revenir à la ligne, centré, plutôt que de rogner. */
+  .btn { white-space: normal; text-align: center; max-width: 100%; }
   .header__actions .btn { display: none; }
   .burger { display: flex; }
   /* Le panneau garde toujours ses liens (pas de display:none conditionnel) :
@@ -1024,10 +1029,17 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .tl-carousel__arrow:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 .tl-carousel__arrow--prev { left: 0; }
 .tl-carousel__arrow--next { right: 0; }
-.tl-carousel__dots { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
-.tl-carousel__dot { width: 9px; height: 9px; padding: 0; border: none; border-radius: 50%; background: var(--color-divider); cursor: pointer; transition: background var(--transition-interactive), transform var(--transition-interactive); }
-.tl-carousel__dot:hover { background: var(--color-text-muted); }
-.tl-carousel__dot.is-active { background: var(--color-primary); transform: scale(1.35); }
+/* La puce mesure 28px de côté mais n'en montre que 9 : le fond n'est peint que
+   dans la boîte de contenu (background-clip), le padding transparent servant de
+   zone tactile. Huit points de 9px serrés côte à côte étaient une cible
+   inconfortable au doigt, face aux 44px des flèches. Le gap passe à 0 pour que
+   les puces ne s'éloignent pas visuellement les unes des autres. */
+.tl-carousel__dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin-top: var(--space-5); }
+.tl-carousel__dot { width: 28px; height: 28px; padding: 9.5px; border: none; border-radius: 50%; background: var(--color-divider); background-clip: content-box; cursor: pointer; transition: background var(--transition-interactive), transform var(--transition-interactive); }
+/* background-color et non le raccourci background : celui-ci réinitialiserait
+   background-clip et la puce se peindrait alors sur ses 28px de zone tactile. */
+.tl-carousel__dot:hover { background-color: var(--color-text-muted); }
+.tl-carousel__dot.is-active { background-color: var(--color-primary); transform: scale(1.35); }
 /* Repli sans JavaScript : les jalons s'empilent, flèches et points masqués */
 .tl-carousel:not(.is-enhanced) { padding-inline: 0; }
 .tl-carousel:not(.is-enhanced) .tl-carousel__track { flex-direction: column; }
