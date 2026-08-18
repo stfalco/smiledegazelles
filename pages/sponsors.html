@@ -29,7 +29,7 @@
           <span>Rallye Aïcha Des Gazelles</span>
         </span>
       </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
           <li><a href="../index.html">Accueil</a></li>
           <li><a href="equipage.html">L'équipage</a></li>
@@ -43,7 +43,7 @@
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
         <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
@@ -370,36 +370,51 @@
               <a href="equipage.html" class="btn btn-outline">Découvrir l'équipage</a>
             </div>
           </div>
-          <form class="form reveal" onsubmit="return false">
-            <div class="form__row">
-              <label>Nom<input type="text" name="nom" placeholder="Votre nom" required /></label>
-              <label>Entreprise<input type="text" name="entreprise" placeholder="Votre entreprise" required /></label>
+          <!-- Formulaire branché sur Netlify Forms, même mécanique que la page
+               contact : le POST natif suffit sans JavaScript, main.js
+               l'intercepte pour afficher la confirmation sans recharger.
+               Le nom « sponsoring » sépare ces demandes des messages de
+               contact dans l'interface Netlify ; « bot-field » est le piège
+               anti-spam et doit rester dans le HTML pour être détecté. -->
+          <div>
+            <form class="form reveal" name="sponsoring" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-contact-form>
+              <input type="hidden" name="form-name" value="sponsoring" />
+              <p class="sr-only"><label>Ne remplissez pas ce champ <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <div class="form__row">
+                <label>Nom<input type="text" name="nom" placeholder="Votre nom" required /></label>
+                <label>Entreprise<input type="text" name="entreprise" placeholder="Votre entreprise" required /></label>
+              </div>
+              <label>Email<input type="email" name="email" placeholder="vous@entreprise.fr" required /></label>
+              <div class="form__row">
+                <label>Objet
+                  <select name="objet">
+                    <option value="sponsor">Devenir sponsor</option>
+                    <option value="rib">Demander les coordonnées bancaires</option>
+                    <option value="nature">Partenariat en nature</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </label>
+                <label>Formule envisagée
+                  <select name="formule">
+                    <option value="indecis">Je ne sais pas encore</option>
+                    <option value="solidaire">Pack Solidaire — 500 € à 2 000 €</option>
+                    <option value="cool">Pack Cool — 2 001 € à 5 000 €</option>
+                    <option value="audacieux">Pack Audacieux — 5 001 € à 10 000 €</option>
+                    <option value="depassement">Pack Dépassement de soi — 10 001 € à 30 000 €</option>
+                    <option value="totale">La Totale — au-delà de 30 000 €</option>
+                  </select>
+                </label>
+              </div>
+              <label>Message<textarea name="message" rows="5" placeholder="Votre projet, vos attentes, vos questions…"></textarea></label>
+              <label class="form__consent"><input type="checkbox" name="consentement" required /> J'accepte que ces informations soient utilisées par l'association Smile de Gazelles pour répondre à ma demande.</label>
+              <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+              <p class="source-note" data-form-error hidden>L'envoi n'a pas abouti. Écrivez-nous directement à <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a>.</p>
+            </form>
+            <div class="note" data-form-success hidden tabindex="-1" style="margin-top:0">
+              <h3>Merci, votre message est parti</h3>
+              <p>Nous revenons vers vous sous quelques jours — souvent bien plus vite.</p>
             </div>
-            <label>Email<input type="email" name="email" placeholder="vous@entreprise.fr" required /></label>
-            <div class="form__row">
-              <label>Objet
-                <select name="objet">
-                  <option value="sponsor">Devenir sponsor</option>
-                  <option value="rib">Demander les coordonnées bancaires</option>
-                  <option value="nature">Partenariat en nature</option>
-                  <option value="autre">Autre</option>
-                </select>
-              </label>
-              <label>Formule envisagée
-                <select name="formule">
-                  <option value="indecis">Je ne sais pas encore</option>
-                  <option value="solidaire">Pack Solidaire — 500 € à 2 000 €</option>
-                  <option value="cool">Pack Cool — 2 001 € à 5 000 €</option>
-                  <option value="audacieux">Pack Audacieux — 5 001 € à 10 000 €</option>
-                  <option value="depassement">Pack Dépassement de soi — 10 001 € à 30 000 €</option>
-                  <option value="totale">La Totale — au-delà de 30 000 €</option>
-                </select>
-              </label>
-            </div>
-            <label>Message<textarea name="message" rows="5" placeholder="Votre projet, vos attentes, vos questions…"></textarea></label>
-            <label class="form__consent"><input type="checkbox" name="consentement" required /> J'accepte que ces informations soient utilisées par l'association Smile de Gazelles pour répondre à ma demande.</label>
-            <button type="submit" class="btn btn-primary btn-lg">Envoyer <em style="font-style:normal;opacity:.7">[formulaire à connecter]</em></button>
-          </form>
+          </div>
         </div>
       </div>
     </section>

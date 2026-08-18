@@ -58,13 +58,30 @@
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
   if (burger && nav) {
-    burger.addEventListener('click', function () {
-      const open = nav.classList.toggle('is-open');
+    const setNav = (open) => {
+      nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+    burger.addEventListener('click', function () {
+      setNav(!nav.classList.contains('is-open'));
     });
     nav.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => nav.classList.remove('is-open'))
+      a.addEventListener('click', () => setNav(false))
     );
+    // Échap et clic hors du panneau : deux sorties de secours pour un menu
+    // qui recouvre la page sur mobile.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setNav(false);
+        burger.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(e.target) || burger.contains(e.target)) return;
+      setNav(false);
+    });
   }
 
   /* ----- Compte à rebours (départ 20 mars 2027) ----- */
@@ -200,9 +217,12 @@
      ne fait qu'envoyer les mêmes données en arrière-plan pour afficher la
      confirmation sans quitter la page. En cas d'échec, on affiche l'adresse
      email plutôt que de perdre le message en silence. */
-  const contactForm = document.querySelector('[data-contact-form]');
-  if (contactForm && window.fetch) {
-    const successBox = document.querySelector('[data-form-success]');
+  document.querySelectorAll('[data-contact-form]').forEach(function (contactForm) {
+    if (!window.fetch) return;
+    // Le bloc de confirmation est le voisin du formulaire (contact et sponsors
+    // suivent le même gabarit) ; on retombe sur la page entière si besoin.
+    const scope = contactForm.parentElement || document;
+    const successBox = scope.querySelector('[data-form-success]') || document.querySelector('[data-form-success]');
     const errorBox = contactForm.querySelector('[data-form-error]');
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -231,7 +251,7 @@
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitLabel; }
         });
     });
-  }
+  });
 
   /* ----- Ancres internes : scroll précis sous header sticky ----- */
   const scrollToHashTarget = (hash, smooth) => {
