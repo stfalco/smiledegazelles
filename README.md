@@ -10,9 +10,9 @@ Hébergement Netlify (voir `netlify.toml` pour les en-têtes de cache et de poli
 
 | Chemin | Rôle |
 |---|---|
-| `index.html` | Page d'accueil — **maintenue à la main**, non générée |
+| `index.html` | Page d'accueil — **générée**, ne pas éditer directement |
 | `pages/*.html` | Pages intérieures — **générées**, ne pas éditer directement |
-| `build_pages.py` | Générateur des pages intérieures (en-tête, pied de page, contenus) |
+| `build_pages.py` | Générateur de toutes les pages (en-tête, pied de page, contenus) |
 | `css/` | `style.css` (feuille principale) + les deux familles de polices auto-hébergées |
 | `js/main.js` | Menu mobile, bascule de thème, carrousel, envoi AJAX des formulaires |
 | `assets/` | Images, polices `woff2`/`woff`, favicons |
@@ -20,19 +20,21 @@ Hébergement Netlify (voir `netlify.toml` pour les en-têtes de cache et de poli
 
 ## Générer les pages
 
-Toutes les pages de `pages/` sont produites par `build_pages.py`. Toute modification
-de leur contenu, de l'en-tête ou du pied de page se fait **dans le script**, jamais
-dans les fichiers HTML générés (ils seraient écrasés à la génération suivante).
+**Tous** les fichiers HTML du site — `index.html` comme les pages de `pages/` — sont
+produits par `build_pages.py`. Toute modification de leur contenu, de l'en-tête ou du
+pied de page se fait **dans le script**, jamais dans les fichiers HTML générés (ils
+seraient écrasés à la génération suivante).
 
 ```bash
 python build_pages.py
 ```
 
-Le script réécrit l'intégralité des fichiers de `pages/` et affiche la liste des pages produites.
+Le script réécrit les huit pages et affiche la liste de ce qu'il a produit.
 
-`index.html` échappe à cette règle : elle est éditée directement. En contrepartie,
-l'en-tête, le pied de page et les liens réseaux sociaux y sont dupliqués et doivent
-rester alignés avec ceux de `build_pages.py`.
+En-tête, navigation, pied de page et métadonnées sont partagés par toutes les pages.
+Seule la profondeur des chemins les distingue : `root=True` pour l'accueil, à la
+racine, `root=False` pour les pages de `pages/`. Les fonctions `up()`, `inner()` et
+`home()` s'en chargent — aucun chemin relatif n'est à écrire à la main.
 
 ## Prévisualiser en local
 

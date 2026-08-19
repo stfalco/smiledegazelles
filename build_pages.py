@@ -1,26 +1,55 @@
 #!/usr/bin/env python3
-"""Génère les pages intérieures du site Smile de Gazelles (préfixe ../ pour les assets).
+"""Génère l'intégralité des pages HTML du site Smile de Gazelles.
 
-Note : index.html n'est PAS généré par ce script. La page d'accueil est maintenue
-à la main ; l'en-tête, le pied de page et les liens sociaux ci-dessous sont alignés
-sur elle et doivent le rester si elle évolue.
+Le script produit l'accueil (index.html, à la racine) et les sept pages
+intérieures (pages/*.html) à partir des mêmes gabarits d'en-tête, de pied de
+page et de métadonnées. Seule la profondeur des chemins distingue les deux
+cas ; elle est gérée par les fonctions up(), inner() et home().
+
+Aucun fichier HTML du site ne doit être édité à la main : ils sont tous
+réécrits à chaque exécution.
 """
 import os
 
-PAGES_DIR = os.path.join(os.path.dirname(__file__), "pages")
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+PAGES_DIR = os.path.join(ROOT_DIR, "pages")
 os.makedirs(PAGES_DIR, exist_ok=True)
 
-# Logo officiel — bascule clair/sombre, préfixe ../ pour les pages intérieures
-LOGO_IMG = '''<img class="logo__img logo__img--light" src="../assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
-        <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+# Deux profondeurs, un seul gabarit :
+#   root=True  → l'accueil, à la racine : ressources en « assets/… », pages en « pages/… »
+#   root=False → une page de pages/     : ressources en « ../assets/… », pages en « equipage.html »
+def up(root):
+    """Préfixe des ressources : assets, css, js, favicon."""
+    return "" if root else "../"
+
+
+def inner(root):
+    """Préfixe des liens vers les pages intérieures."""
+    return "pages/" if root else ""
+
+
+def home(root):
+    """Lien vers l'accueil."""
+    return "index.html" if root else "../index.html"
+
+
+# Logo officiel — bascule clair/sombre
+def logo_img(root):
+    u = up(root)
+    return f'''<img class="logo__img logo__img--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
+        <img class="logo__img logo__img--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
         <span class="logo__team-text" aria-hidden="true">
           <span>Equipage 134</span>
           <span>Rallye Aïcha Des Gazelles</span>
         </span>'''
 
+
 # Emblème officiel pour le footer — bascule clair/sombre
-LOGO_EMBLEM = '''<img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
-            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />'''
+def logo_emblem(root):
+    u = up(root)
+    return f'''<img class="logo__emblem logo__emblem--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
+            <img class="logo__emblem logo__emblem--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />'''
+
 
 # Réseaux sociaux officiels de l'équipage
 URL_FACEBOOK = "https://www.facebook.com/smiledegazelles"
@@ -45,97 +74,155 @@ NAV_ITEMS = [
     ("le-rallye.html", "Le rallye", "le-rallye"),
     ("solidarite.html", "Solidarité et RSE", "solidarite"),
     ("sponsors.html", "Sponsors", "sponsors"),
-    ("soutenir.html", "Nous soutenir", "soutenir"),
+    ("soutenir.html", "Faire un don", "soutenir"),
     ("contact.html", "Contact", "contact"),
 ]
 
-def nav_links(current):
+
+def nav_links(current, root):
     out = []
     for href, label, key in NAV_ITEMS:
-        target = "../index.html" if href == "index.html" else href
+        target = home(root) if href == "index.html" else inner(root) + href
         cur = ' aria-current="page"' if key == current else ""
         out.append(f'          <li><a href="{target}"{cur}>{label}</a></li>')
     return "\n".join(out)
 
-def header(current):
+
+def header(current, root):
     return f'''  <header class="header">
     <div class="container header__inner">
-      <a href="../index.html" class="logo" aria-label="Smile de Gazelles, accueil">
-        {LOGO_IMG}
+      <a href="{home(root)}" class="logo" aria-label="Smile de Gazelles, accueil">
+        {logo_img(root)}
       </a>
       <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
-{nav_links(current)}
+{nav_links(current, root)}
         </ul>
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
+        <a href="{inner(root)}soutenir.html" class="btn btn-primary">Contribuer</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>'''
 
-FOOTER = f'''  <footer class="footer">
+
+def footer(root):
+    u, p = up(root), inner(root)
+    return f'''  <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="../index.html" class="logo logo--footer">
-            {LOGO_EMBLEM}
+          <a href="{home(root)}" class="logo logo--footer">
+            {logo_emblem(root)}
           </a>
           <p>Deux femmes, un défi, mille sourires à partager. Équipage engagé au Rallye Aïcha des Gazelles 2027 — l'énergie du défi au service d'une aventure solidaire.</p>
           <div class="socials">
-            <a href="{URL_INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="{URL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="{URL_LINKEDIN}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="{URL_INSTAGRAM}" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="{URL_FACEBOOK}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="{URL_LINKEDIN}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>
-          <li><a href="equipage.html">L'équipage</a></li>
-          <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité et RSE</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="{home(root)}">Accueil</a></li>
+          <li><a href="{p}equipage.html">L'équipage</a></li>
+          <li><a href="{p}le-rallye.html">Le rallye</a></li>
+          <li><a href="{p}solidarite.html">Solidarité et RSE</a></li>
+          <li><a href="{p}sponsors.html">Sponsors</a></li>
+          <li><a href="{p}soutenir.html">Faire un don</a></li>
         </ul></div>
         <div class="footer__col"><h4>Liens utiles</h4><ul>
-          <li><a href="soutenir.html">Faire un don</a></li>
-          <li><a href="sponsors.html">Devenir sponsor</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{p}sponsors.html#formules">Les formules de sponsoring</a></li>
+          <li><a href="{p}equipage.html#budget">Le budget détaillé</a></li>
+          <li><a href="{u}assets/dossier-sponsoring.pdf" download>Dossier de sponsoring</a></li>
+          <li><a href="{p}contact.html">Contact</a></li>
         </ul></div>
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
-        <span><a href="mentions-legales.html">Mentions légales</a></span>
+        <span><a href="{p}mentions-legales.html">Mentions légales</a></span>
         <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
     </div>
   </footer>'''
 
-def page(current, title, desc, page_hero, body, og_desc=None, og_image="../assets/hero-desert.png",
+
+def document(current, title, desc, main, og_desc=None, og_image="assets/hero-desert.png",
+             root=False, before_footer=""):
+    """Assemble une page complète : head, en-tête, <main>, pied de page.
+
+    current       : clé de navigation (3ᵉ champ de NAV_ITEMS), pour aria-current
+    title         : contenu exact de <title> et de og:title
+    desc          : meta description
+    main          : contenu du <main>, indenté de quatre espaces
+    og_desc       : description Open Graph si elle diffère de la meta description
+    og_image      : visuel de partage, chemin relatif à la racine du site
+    root          : True pour l'accueil, False pour une page de pages/
+    before_footer : bloc HTML inséré entre </main> et le pied de page
+    """
+    u = up(root)
+    return f'''<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="{desc}" />
+  <meta property="og:title" content="{title}" />
+  <meta property="og:description" content="{og_desc or desc}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{u}{og_image}" />
+  <link rel="icon" href="{u}favicon.ico" sizes="any" />
+  <link rel="icon" href="{u}assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="{u}assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="{u}assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preload" href="{u}assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="{u}assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{u}css/clash-display.css" />
+  <link rel="stylesheet" href="{u}css/general-sans.css" />
+  <link rel="stylesheet" href="{u}css/style.css" />
+</head>
+<body>
+{header(current, root)}
+  <main>
+{main}
+  </main>
+{before_footer}
+{footer(root)}
+  <script src="{u}js/main.js"></script>
+</body>
+</html>
+'''
+
+
+def page(current, title, desc, page_hero, body, og_desc=None, og_image="assets/hero-desert.png",
          hero_photo=None, hero_eyebrow=None, hero_stamp=None, hero_actions=None,
          hero_modifier=None, hero_lead_class=None):
-    """Assemble une page intérieure.
+    """Assemble une page intérieure : bandeau de titre + corps, dans document().
 
+    title          : titre court ; « — Smile de Gazelles » lui est ajouté
     page_hero      : (titre H1, chapô)
-    og_desc        : description Open Graph si elle diffère de la meta description
-    og_image       : visuel de partage
-    hero_photo     : chemin d'une photo affichée en bandeau derrière l'en-tête
+    hero_photo     : photo affichée en bandeau derrière l'en-tête, relative à la racine
     hero_eyebrow   : étiquette affichée au-dessus du H1
     hero_stamp     : logo posé en aplat transparent sur le bandeau (ex. logo team RAG)
     hero_actions   : bloc HTML (boutons, mention) inséré sous le chapô du bandeau
     hero_modifier  : classe supplémentaire sur le bandeau (ex. page-hero--sponsors,
                      qui resserre les marges quand le bandeau porte des boutons)
     hero_lead_class: classe posée sur le chapô du bandeau
+    Les autres paramètres sont transmis tels quels à document().
     """
     hero_class = "page-hero page-hero--photo" if hero_photo else "page-hero"
     if hero_modifier:
         hero_class += f" {hero_modifier}"
-    hero_style = f''' style="--page-hero-img:url('{hero_photo}')"''' if hero_photo else ""
+    hero_style = f''' style="--page-hero-img:url('../{hero_photo}')"''' if hero_photo else ""
     eyebrow = f'\n        <span class="page-hero__eyebrow">{hero_eyebrow}</span>' if hero_eyebrow else ""
-    stamp = (f'\n      <img class="page-hero__stamp" src="{hero_stamp}" alt="" aria-hidden="true" />'
+    stamp = (f'\n      <img class="page-hero__stamp" src="../{hero_stamp}" alt="" aria-hidden="true" />'
              if hero_stamp else "")
     actions = f'\n{hero_actions}' if hero_actions else ""
     lead_class = f' class="{hero_lead_class}"' if hero_lead_class else ""
+    # Le formulaire de don en surimpression n'existe que sur la page « Faire un don »
     ha_overlay = f'''
   <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
     <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -145,44 +232,16 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="../asset
       <iframe id="haWidget" title="Formulaire de don HelloAsso" src="{URL_HELLOASSO_OVERLAY}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
     </div>
   </div>''' if current == "soutenir" else ""
-    return f'''<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title} — Smile de Gazelles</title>
-  <meta name="description" content="{desc}" />
-  <meta property="og:title" content="{title} — Smile de Gazelles" />
-  <meta property="og:description" content="{og_desc or desc}" />
-  <meta property="og:image" content="{og_image}" />
-  <link rel="icon" href="../favicon.ico" sizes="any" />
-  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
-  <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
-  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../css/clash-display.css" />
-  <link rel="stylesheet" href="../css/general-sans.css" />
-  <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-{header(current)}
-  <main>
-    <section class="{hero_class}"{hero_style}>
+    hero = f'''    <section class="{hero_class}"{hero_style}>
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>{eyebrow}
         <h1>{page_hero[0]}</h1>
         <p{lead_class}>{page_hero[1]}</p>{actions}
       </div>{stamp}
-    </section>
-{body}
-  </main>
-{ha_overlay}
-{FOOTER}
-  <script src="../js/main.js"></script>
-</body>
-</html>
-'''
+    </section>'''
+    return document(current, f"{title} — Smile de Gazelles", desc,
+                    f"{hero}\n{body}", og_desc=og_desc, og_image=og_image,
+                    root=False, before_footer=ha_overlay)
 
 # ============ CONTENUS DES PAGES ============
 PAGES = {}
@@ -517,7 +576,7 @@ PAGES["equipage.html"] = page(
     </section>''',
     og_desc="Deux tempéraments, une même trajectoire. Découvrez l'équipage 134, "
             "sa préparation, son budget et son association.",
-    og_image="../assets/equipage_hero.JPG",
+    og_image="assets/equipage_hero.JPG",
     # Pas de hero_photo ni de hero_stamp : le bandeau est repassé en fond sombre uni
     # (commit « hero fond sombre »). La photo reste le visuel de partage Open Graph.
     hero_eyebrow="Équipage 134 · Smile de Gazelles")
@@ -721,8 +780,8 @@ PAGES["le-rallye.html"] = page(
     </section>''',
     og_desc="Navigation sans GPS, sobriété kilométrique, certification ISO 14001 : "
             "découvrez l'épreuve que rejoint l'équipage 134 en 2027.",
-    og_image="../assets/Rallye_01.JPG",
-    hero_photo="../assets/Rallye_01.JPG",
+    og_image="assets/Rallye_01.JPG",
+    hero_photo="assets/Rallye_01.JPG",
     hero_eyebrow="L'épreuve")
 
 # ---- SOLIDARITÉ ----
@@ -976,8 +1035,8 @@ PAGES["solidarite.html"] = page(
         </div>
       </div>
     </section>''',
-    og_image="../assets/solidaire-bandeau.jpg",
-    hero_photo="../assets/solidaire-bandeau.jpg",
+    og_image="assets/solidaire-bandeau.jpg",
+    hero_photo="assets/solidaire-bandeau.jpg",
     hero_eyebrow="Un rallye solidaire")
 
 # ---- SPONSORS ----
@@ -1377,7 +1436,7 @@ PAGES["sponsors.html"] = page(
     </section>''',
     og_desc="4,63 M€ de valeur média générée, 435,6 M de personnes atteintes : associez votre entreprise "
             "à l'équipage 134 du Rallye Aïcha des Gazelles 2027.",
-    og_image="../assets/sponsoring-272-recalibr%C3%A9e.png",
+    og_image="assets/sponsoring-272-recalibr%C3%A9e.png",
     # Bandeau repassé en fond sombre uni (commit « hero fond sombre ») : plus de photo
     # ni d'étiquette, mais la classe page-hero--sponsors qui resserre les marges autour
     # des deux boutons. Le visuel reste l'image de partage Open Graph.
@@ -1398,7 +1457,7 @@ PAGES["sponsors.html"] = page(
 # ouvre droit à une réduction d'impôt : l'association n'est pas reconnue
 # d'intérêt général.
 PAGES["soutenir.html"] = page(
-    "soutenir", "Nous soutenir",
+    "soutenir", "Faire un don",
     "Faire un don à l'équipage 134 du Rallye Aïcha des Gazelles, donner du matériel, "
     "relayer le projet ou rejoindre nos actions de collecte : toutes les façons de nous aider.",
     ("Chaque geste compte",
@@ -1537,9 +1596,9 @@ PAGES["soutenir.html"] = page(
     </section>''',
     og_desc="Un don, du matériel, un partage : toutes les façons d'aider l'équipage 134 "
             "à prendre le départ du Rallye Aïcha des Gazelles 2027.",
-    og_image="../assets/rallye_feminin.JPG",
-    hero_photo="../assets/rallye_feminin.JPG",
-    hero_eyebrow="Nous soutenir",
+    og_image="assets/rallye_feminin.JPG",
+    hero_photo="assets/rallye_feminin.JPG",
+    hero_eyebrow="Faire un don",
     hero_actions='''        <div class="actions">
           <button id="openHaOverlay" type="button" class="btn btn-primary">Faire un don</button>
           <a href="#autrement" class="btn btn-outline">Aider autrement</a>
@@ -1741,11 +1800,11 @@ PAGES["contact.html"] = page(
     </section>''',
     og_desc="Une question, une proposition de partenariat ou une envie de nous aider autrement : "
             "écrivez à l'équipage 134 du Rallye Aïcha des Gazelles 2027.",
-    hero_eyebrow="Contact")
+    hero_eyebrow="Rejoindre l'aventure")
 
 # ---- MENTIONS LÉGALES ----
 # Page annexe : pas dans la navigation principale, accessible depuis le renvoi
-# du pied de page (voir FOOTER, et le même lien ajouté à la main dans index.html).
+# du pied de page (voir footer(), qui la lie depuis toutes les pages, accueil compris).
 # Le paragraphe « Cookies » décrit l'état réel du site : la seule dépendance
 # externe est le formulaire de don HelloAsso de la page soutenir. Si HelloAsso
 # confirme le dépôt de cookies tiers, il faudra ajouter un bandeau de
@@ -1805,7 +1864,7 @@ PAGES["mentions-legales.html"] = page(
         <div class="reveal">
           <span class="eyebrow">Cookies</span>
           <h2 class="section-title">Cookies et services tiers</h2>
-          <p class="section-lead">Ce site ne dépose aucun cookie de mesure d'audience ni de publicité. Le formulaire de don HelloAsso, intégré à la page <a href="soutenir.html">Nous soutenir</a>, est susceptible de déposer des cookies tiers nécessaires au paiement sécurisé.</p>
+          <p class="section-lead">Ce site ne dépose aucun cookie de mesure d'audience ni de publicité. Le formulaire de don HelloAsso, intégré à la page <a href="soutenir.html">Faire un don</a>, est susceptible de déposer des cookies tiers nécessaires au paiement sécurisé.</p>
         </div>
       </div>
     </section>
@@ -1835,8 +1894,294 @@ PAGES["mentions-legales.html"] = page(
     </section>''',
     hero_eyebrow="Informations légales")
 
-for name, html in PAGES.items():
-    with open(os.path.join(PAGES_DIR, name), "w", encoding="utf-8") as f:
+# ============ ACCUEIL ============
+# index.html est écrit à la racine du site : même en-tête et même pied de page
+# que les pages intérieures, mais chemins de racine (root=True).
+INDEX = document(
+    "accueil",
+    "Smile de Gazelles — Rallye Aïcha des Gazelles 2027",
+    "Sandra Aversenq & Stéphanie Falco, l'équipage Smile de Gazelles, relève le défi "
+    "du Rallye Aïcha des Gazelles 2027. Rejoignez l'aventure : sponsors, dons et solidarité.",
+    '''    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__bg"><img src="assets/hero-desert.png" alt="Véhicule de rallye dans les dunes du désert marocain au coucher du soleil" fetchpriority="high" /></div>
+      <div class="container">
+        <div class="hero__content">
+          <span class="hero__badge"><span class="dot"></span>Édition 2027 · 20 mars → 3 avril</span>
+          <h1>Une boussole, du hors-piste et le <em>Smile</em></h1>
+          <p class="hero__sub">L'équipage <strong>Smile de Gazelles</strong> prendra le départ du Rallye Aïcha des Gazelles 2027. Quinze jours d'aventure, sept jours de course : une carte, une boussole et aucun GPS. Un défi sportif et humain pour repousser nos limites et faire de chaque kilomètre une action porteuse de sens.</p>
+          <div class="hero__cta">
+            <a href="pages/sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
+            <a href="pages/soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.5)">Faire un don</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero__scroll">Découvrir
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ COMPTE À REBOURS ============ -->
+    <section class="countdown-bar" style="padding-block:0">
+      <div class="container countdown-bar__inner" data-countdown>
+        <p class="countdown-bar__label">Avant le départ&nbsp;: chaque jour nous rapproche du désert.</p>
+        <div class="countdown">
+          <div class="countdown__unit"><span class="countdown__num" data-d>—</span><span class="countdown__txt">Jours</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-h>—</span><span class="countdown__txt">Heures</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-m>—</span><span class="countdown__txt">Min.</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-s>—</span><span class="countdown__txt">Sec.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHIFFRES CLÉS ============ -->
+    <section class="section--compact">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:var(--space-6)">
+          <span class="eyebrow">Le rallye en bref</span>
+          <h2 class="section-title" style="font-size:var(--text-xl);margin-bottom:0">Le défi en quelques chiffres</h2>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat"><div class="stat__num">100 %</div><div class="stat__label">Féminin</div></div>
+          <div class="stat"><div class="stat__num">0</div><div class="stat__label">GPS — carte & boussole</div></div>
+          <div class="stat"><div class="stat__num">180+</div><div class="stat__label">Équipages internationaux</div></div>
+          <div class="stat"><div class="stat__num">14</div><div class="stat__label">Jours d'aventure</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="assets/accueil-bandeau.jpg" alt="L'action au cœur du rallye : franchissement de dunes en 4x4 dans le désert marocain" loading="lazy" />
+    </div>
+
+    <!-- ============ QUI SOMMES-NOUS (aperçu) ============ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="split reveal">
+          <div class="split__media split__media--portrait">
+            <img class="portrait" src="assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco signant leur engagement pour le rallye" loading="lazy" />
+            <div class="media-inset">
+              <img src="assets/logo.png" alt="Logo de l'équipage Smile de Gazelles" width="56" height="56" />
+              <img class="media-inset__rag" src="assets/logo-team-rag.png" alt="Team officielle du Rallye Aïcha des Gazelles" />
+            </div>
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">L'équipage 134</span>
+            <h2>Smile de Gazelles</h2>
+            <p>Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action.</p>
+            <p><strong>Un binôme solide :</strong> Sandra, alias « Wonder Sandra », apporte son leadership et sa vision pragmatique, et Stéphanie, bercée par les 4x4 de son père, allie sérénité et sens de la mécanique.</p>
+            <blockquote class="quote">« Deux âmes réunies autour d'un projet associatif ambitieux et unique. Une aventure riche de sens, de rencontres et d'émotions. »</blockquote>
+            <ul class="feature-list">
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Un binôme soudé, organisé et déterminé</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Une aventure au service d'une cause qui nous tient à cœur</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Le dépassement de soi comme moteur</li>
+            </ul>
+            <div class="hero__cta" style="margin-top:var(--space-8)">
+              <a href="pages/equipage.html" class="btn btn-primary">Découvrir l'équipage</a>
+              <a href="pages/soutenir.html" class="btn btn-outline">Rejoindre l'aventure</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VALEURS ============ -->
+    <section>
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Nos valeurs</span>
+          <h2 class="section-title">Pourquoi nous participons</h2>
+          <p class="section-lead mx-auto">Un rallye qui met le dépassement de soi à l'honneur et porte des valeurs qui nous ressemblent.</p>
+        </div>
+        <div class="cards-grid reveal">
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h3>Dépassement de soi</h3>
+            <p>Un défi physique et mental exigeant, où l'on apprend à repousser ses limites, jour après jour.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Entraide & solidarité</h3>
+            <p>Un rallye qui soutient chaque année les populations les plus reculées du Maroc via Cœur de Gazelles.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Engagement responsable</h3>
+            <p>Nous avons fait le choix du seul rallye au monde certifié ISO 14001.</p>
+          </div>
+        </div>
+        <div class="text-center reveal" style="margin-top:var(--space-10)">
+          <a href="pages/soutenir.html" class="btn btn-primary">Nous soutenir</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE RALLYE (aperçu) ============ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="split reveal">
+          <div class="split__media">
+            <img src="assets/accueil-teaser-rallye-3.png" alt="Navigation à la carte et à la boussole lors du Rallye Aïcha des Gazelles" loading="lazy" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Un rallye pas comme les autres</span>
+            <h2>La précision avant la vitesse</h2>
+            <p>Créé en 1990, le Rallye Aïcha des Gazelles est un rallye-raid de navigation hors-piste sans équivalent. Ni GPS, ni téléphone : une carte des années 1950, une boussole et une règle. Le classement récompense celle qui rallie le plus de balises en parcourant le moins de kilomètres — la performance se mesure à la précision, jamais à la rapidité.</p>
+            <p>C'est aussi le seul rallye au monde certifié ISO 14001&nbsp;!</p>
+            <a href="pages/le-rallye.html" class="btn btn-primary" style="margin-top:var(--space-4)">Tout savoir sur le rallye</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOLIDARITÉ (aperçu) ============ -->
+    <section>
+      <div class="container">
+        <div class="split split--reverse reveal">
+          <div class="split__media">
+            <img src="assets/solidarite.png" alt="Caravane médicale Cœur de Gazelles auprès des populations du désert" />
+          </div>
+          <div class="split__body">
+            <span class="eyebrow">Un rallye solidaire</span>
+            <h2>Redonner, durablement</h2>
+            <p>Depuis 2001, une caravane médicale itinérante de soixante bénévoles suit le rallye et soigne gratuitement les populations les plus isolées du Maroc. En vingt-quatre ans, 99 370 patients ont été soignés.</p>
+            <blockquote class="quote">« Parce que se soigner ne devrait jamais être un privilège. »</blockquote>
+            <div class="cause-box">
+              <h3>Notre engagement</h3>
+              <p>Le reliquat de notre budget, une fois les frais de participation couverts, sera intégralement reversé à Cœur de Gazelles — association d'intérêt général qui apporte soins, éducation et aide matérielle aux populations les plus isolées du sud marocain.</p>
+            </div>
+            <a href="pages/solidarite.html" class="btn btn-primary" style="margin-top:var(--space-6)">Découvrir le volet solidaire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESPONSABLE ============ -->
+    <section>
+      <div class="container">
+        <div class="eco-panel reveal">
+          <span class="eyebrow">Responsable par engagement</span>
+          <h2>La plus belle trace est celle que l'on ne laisse pas</h2>
+          <p>Unique rallye certifié ISO 14001 depuis 2010, le Rallye Aïcha des Gazelles est un pionnier mondial de l'événementiel responsable. Chaque édition transforme l'engagement en impact mesurable.</p>
+          <div class="eco-stats">
+            <div class="eco-stat"><div class="eco-stat__num">17 456</div><div class="eco-stat__label">Palmiers dattiers plantés</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">64 t</div><div class="eco-stat__label">De CO₂ évitées en 2024-2025</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">0</div><div class="eco-stat__label">Déchet abandonné dans le désert</div></div>
+            <div class="eco-stat"><div class="eco-stat__num">150 000</div><div class="eco-stat__label">Bouteilles plastique upcyclées</div></div>
+          </div>
+          <div class="hero__cta">
+            <a href="pages/solidarite.html#rse-entreprises" class="btn btn-light">Le détail de la démarche RSE</a>
+            <a href="pages/sponsors.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5)">Devenir partenaire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LE DÉFI ============ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Le défi</span>
+          <h2 class="section-title">Un défi sportif hors norme</h2>
+          <p class="section-lead mx-auto">Navigation à l'estime, endurance, résilience mentale. Ici, la vitesse ne fait pas la différence.</p>
+        </div>
+        <div class="steps-grid reveal">
+          <div class="step">
+            <div class="step__num">01</div>
+            <h3>Navigation — sans GPS</h3>
+            <p>Carte, boussole, règle. Pointer un maximum de balises en parcourant le moins de kilomètres.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">02</div>
+            <h3>Endurance — un prologue et 5 étapes</h3>
+            <p>Dont deux étapes marathon, en autonomie complète, à la belle étoile.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">03</div>
+            <h3>Mental — en binôme</h3>
+            <p>Sang-froid, cohésion, détermination. Chaque décision compte, l'entraide fait le reste.</p>
+          </div>
+        </div>
+        <div class="text-center reveal" style="margin-top:var(--space-12)">
+          <blockquote class="quote quote--center">« Sublimer la difficulté et s'ouvrir à tous les possibles. »</blockquote>
+          <a href="pages/soutenir.html" class="btn btn-primary">Nous aider à prendre le départ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DATES & BUDGET ============ -->
+    <section>
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">D'ici le départ</span>
+          <h2 class="section-title">Du 20 mars au 3 avril 2027</h2>
+          <p class="section-lead">Quinze jours entre le briefing dans le sud de la France et l'arrivée officielle à Essaouira. Il nous reste plusieurs mois pour être prêtes — et pour boucler le budget.</p>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline__item"><div class="timeline__date">20 mars</div><div class="timeline__label">Départ du sud de la France</div></div>
+          <div class="timeline__item"><div class="timeline__date">21 mars</div><div class="timeline__label">Embarquement pour le Maroc</div></div>
+          <div class="timeline__item"><div class="timeline__date">25 mars</div><div class="timeline__label">Caravane Cœur de Gazelles</div></div>
+          <div class="timeline__item"><div class="timeline__date">26 mars → 1ᵉʳ avril</div><div class="timeline__label">Les étapes du rallye</div></div>
+          <div class="timeline__item"><div class="timeline__date">3 avril</div><div class="timeline__label">Arrivée à Essaouira</div></div>
+        </div>
+        <div class="reveal" style="margin-top:var(--space-10)">
+          <a href="pages/le-rallye.html#edition-2027" class="btn btn-outline">Le programme complet</a>
+        </div>
+        <div class="budget-box reveal">
+          <div>
+            <h3>Pour être au départ, il nous faut réunir 42 000 €</h3>
+            <p>Nous publions notre budget poste par poste : vous savez exactement à quoi sert votre contribution, et ce qu'il advient de ce qui dépasse.</p>
+          </div>
+          <a href="pages/equipage.html#budget" class="btn btn-primary">Voir le budget détaillé</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPONSORS (aperçu) — masqué tant qu'aucun partenaire n'est signé ============ -->
+    <section hidden>
+      <div class="container text-center">
+        <div class="reveal">
+          <span class="eyebrow">Nos partenaires</span>
+          <h2 class="section-title">Ils nous soutiennent</h2>
+          <p class="section-lead mx-auto">Merci aux entreprises et aux particuliers qui rejoignent l'aventure. Votre logo peut apparaître ici.</p>
+        </div>
+        <div class="logo-wall reveal">
+          <div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
+          <div class="logo-slot">Votre logo</div>
+        </div>
+        <a href="pages/sponsors.html" class="btn btn-outline" style="margin-top:var(--space-10)">Devenir partenaire</a>
+      </div>
+    </section>
+
+    <!-- ============ BANNIÈRE CTA ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Contribuez dès maintenant&nbsp;!</h2>
+          <p>Chaque don, petit ou grand, nous rapproche de la ligne de départ. Devenez sponsor, faites un don ou relayez l'aventure&nbsp;: ensemble, on va plus loin.</p>
+          <div class="hero__cta">
+            <a href="pages/soutenir.html" class="btn btn-light btn-lg">Faire un don</a>
+            <a href="pages/sponsors.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Devenir sponsor</a>
+          </div>
+        </div>
+      </div>
+    </section>''',
+    og_desc="Deux femmes, un désert, un sourire. Soutenez notre aventure solidaire "
+            "au Rallye Aïcha des Gazelles 2027.",
+    og_image="assets/hero-desert.png",
+    root=True)
+
+# ============ ÉCRITURE ============
+OUTPUTS = {"index.html": INDEX}
+OUTPUTS.update({os.path.join("pages", name): html for name, html in PAGES.items()})
+
+for rel, html in OUTPUTS.items():
+    with open(os.path.join(ROOT_DIR, rel), "w", encoding="utf-8") as f:
         f.write(html)
-    print("écrit :", name)
-print("Terminé —", len(PAGES), "pages.")
+    print("écrit :", rel.replace(os.sep, "/"))
+print("Terminé —", len(OUTPUTS), "pages.")
