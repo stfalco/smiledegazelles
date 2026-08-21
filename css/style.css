@@ -285,7 +285,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--space-4);
 }
 .hero__badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-gold); }
-.hero h1 { font-size: clamp(3rem, 0.5rem + 5vw, 5rem); line-height: 0.98; margin-bottom: var(--space-6); text-shadow: 0 2px 20px rgba(0,0,0,0.3); text-wrap: normal; }
+.hero h1 { font-size: clamp(3rem, 0.5rem + 5vw, 5rem); line-height: 0.98; margin-bottom: var(--space-6); text-shadow: 0 2px 20px rgba(0,0,0,0.3); text-wrap: wrap; }
 .hero h1 em { font-style: normal; color: var(--color-gold); }
 .hero__sub { font-size: var(--text-lg); max-width: 72ch; margin-bottom: var(--space-5); color: rgba(255,255,255,0.92); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
@@ -309,14 +309,16 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .stat__label { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
 
 /* ---------- SPLIT (2 colonnes texte/image) ---------- */
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-8), 6vw, var(--space-20)); align-items: center; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-6), 3.5vw, var(--space-12)); align-items: center; }
 .split--reverse .split__media { order: 2; }
 .split__media img {
   border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg);
   width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: center;
 }
-.split__body h2 { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
+.split__body h2 { font-size: var(--text-2xl); margin-bottom: var(--space-5); text-wrap: wrap; }
 .split__body p { color: var(--color-text-muted); margin-bottom: var(--space-4); }
+.split__body .split__subtitle { font-size: var(--text-lg); margin-top: var(--space-6); margin-bottom: var(--space-2); }
+.split__body .split__subtitle:first-of-type { margin-top: var(--space-5); }
 .feature-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
 .feature-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--text-base); }
 .feature-list svg { color: var(--color-primary); flex-shrink: 0; margin-top: 3px; }
