@@ -2031,15 +2031,20 @@ INDEX = document(
     <!-- ============ LE RALLYE (aperçu) ============ -->
     <section class="section-alt">
       <div class="container">
-        <div class="split reveal">
+        <div class="home-rallye__heading reveal">
+          <span class="eyebrow">Un rallye pas comme les autres</span>
+          <h2>Quand une ambition sociétale devient une aventure d'exception.</h2>
+        </div>
+        <div class="split home-rallye__split reveal">
           <div class="split__media">
             <img src="assets/accueil-teaser-rallye-3.png" alt="Navigation à la carte et à la boussole lors du Rallye Aïcha des Gazelles" loading="lazy" />
           </div>
           <div class="split__body">
-            <span class="eyebrow">Un rallye pas comme les autres</span>
-            <h2>La précision avant la vitesse</h2>
-            <p>Créé en 1990, le Rallye Aïcha des Gazelles est un rallye-raid de navigation hors-piste sans équivalent. Ni GPS, ni téléphone : une carte des années 1950, une boussole et une règle. Le classement récompense celle qui rallie le plus de balises en parcourant le moins de kilomètres — la performance se mesure à la précision, jamais à la rapidité.</p>
-            <p>C'est aussi le seul rallye au monde certifié ISO 14001&nbsp;!</p>
+            <h3 class="split__subtitle">L'origine et le sens</h3>
+            <p>Créé en 1990, le Rallye Aïcha des Gazelles est né de la volonté de valoriser la place des femmes à travers un défi sportif entièrement féminin. Depuis plus de 35 ans, ce rallye-raid de navigation hors-piste, sans équivalent au monde, traverse le désert marocain sur sept jours de course.</p>
+            <h3 class="split__subtitle">La règle du jeu et l'engagement</h3>
+            <p>Ni GPS, ni téléphone : ici, on navigue comme dans les années 1950, à la carte, à la règle et à la boussole. Le classement récompense celle qui rallie le plus de balises en parcourant le moins de kilomètres — la performance se mesure à la précision, jamais à la vitesse.</p>
+            <p class="home-rallye__highlight">C'est aussi le seul rallye au monde certifié <strong>ISO 14001</strong>, une exigence écoresponsable au cœur même de l'aventure.</p>
             <a href="pages/le-rallye.html" class="btn btn-primary" style="margin-top:var(--space-4)">Tout savoir sur le rallye</a>
           </div>
         </div>
