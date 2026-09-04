@@ -37,11 +37,7 @@ def home(root):
 def logo_img(root):
     u = up(root)
     return f'''<img class="logo__img logo__img--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
-        <img class="logo__img logo__img--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
-        <span class="logo__team-text" aria-hidden="true">
-          <span>#Team 134</span>
-          <span>Rallye Aïcha Des Gazelles</span>
-        </span>'''
+        <img class="logo__img logo__img--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />'''
 
 
 # Emblème officiel pour le footer — bascule clair/sombre
