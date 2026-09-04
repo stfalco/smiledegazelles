@@ -213,6 +213,20 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 /* Logo officiel : wordmark 4x4 « SMILE / DE / GAZELLES » (header) + emblème rose des vents (footer) */
 .logo { display: flex; align-items: center; gap: var(--space-3); color: var(--color-text); }
 .logo__img { height: 62px; width: auto; display: block; }
+.logo__team-mark {
+  display: block;
+  width: clamp(5rem, 10vw, 8rem);
+  height: 3.25rem;
+  overflow: hidden;
+  flex: 0 0 auto;
+  margin-left: calc(-1 * var(--space-3));
+}
+.logo__team-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .logo:hover .logo__img { opacity: 0.85; }
 /* Bascule clair/sombre du wordmark */
 .logo__img--dark { display: none; }
