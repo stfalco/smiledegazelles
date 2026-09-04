@@ -318,6 +318,18 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .split__body p { color: var(--color-text-muted); margin-bottom: var(--space-4); }
 .split__body .split__subtitle { font-size: var(--text-lg); margin-top: var(--space-6); margin-bottom: var(--space-2); }
 .split__body .split__subtitle:first-of-type { margin-top: var(--space-5); }
+.home-crew__heading { margin-bottom: var(--space-5); }
+.home-crew__heading .eyebrow { margin-bottom: var(--space-3); }
+.home-crew__content { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-6), 3.5vw, var(--space-12)); align-items: start; }
+.home-crew__title-row { display: flex; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-5); }
+.home-crew__title-row h2 { font-size: var(--text-2xl); margin-bottom: 0; }
+.home-crew__title-row .home-crew__logo {
+  display: block; width: auto; height: var(--text-2xl); aspect-ratio: auto; object-fit: contain;
+  border-radius: 0; box-shadow: none; flex: 0 0 auto; margin-top: 0.05em;
+}
+.home-crew__title-row .home-crew__logo--dark { display: none; }
+[data-theme="dark"] .home-crew__title-row .home-crew__logo--light { display: none; }
+[data-theme="dark"] .home-crew__title-row .home-crew__logo--dark { display: block; }
 .feature-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
 .feature-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--text-base); }
 .feature-list svg { color: var(--color-primary); flex-shrink: 0; margin-top: 3px; }
@@ -944,7 +956,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
-  .split, .crew-grid, .contact-grid { grid-template-columns: 1fr; }
+  .split, .crew-grid, .contact-grid, .home-crew__content { grid-template-columns: 1fr; }
   .steps-grid { grid-template-columns: 1fr; }
   .eco-stats, .timeline { grid-template-columns: repeat(2, 1fr); }
   .split__media--portrait { margin-bottom: var(--space-8); }
