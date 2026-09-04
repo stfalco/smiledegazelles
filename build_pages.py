@@ -39,7 +39,7 @@ def logo_img(root):
     return f'''<img class="logo__img logo__img--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
         <img class="logo__img logo__img--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
         <span class="logo__team-text" aria-hidden="true">
-          <span>Equipage 134</span>
+          <span>#Team 134</span>
           <span>Rallye Aïcha Des Gazelles</span>
         </span>'''
 
@@ -579,7 +579,7 @@ PAGES["equipage.html"] = page(
     og_image="assets/equipage_hero.JPG",
     # Pas de hero_photo ni de hero_stamp : le bandeau est repassé en fond sombre uni
     # (commit « hero fond sombre »). La photo reste le visuel de partage Open Graph.
-    hero_eyebrow="Équipage 134 · Smile de Gazelles")
+    hero_eyebrow="#Team 134 · Smile de Gazelles")
 
 # ---- LE RALLYE ----
 PAGES["le-rallye.html"] = page(
@@ -1908,7 +1908,10 @@ INDEX = document(
       <div class="container">
         <div class="hero__content">
           <span class="hero__badge"><span class="dot"></span>Édition 2027 · 20 mars → 3 avril</span>
-          <h1>Une boussole, du hors-piste et le <em>Smile</em></h1>
+          <div class="hero__title-row">
+            <img class="hero__logo" src="assets/logo-dark.png" alt="" aria-hidden="true" />
+            <h1>Une boussole, du hors-piste et le <em>Smile</em></h1>
+          </div>
           <p class="hero__sub">L'équipage <strong>Smile de Gazelles</strong> prendra le départ du Rallye Aïcha des Gazelles 2027. Quinze jours d'aventure, sept jours de course : une carte, une boussole et aucun GPS. Un défi sportif et humain pour repousser nos limites et faire de chaque kilomètre une action porteuse de sens.</p>
           <div class="hero__cta">
             <a href="pages/sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
@@ -1967,7 +1970,7 @@ INDEX = document(
             </div>
           </div>
           <div class="split__body">
-            <span class="eyebrow">Smile de Gazelles - équipage 134</span>
+            <span class="eyebrow">Smile de Gazelles - #Team 134</span>
             <h2>L'alliance de la maîtrise et de l'instinct</h2>
             <p>Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action.</p>
             <h3 class="split__subtitle">Sandra Aversenq — 53 ans · Chef d'entreprise</h3>
