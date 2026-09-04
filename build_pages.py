@@ -44,8 +44,8 @@ def logo_img(root):
 # Emblème officiel pour le footer — bascule clair/sombre
 def logo_emblem(root):
     u = up(root)
-    return f'''<img class="logo__emblem logo__emblem--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
-            <img class="logo__emblem logo__emblem--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />'''
+    return f'''<img class="logo__emblem logo__emblem--light" src="{u}assets/logo.png" alt="Smile de Gazelles" width="220" height="220" />
+            <img class="logo__emblem logo__emblem--dark" src="{u}assets/logo-dark.png" alt="Smile de Gazelles" width="220" height="220" />'''
 
 
 # Réseaux sociaux officiels de l'équipage
