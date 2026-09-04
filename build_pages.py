@@ -1970,10 +1970,6 @@ INDEX = document(
           <div class="home-crew__content">
           <div class="split__media split__media--portrait home-crew__media">
             <img class="portrait" src="assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco signant leur engagement pour le rallye" loading="lazy" />
-            <div class="media-inset">
-              <img src="assets/logo.png" alt="Logo de l'équipage Smile de Gazelles" width="56" height="56" />
-              <img class="media-inset__rag" src="assets/logo-team-rag.png" alt="Team officielle du Rallye Aïcha des Gazelles" />
-            </div>
           </div>
           <div class="split__body">
             <p>Tout est parti d'une conversation et d'un rêve un peu fou : prendre le départ du Rallye Aïcha des Gazelles. Un an plus tard, le rêve est devenu un projet, puis une inscription pour 2027. Notre déclic ? Arrêter d'attendre, oser l'inconnu et passer à l'action.</p>
