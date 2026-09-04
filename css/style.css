@@ -357,6 +357,31 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 }
 .split__body h2 { font-size: var(--text-2xl); margin-bottom: var(--space-5); text-wrap: wrap; }
 .split__body p { color: var(--color-text-muted); margin-bottom: var(--space-4); }
+.association-objective {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.24fr) 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  margin-top: clamp(var(--space-10), 5vw, var(--space-16));
+  padding: clamp(var(--space-6), 4vw, var(--space-10)) clamp(var(--space-6), 5vw, var(--space-12));
+  border-left: 5px solid var(--color-primary);
+  background: var(--color-primary-highlight);
+  box-shadow: var(--shadow-sm);
+}
+.association-objective__label {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.association-objective p {
+  max-width: 72ch;
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin: 0;
+}
 .home-rallye__highlight {
   padding: var(--space-4) var(--space-5);
   border-left: 4px solid var(--color-primary);
@@ -1010,6 +1035,7 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .split, .crew-grid, .contact-grid, .home-crew__content { grid-template-columns: 1fr; }
+  .association-objective { grid-template-columns: 1fr; gap: var(--space-3); }
   .steps-grid { grid-template-columns: 1fr; }
   .eco-stats, .timeline { grid-template-columns: repeat(2, 1fr); }
   .split__media--portrait { margin-bottom: var(--space-8); }
