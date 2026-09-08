@@ -673,6 +673,11 @@ PAGES["le-rallye.html"] = page(
       </div>
     </section>
 
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="../assets/Rallye_01.JPG" alt="Véhicule du Rallye Aïcha des Gazelles dans les dunes du désert marocain" loading="lazy" />
+    </div>
+
     <!-- ============ L'HISTOIRE ============ -->
     <section id="histoire">
       <div class="container">
@@ -777,7 +782,6 @@ PAGES["le-rallye.html"] = page(
     og_desc="Navigation sans GPS, sobriété kilométrique, certification ISO 14001 : "
             "découvrez l'épreuve que rejoint l'équipage 134 en 2027.",
     og_image="assets/Rallye_01.JPG",
-    hero_photo="assets/Rallye_01.JPG",
     hero_eyebrow="L'épreuve")
 
 # ---- SOLIDARITÉ ----
