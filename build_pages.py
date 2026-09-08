@@ -832,6 +832,11 @@ PAGES["solidarite.html"] = page(
       </div>
     </section>
 
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="../assets/solidaire-bandeau.jpg" alt="Action solidaire du Rallye Aïcha des Gazelles auprès des populations du sud marocain" loading="lazy" />
+    </div>
+
     <!-- ============ LES QUATRE VOLETS D'ACTION ============ -->
     <section class="section-alt" id="actions">
       <div class="container">
@@ -1036,7 +1041,6 @@ PAGES["solidarite.html"] = page(
       </div>
     </section>''',
     og_image="assets/solidaire-bandeau.jpg",
-    hero_photo="assets/solidaire-bandeau.jpg",
     hero_eyebrow="Un rallye solidaire")
 
 # ---- SPONSORS ----
@@ -1495,6 +1499,11 @@ PAGES["soutenir.html"] = page(
       </div>
     </section>
 
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="../assets/rallye_feminin.JPG" alt="Équipage féminin du Rallye Aïcha des Gazelles" loading="lazy" />
+    </div>
+
     <!-- ============ NOUS AIDER AUTREMENT ============ -->
     <section class="section-alt" id="autrement">
       <div class="container">
@@ -1597,7 +1606,6 @@ PAGES["soutenir.html"] = page(
     og_desc="Un don, du matériel, un partage : toutes les façons d'aider l'équipage 134 "
             "à prendre le départ du Rallye Aïcha des Gazelles 2027.",
     og_image="assets/rallye_feminin.JPG",
-    hero_photo="assets/rallye_feminin.JPG",
     hero_eyebrow="Faire un don",
     hero_actions='''        <div class="actions">
           <button id="openHaOverlay" type="button" class="btn btn-primary">Faire un don</button>
