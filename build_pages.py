@@ -1669,6 +1669,9 @@ PAGES["contact.html"] = page(
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
               <div><h4>Prenons rendez-vous</h4><p>En présentiel à Montpellier et alentours, ou en visioconférence, à votre convenance.</p></div>
             </div>
+            <div class="contact-info__crew">
+              <img src="../assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco, l'équipage Smile de Gazelles" loading="lazy" />
+            </div>
           </div>
           <div>
             <form class="form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-contact-form>

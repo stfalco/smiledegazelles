@@ -478,12 +478,13 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 /* ---------- CONTACT ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(var(--space-8), 6vw, var(--space-16)); }
 .contact-info { display: flex; flex-direction: column; gap: var(--space-6); }
+#ecrire .section-lead { max-width: none; }
 .contact-item { display: flex; gap: var(--space-4); align-items: flex-start; }
 .contact-item__icon { width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--color-primary-highlight); color: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .contact-item h4 { font-family: var(--font-body); font-weight: 600; font-size: var(--text-base); margin-bottom: var(--space-1); }
 .contact-item p, .contact-item a { color: var(--color-text-muted); font-size: var(--text-base); }
 .contact-item a:hover { color: var(--color-primary); }
-.contact-info__crew { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-2); }
+.contact-info__crew { display: flex; flex-direction: column; gap: var(--space-4); margin-top: auto; }
 .contact-info__crew img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
 .contact-info__crew .btn { align-self: flex-start; }
 
