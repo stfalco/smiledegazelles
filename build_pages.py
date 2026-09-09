@@ -75,13 +75,81 @@ NAV_ITEMS = [
     ("contact.html", "Contact", "contact"),
 ]
 
+# Sous-menus déroulants : chaque entrée pointe vers une ancre de sa page.
+# Sur PC ils apparaissent au survol/au focus ; sur mobile ils se déplient via le
+# chevron. Les clés correspondent au « key » de NAV_ITEMS ; une page absente de
+# ce dictionnaire (l'accueil) n'a pas de sous-menu.
+SUB_ITEMS = {
+    "equipage": [
+        ("#portraits", "Notre binôme"),
+        ("#parcours", "Notre parcours"),
+        ("#preparation", "Se préparer"),
+        ("#budget", "Le projet"),
+        ("#association", "Notre association"),
+    ],
+    "le-rallye": [
+        ("#concept", "Le concept"),
+        ("#edition-2027", "Édition 2027"),
+        ("#histoire", "L'histoire"),
+        ("#environnement", "Environnement"),
+        ("#reconnaissance", "Reconnaissance"),
+    ],
+    "solidarite": [
+        ("#coeur-de-gazelles", "Cœur de Gazelles"),
+        ("#actions", "Nos actions"),
+        ("#autour-du-rallye", "Au-delà du rallye"),
+        ("#rse-entreprises", "RSE entreprises"),
+        ("#engagement", "Notre engagement"),
+        ("#ressources", "Ressources"),
+    ],
+    "sponsors": [
+        ("#pourquoi", "Pourquoi nous soutenir"),
+        ("#formules", "Les formules"),
+        ("#visibilite", "Votre visibilité"),
+        ("#modalites", "Modalités"),
+    ],
+    "soutenir": [
+        ("#don", "Faire un don"),
+        ("#autrement", "Nous aider autrement"),
+        ("#budget", "Où va votre argent"),
+        ("#questions", "Questions fréquentes"),
+    ],
+    "contact": [
+        ("#ecrire", "Nous écrire"),
+        ("#presse", "Espace presse"),
+    ],
+}
+
+CARET_SVG = (
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" '
+    'stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+    'stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>'
+)
+
 
 def nav_links(current, root):
     out = []
     for href, label, key in NAV_ITEMS:
         target = home(root) if href == "index.html" else inner(root) + href
         cur = ' aria-current="page"' if key == current else ""
-        out.append(f'          <li><a href="{target}"{cur}>{label}</a></li>')
+        subs = SUB_ITEMS.get(key)
+        if not subs:
+            out.append(f'          <li class="nav__item"><a href="{target}"{cur}>{label}</a></li>')
+            continue
+        sub_id = f"submenu-{key}"
+        sub_lis = "\n".join(
+            f'              <li><a href="{target}{anchor}">{sublabel}</a></li>'
+            for anchor, sublabel in subs
+        )
+        out.append(
+            f'''          <li class="nav__item nav__item--has-sub">
+            <a href="{target}"{cur}>{label}</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="{sub_id}" aria-label="Afficher le sous-menu {label}">{CARET_SVG}</button>
+            <ul class="nav__sub" id="{sub_id}">
+{sub_lis}
+            </ul>
+          </li>'''
+        )
     return "\n".join(out)
 
 

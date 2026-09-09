@@ -29,13 +29,69 @@
       </a>
       <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
-          <li><a href="../index.html">Accueil</a></li>
-          <li><a href="equipage.html" aria-current="page">L'équipage</a></li>
-          <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité et RSE</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="soutenir.html">Nous soutenir</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="nav__item"><a href="../index.html">Accueil</a></li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="equipage.html" aria-current="page">L'équipage</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-equipage" aria-label="Afficher le sous-menu L'équipage"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-equipage">
+              <li><a href="equipage.html#portraits">Notre binôme</a></li>
+              <li><a href="equipage.html#parcours">Notre parcours</a></li>
+              <li><a href="equipage.html#preparation">Se préparer</a></li>
+              <li><a href="equipage.html#budget">Le projet</a></li>
+              <li><a href="equipage.html#association">Notre association</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="le-rallye.html">Le rallye</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-le-rallye" aria-label="Afficher le sous-menu Le rallye"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-le-rallye">
+              <li><a href="le-rallye.html#concept">Le concept</a></li>
+              <li><a href="le-rallye.html#edition-2027">Édition 2027</a></li>
+              <li><a href="le-rallye.html#histoire">L'histoire</a></li>
+              <li><a href="le-rallye.html#environnement">Environnement</a></li>
+              <li><a href="le-rallye.html#reconnaissance">Reconnaissance</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="solidarite.html">Solidarité et RSE</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-solidarite" aria-label="Afficher le sous-menu Solidarité et RSE"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-solidarite">
+              <li><a href="solidarite.html#coeur-de-gazelles">Cœur de Gazelles</a></li>
+              <li><a href="solidarite.html#actions">Nos actions</a></li>
+              <li><a href="solidarite.html#autour-du-rallye">Au-delà du rallye</a></li>
+              <li><a href="solidarite.html#rse-entreprises">RSE entreprises</a></li>
+              <li><a href="solidarite.html#engagement">Notre engagement</a></li>
+              <li><a href="solidarite.html#ressources">Ressources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="sponsors.html">Sponsors</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-sponsors" aria-label="Afficher le sous-menu Sponsors"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-sponsors">
+              <li><a href="sponsors.html#pourquoi">Pourquoi nous soutenir</a></li>
+              <li><a href="sponsors.html#formules">Les formules</a></li>
+              <li><a href="sponsors.html#visibilite">Votre visibilité</a></li>
+              <li><a href="sponsors.html#modalites">Modalités</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="soutenir.html">Nous soutenir</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-soutenir" aria-label="Afficher le sous-menu Nous soutenir"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-soutenir">
+              <li><a href="soutenir.html#don">Faire un don</a></li>
+              <li><a href="soutenir.html#autrement">Nous aider autrement</a></li>
+              <li><a href="soutenir.html#budget">Où va votre argent</a></li>
+              <li><a href="soutenir.html#questions">Questions fréquentes</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="contact.html">Contact</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-contact" aria-label="Afficher le sous-menu Contact"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-contact">
+              <li><a href="contact.html#ecrire">Nous écrire</a></li>
+              <li><a href="contact.html#presse">Espace presse</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">

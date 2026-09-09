@@ -64,6 +64,14 @@
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      // À la fermeture du panneau mobile, on replie tous les sous-menus.
+      if (!open) {
+        nav.querySelectorAll('.nav__item--has-sub.is-open').forEach((item) => {
+          item.classList.remove('is-open');
+          const c = item.querySelector('.nav__caret');
+          if (c) c.setAttribute('aria-expanded', 'false');
+        });
+      }
     };
     burger.addEventListener('click', function () {
       setNav(!nav.classList.contains('is-open'));
@@ -83,6 +91,44 @@
       if (!nav.classList.contains('is-open')) return;
       if (nav.contains(e.target) || burger.contains(e.target)) return;
       setNav(false);
+    });
+  }
+
+  /* ----- Sous-menus déroulants -----
+     Survol/focus gérés en CSS (PC). Le chevron pilote l'ouverture au tactile et
+     l'accordéon mobile ; un seul sous-menu reste ouvert à la fois. */
+  const subItems = Array.from(document.querySelectorAll('.nav__item--has-sub'));
+  if (subItems.length) {
+    const closeSub = (item) => {
+      item.classList.remove('is-open');
+      const c = item.querySelector('.nav__caret');
+      if (c) c.setAttribute('aria-expanded', 'false');
+    };
+    subItems.forEach((item) => {
+      const caret = item.querySelector('.nav__caret');
+      if (!caret) return;
+      caret.addEventListener('click', (e) => {
+        e.preventDefault();
+        const willOpen = !item.classList.contains('is-open');
+        subItems.forEach((other) => other !== item && closeSub(other));
+        item.classList.toggle('is-open', willOpen);
+        caret.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      subItems.forEach((item) => {
+        if (item.classList.contains('is-open') && !item.contains(e.target)) closeSub(item);
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      subItems.forEach((item) => {
+        if (item.classList.contains('is-open')) {
+          closeSub(item);
+          const c = item.querySelector('.nav__caret');
+          if (c) c.focus();
+        }
+      });
     });
   }
 

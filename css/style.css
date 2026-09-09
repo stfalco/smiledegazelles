@@ -276,14 +276,54 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 [data-theme="dark"] .logo__emblem--light { display: none; }
 [data-theme="dark"] .logo__emblem--dark { display: block; }
 
-.nav { display: flex; align-items: center; gap: var(--space-6); }
-.nav__links { display: flex; align-items: center; gap: var(--space-5); list-style: none; }
-.nav__links a { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted); position: relative; }
+.nav { display: flex; align-items: center; gap: var(--space-4); }
+.nav__links { display: flex; align-items: center; gap: var(--space-3); list-style: none; }
+.nav__links a { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted); position: relative; white-space: nowrap; }
 .nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--color-text); }
 .nav__links a[aria-current="page"]::after {
   content: ""; position: absolute; bottom: -6px; left: 0; right: 0; height: 2px;
   background: var(--color-primary); border-radius: 2px;
 }
+
+/* ---------- Sous-menus déroulants ---------- */
+.nav__item { position: relative; display: flex; align-items: center; gap: 2px; }
+.nav__caret {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; flex: 0 0 auto;
+  color: var(--color-text-muted); border-radius: var(--radius-full);
+  margin-left: -2px; transition: transform 0.25s ease, color 0.2s ease;
+}
+.nav__caret svg { width: 16px; height: 16px; }
+.nav__item--has-sub:hover > .nav__caret,
+.nav__item--has-sub:focus-within > .nav__caret,
+.nav__item--has-sub.is-open > .nav__caret { color: var(--color-text); transform: rotate(180deg); }
+
+.nav__sub {
+  position: absolute; top: 100%; left: 50%;
+  margin: 0; padding: var(--space-2); min-width: 220px; list-style: none;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+  z-index: 60;
+}
+/* Pont invisible : évite de perdre le survol dans l'écart lien ↔ panneau. */
+.nav__sub::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+.nav__item--has-sub:hover > .nav__sub,
+.nav__item--has-sub:focus-within > .nav__sub,
+.nav__item--has-sub.is-open > .nav__sub {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+}
+.nav__sub a {
+  display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  font-size: var(--text-sm); color: var(--color-text-muted); white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav__sub a::after { content: none !important; }
+.nav__sub a:hover, .nav__sub a:focus-visible { background: var(--color-surface-offset); color: var(--color-text); }
+
 .header__actions { display: flex; align-items: center; gap: var(--space-3); }
 
 .theme-toggle {
@@ -1069,6 +1109,20 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   }
   .nav__links { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-4); width: 100%; }
   .nav__links a { font-size: var(--text-base); }
+  /* Sous-menus en accordéon : le chevron déplie, le panneau s'insère dans le flux. */
+  .nav__item { flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0; }
+  .nav__item--has-sub > a { flex: 1; }
+  .nav__caret { width: 40px; height: 40px; }
+  .nav__sub {
+    position: static; transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+    width: 100%; min-width: 0; box-shadow: none; border: none; background: transparent;
+    padding: 0; margin-top: var(--space-2); overflow: hidden;
+    max-height: 0; transition: max-height 0.3s ease;
+  }
+  .nav__sub::before { content: none; }
+  .nav__item--has-sub.is-open > .nav__sub { max-height: 520px; transform: none; left: auto; }
+  .nav__item--has-sub.is-open > .nav__caret { transform: rotate(180deg); }
+  .nav__sub a { padding-left: var(--space-4); white-space: normal; }
   .countdown-bar__inner { flex-direction: column; gap: var(--space-4); }
   .countdown-bar__label { text-align: center; }
   .countdown__unit { min-width: 56px; }
