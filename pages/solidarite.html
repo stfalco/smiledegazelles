@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solidarité — Smile de Gazelles</title>
-  <meta name="description" content="La dimension solidaire du rallye : Cœur de Gazelles et la cause que nous soutenons." />
-  <meta property="og:title" content="Solidarité — Smile de Gazelles" />
-  <meta property="og:description" content="La dimension solidaire du rallye : Cœur de Gazelles et la cause que nous soutenons." />
-  <meta property="og:image" content="../assets/hero-desert.png" />
-  <link rel="icon" href="../assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <title>Solidarité et RSE — Smile de Gazelles</title>
+  <meta name="description" content="Cœur de Gazelles, les quatre volets d'action du Rallye Aïcha des Gazelles et la démarche RSE certifiée ISO 14001 de l'organisateur : chiffres, gouvernance et engagement de l'équipage 134." />
+  <meta property="og:title" content="Solidarité et RSE — Smile de Gazelles" />
+  <meta property="og:description" content="Cœur de Gazelles, les quatre volets d'action du Rallye Aïcha des Gazelles et la démarche RSE certifiée ISO 14001 de l'organisateur : chiffres, gouvernance et engagement de l'équipage 134." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../assets/solidaire-bandeau.jpg" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/clash-display.css" />
+  <link rel="stylesheet" href="../css/general-sans.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
@@ -18,439 +24,381 @@
     <div class="container header__inner">
       <a href="../index.html" class="logo" aria-label="Smile de Gazelles, accueil">
         <img class="logo__img logo__img--light" src="../assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
-        <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <span class="logo__team-mark" aria-hidden="true"><img src="../assets/TEAMRallyeDesGazelles_Logo-01-header.png" alt="" /></span>
       </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
-          <li><a href="../index.html">Accueil</a></li>
-          <li><a href="equipage.html">L'équipage</a></li>
-          <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html" aria-current="page">Solidarité</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="soutenir.html">Nous soutenir</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="nav__item"><a href="../index.html">Accueil</a></li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="equipage.html">L'équipage</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-equipage" aria-label="Afficher le sous-menu L'équipage"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-equipage">
+              <li><a href="equipage.html#portraits">Notre binôme</a></li>
+              <li><a href="equipage.html#parcours">Notre parcours</a></li>
+              <li><a href="equipage.html#preparation">Se préparer</a></li>
+              <li><a href="equipage.html#budget">Le projet</a></li>
+              <li><a href="equipage.html#association">Notre association</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="le-rallye.html">Le rallye</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-le-rallye" aria-label="Afficher le sous-menu Le rallye"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-le-rallye">
+              <li><a href="le-rallye.html#concept">Le concept</a></li>
+              <li><a href="le-rallye.html#edition-2027">Édition 2027</a></li>
+              <li><a href="le-rallye.html#histoire">L'histoire</a></li>
+              <li><a href="le-rallye.html#environnement">Environnement</a></li>
+              <li><a href="le-rallye.html#reconnaissance">Reconnaissance</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="solidarite.html" aria-current="page">Solidarité et RSE</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-solidarite" aria-label="Afficher le sous-menu Solidarité et RSE"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-solidarite">
+              <li><a href="solidarite.html#coeur-de-gazelles">Cœur de Gazelles</a></li>
+              <li><a href="solidarite.html#actions">Nos actions</a></li>
+              <li><a href="solidarite.html#autour-du-rallye">Au-delà du rallye</a></li>
+              <li><a href="solidarite.html#rse-entreprises">RSE entreprises</a></li>
+              <li><a href="solidarite.html#engagement">Notre engagement</a></li>
+              <li><a href="solidarite.html#ressources">Ressources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="sponsors.html">Sponsors</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-sponsors" aria-label="Afficher le sous-menu Sponsors"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-sponsors">
+              <li><a href="sponsors.html#pourquoi">Pourquoi nous soutenir</a></li>
+              <li><a href="sponsors.html#formules">Les formules</a></li>
+              <li><a href="sponsors.html#visibilite">Votre visibilité</a></li>
+              <li><a href="sponsors.html#modalites">Modalités</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="soutenir.html">Nous soutenir</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-soutenir" aria-label="Afficher le sous-menu Nous soutenir"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-soutenir">
+              <li><a href="soutenir.html#don">Faire un don</a></li>
+              <li><a href="soutenir.html#autrement">Nous aider autrement</a></li>
+              <li><a href="soutenir.html#budget">Où va votre argent</a></li>
+              <li><a href="soutenir.html#questions">Questions fréquentes</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="contact.html">Contact</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-contact" aria-label="Afficher le sous-menu Contact"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-contact">
+              <li><a href="contact.html#ecrire">Nous écrire</a></li>
+              <li><a href="contact.html#presse">Espace presse</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
   <main>
     <section class="page-hero">
       <div class="container container-default">
-        <p class="breadcrumb"><a href="../index.html">Accueil</a> / Solidarité</p>
-        <h1>Un rallye qui a du cœur</h1>
-        <p>Au-delà du sport, une aventure profondément humaine et solidaire.</p>
+        <p class="breadcrumb"><a href="../index.html">Accueil</a> / Solidarité et RSE</p>
+        <span class="page-hero__eyebrow">Un rallye solidaire</span>
+        <h1>Rouler pour une cause</h1>
+        <p>Depuis plus de trente ans, le rallye est accueilli sur les terres marocaines. Sa responsabilité est d'y redonner dans la durée.</p>
       </div>
     </section>
-    <section>
+    <!-- ============ CŒUR DE GAZELLES ============ -->
+    <section id="coeur-de-gazelles">
       <div class="container">
-        <div class="split reveal">
-          <div class="split__media"><img src="../assets/solidarite.png" alt="Caravane médicale Cœur de Gazelles" /></div>
-          <div class="split__body">
-            <span class="eyebrow">Cœur de Gazelles</span>
-            <h2>La caravane médicale du désert</h2>
-            <p>Au-delà du défi sportif, le Rallye Aïcha des Gazelles s'appuie sur l'association Cœur de Gazelles, reconnue d'intérêt général depuis 2001. Elle organise la plus importante caravane médicale itinérante du sud du Maroc afin de donner accès aux soins aux populations les plus reculées.</p>
-            <p>Ses domaines d'action répondent aux besoins des populations locales&nbsp;: accès aux soins médicaux gratuits, accès universel à l'éducation, développement durable et aide matérielle.</p>
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Cœur de Gazelles</span>
+          <h2 class="section-title">Vingt-quatre ans d'actions, comptées une à une</h2>
+          <p class="section-lead">C'est le rôle de Cœur de Gazelles, association caritative reconnue d'intérêt général créée en 2001, qui déploie ses actions toute l'année en s'appuyant sur la logistique du rallye et en partenariat avec les ministères marocains.</p>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat"><div class="stat__num">99 370</div><div class="stat__label">Patients soignés gratuitement depuis 24 ans</div></div>
+          <div class="stat"><div class="stat__num">60</div><div class="stat__label">Bénévoles médicaux chaque année, sur six spécialités</div></div>
+          <div class="stat"><div class="stat__num">6 938</div><div class="stat__label">Paires de lunettes sur mesure remises</div></div>
+          <div class="stat"><div class="stat__num">578</div><div class="stat__label">Fauteuils roulants neufs ou recyclés donnés</div></div>
+        </div>
+        <div class="keyfact reveal">
+          <span class="keyfact__eyebrow">Le chiffre qui dit tout</span>
+          <div class="keyfact__grid">
+            <div class="keyfact__item">
+              <div class="keyfact__num">43&nbsp;%</div>
+              <p>des patients de plus de quarante ans n'avaient jamais consulté de médecin.</p>
+            </div>
+            <div class="keyfact__item">
+              <div class="keyfact__num">70&nbsp;%</div>
+              <p>des enfants de moins de douze ans n'avaient jamais eu de suivi médical.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-alt">
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="../assets/solidaire-bandeau.jpg" alt="Action solidaire du Rallye Aïcha des Gazelles auprès des populations du sud marocain" loading="lazy" />
+    </div>
+
+    <!-- ============ LES QUATRE VOLETS D'ACTION ============ -->
+    <section class="section-alt" id="actions">
       <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
-          <span class="eyebrow">Des actions concrètes sur le terrain</span>
-          <h2 class="section-title">L'impact de Cœur de Gazelles</h2>
+        <div class="reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Quatre volets</span>
+          <h2 class="section-title">Les domaines d'intervention</h2>
         </div>
-        <div class="stats-grid reveal">
-          <div class="stat"><div class="stat__num">99 370</div><div class="stat__label">Personnes soignées</div></div>
-          <div class="stat"><div class="stat__num">930</div><div class="stat__label">Enfants accompagnés contre le décrochage scolaire</div></div>
-          <div class="stat"><div class="stat__num">41 821</div><div class="stat__label">Personnes sensibilisées à la pollution plastique</div></div>
-          <div class="stat"><div class="stat__num">26</div><div class="stat__label">Puits construits pour 4 300 familles nomades</div></div>
+        <div class="volets">
+          <div class="split reveal">
+            <div class="split__media split__media--duo">
+              <img src="../assets/solidaire-01.jpg" alt="Consultation médicale gratuite lors de la caravane Cœur de Gazelles" loading="lazy" />
+              <img src="../assets/solidaire-02.jpg" alt="Examen ophtalmologique et essai de lunettes sur mesure" loading="lazy" />
+            </div>
+            <div class="split__body">
+              <h3 class="volet__title">Santé</h3>
+              <p>La plus importante caravane médicale itinérante du sud du Maroc, en partenariat avec le Ministère marocain de la Santé. Six spécialités&nbsp;: médecine générale, pédiatrie, gynécologie, ophtalmologie, dermatologie, chirurgie.</p>
+              <p>Les médicaments sont pris en charge à 100&nbsp;% — <strong>285 830 boîtes distribuées</strong> à ce jour. L'équipe médicale dispose aussi d'un échographe mobile&nbsp;: 2 134 patients ont bénéficié d'un suivi au-delà de la caravane, et 279 opérations chirurgicales ont été réalisées sur place ou financées.</p>
+            </div>
+          </div>
+          <div class="split split--reverse reveal">
+            <div class="split__media split__media--duo">
+              <img src="../assets/solidaire-03.jpg" alt="Distribution de fournitures scolaires aux enfants d'un village du sud marocain" loading="lazy" />
+              <img src="../assets/solidaire-04.jpg" alt="Enfants scolarisés dans une école rénovée par Cœur de Gazelles" loading="lazy" />
+            </div>
+            <div class="split__body">
+              <h3 class="volet__title">Éducation</h3>
+              <p>Neuf écoles entièrement rénovées, plus de 1 300 enfants concernés, et 490 vélos distribués aux collégiens vivant à plus de dix kilomètres de leur établissement.</p>
+              <p>S'y ajoutent <strong>1 840 m³ de dons acheminés par les participantes</strong> — dont 1 450 m³ de vêtements chauds pour tous les écoliers des villages concernés.</p>
+            </div>
+          </div>
+          <div class="split reveal">
+            <div class="split__media">
+              <img src="../assets/solidaire_palmeraie.JPG" alt="La palmeraie solidaire plantée dans le cadre de la Green Day" loading="lazy" />
+            </div>
+            <div class="split__body">
+              <h3 class="volet__title">Développement économique durable</h3>
+              <p>La plus grande palmeraie solidaire du Maroc&nbsp;: <strong>17 456 arbres plantés</strong> (palmiers dattiers, oliviers), 655 citernes d'eau, 26 puits construits, et plus de 3 000 mètres de canaux d'irrigation rénovés en 2025. Des revenus durables pour les familles, une lutte concrète contre l'exode rural et la désertification.</p>
+              <p>Ce projet porte un nom&nbsp;: <strong>la Green Day</strong>. Il est financé par les équipages du Bab el Raid, l'autre événement porté par l'organisateur du rallye — la preuve que la solidarité ne s'arrête pas au Rallye Aïcha des Gazelles.</p>
+            </div>
+          </div>
+          <div class="split split--reverse reveal">
+            <div class="split__media">
+              <img src="../assets/solidaire_eco.JPG" alt="Oriflamme du Rallye Aïcha des Gazelles au bivouac, dans le désert marocain" loading="lazy" />
+            </div>
+            <div class="split__body">
+              <h3 class="volet__title">Sensibilisation écologique</h3>
+              <p>L'éco-caravane&nbsp;: plus de <strong>50 000 sacs en coton</strong> distribués depuis 2011, 41 821 personnes sensibilisées à l'impact du plastique, et 36 800 litres de déchets plastiques ramassés et incinérés depuis 2021.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <!-- ============ LES ACTIONS AUTOUR DU RALLYE ============ -->
+    <section id="autour-du-rallye">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Un engagement qui dépasse notre rallye</span>
+          <h2 class="section-title">Une même agence, trois aventures, un seul cap</h2>
+          <p class="section-lead">Le Rallye Aïcha des Gazelles est organisé par Maïenga, qui porte deux autres événements construits sur les mêmes valeurs&nbsp;: le Trek'in Gazelles et le Bab el Raid. Chacun a sa propre action solidaire.</p>
+        </div>
+        <div class="cards-grid reveal">
+          <div class="card card--photo">
+            <img src="../assets/solidaire_clean_walkeuses.jpg" alt="Sacs de collecte « Clean Walkeuses » du Trek'in Gazelles" loading="lazy" />
+            <div class="card__body">
+              <h3>Trek'in Gazelles — Les CleanWalkeuses du désert</h3>
+              <p>Depuis 2021, lors de ce trek 100&nbsp;% féminin, les participantes ramassent les déchets plastiques rencontrés sur leur parcours, sac de collecte en main. Elles marchent aussi pour le Secours Populaire Français&nbsp;: chaque balise trouvée déclenche un don de 5&nbsp;€ reversé à l'association — 96 075&nbsp;€ cumulés depuis 2021, soit environ 30 000&nbsp;€ par an.</p>
+            </div>
+          </div>
+          <div class="card card--photo">
+            <img src="../assets/solidaire_palmeraie.JPG" alt="La palmeraie solidaire financée par les équipages du Bab el Raid" loading="lazy" />
+            <div class="card__body">
+              <h3>Bab el Raid — La Green Day et la journée solidaire</h3>
+              <p>Ce raid automobile ouvert à tous (par équipe de 2, de la France au Maroc en passant par l'Espagne) finance la Green Day, le projet de palmeraie solidaire décrit ci-dessus, et intègre une journée entièrement dédiée à l'action solidaire dans son parcours.</p>
+            </div>
+          </div>
+          <div class="card card--photo">
+            <img src="../assets/solidaire-01.jpg" alt="Consultation gratuite lors de la caravane médicale Cœur de Gazelles" loading="lazy" />
+            <div class="card__body">
+              <h3>Rallye Aïcha des Gazelles — La caravane médicale</h3>
+              <p>Notre propre événement, décrit sur cette page&nbsp;: soins gratuits, éducation, développement économique, sensibilisation écologique, portés par Cœur de Gazelles.</p>
+            </div>
+          </div>
+        </div>
+        <div class="actions reveal">
+          <a href="le-rallye.html" class="btn btn-outline">Voir le rallye en détail</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LA DÉMARCHE RSE CERTIFIÉE ============ -->
+    <section class="section-alt" id="rse-entreprises">
+      <div class="container">
+        <div class="eco-panel reveal">
+          <span class="eyebrow">Une RSE mesurable, pas une promesse</span>
+          <h2>Le seul rallye au monde certifié ISO 14001</h2>
+          <p>Depuis 2010, l'organisateur du Rallye Aïcha des Gazelles est la seule agence événementielle au monde, dans le domaine du sport automobile, à détenir une certification attestant de la conformité de son système de management environnemental à la norme ISO 14001. Cette certification est réévaluée chaque année et a été renouvelée en 2025.</p>
+          <p class="source-note" style="margin-top:var(--space-6)">Tous les chiffres proviennent du <a href="https://www.rallyeaichadesgazelles.com/wp-content/uploads/2025/09/MAIENGA-PROGRAMME-CAP-2025.pdf" target="_blank" rel="noopener">rapport RSE Programme CAP, édition juin 2024 – juin 2025</a>.</p>
+        </div>
+
+        <h3 class="subhead">Quatre axes de travail, avec des résultats mesurés chaque année</h3>
+        <p class="section-lead">Chaque axe est déplié ci-dessous&nbsp;: cliquez pour en lire le détail.</p>
+        <details class="accordion reveal" open>
+          <summary><span class="axis__title">Air <em>1 493 t CO₂e mesurées chaque année, jusqu'à 1 754 t absorbées par la palmeraie</em></span></summary>
+          <div class="accordion__body">
+            <p>1 493 tonnes de CO₂e sont émises chaque année pour l'ensemble des événements (dont 1 010 t pour le seul Rallye Aïcha des Gazelles)&nbsp;; une logistique optimisée en évite 64 t par an, et jusqu'à 1 754 t sont absorbées par la palmeraie plantée dans le cadre de la Green Day.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary><span class="axis__title">Eau <em>63 litres par personne et par jour, contre 153 litres en moyenne en France</em></span></summary>
+          <div class="accordion__body">
+            <p>La consommation d'eau sur les événements est de 63 litres par personne et par jour, contre 153 litres en moyenne en France (source ADEME). Une baisse de 5&nbsp;% a été enregistrée sur l'édition 2024-2025, un niveau jamais atteint jusqu'ici.</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary><span class="axis__title">Déchets <em>100 % des déchets traités, bivouac sans plastique à usage unique</em></span></summary>
+          <div class="accordion__body">
+            <p>100&nbsp;% des déchets produits sont traités&nbsp;: 50&nbsp;% incinérés sur place par un camion incinérateur mobile, 50&nbsp;% recyclés. Le bivouac est à zéro plastique à usage unique depuis mars 2023. Depuis le lancement de la démarche, 150 000 bouteilles d'eau plastique ont été upcyclées en objets design ou en matériau de construction (murs d'un centre d'artisanat et d'une crèche au Maroc).</p>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary><span class="axis__title">Biodiversité <em>Bivouacs à distance des zones sensibles, sanctions sportives à l'appui</em></span></summary>
+          <div class="accordion__body">
+            <p>Bivouacs installés à distance des zones naturelles sensibles en accord avec le ministère marocain du Tourisme, kits antipollution sur chaque véhicule d'assistance, filtration des eaux usées, sanctions sportives en cas de comportement environnemental problématique.</p>
+          </div>
+        </details>
+
+        <div class="note-pair reveal" style="margin-top:var(--space-8)">
+          <div class="note">
+            <h3>Le Gazelle Lab, un terrain d'essai pour la mobilité électrique</h3>
+            <p>Depuis 2017 et la création de la catégorie E-Gazelle, puis en 2024 avec les premiers 4x4 rétrofit électriques testés en compétition, le rallye sert de laboratoire grandeur nature pour les véhicules électriques en conditions extrêmes. En 2025, un équipage rétrofit a terminé 26<sup>e</sup> au classement général 4x4/camion, aux côtés des véhicules thermiques.</p>
+          </div>
+          <div class="note">
+            <h3>Une gouvernance qui inspire confiance</h3>
+            <p>Le Comité RSE de l'organisateur réunit, sous le Haut-Patronage de Sa Majesté le Roi Mohammed VI et avec le soutien de S.A.S. le Prince Albert II de Monaco, des dirigeant·es d'entreprises et d'institutions françaises et marocaines. Christine Lagarde, présidente de la Banque Centrale Européenne, en a présidé le Comité d'Éthique pendant douze ans&nbsp;; Nadia Fettah Alaoui, Ministre de l'Économie et des Finances du Maroc, en est présidente depuis 2022. La démarche RSE de l'organisateur s'inscrit dans 10 des 17 Objectifs de Développement Durable de l'ONU.</p>
+          </div>
+        </div>
+
+        <div class="pledge reveal">
+          <h3>Pourquoi c'est pertinent pour vous, sponsor</h3>
+          <p>En sponsorisant notre équipage, vous vous associez à un événement dont l'impact environnemental et social est mesuré, publié et audité chaque année — des données que vous pouvez citer dans votre propre reporting RSE. Depuis 1990, plus de 150 000 entreprises françaises et internationales ont déjà été sponsors d'un équipage, et plus de 622 entreprises ont engagé un équipage 100&nbsp;% féminin comme action managériale pour l'égalité professionnelle.</p>
+        </div>
+
+        <div class="note reveal">
+          <h3>Sponsoring ou mécénat&nbsp;?</h3>
+          <p>Notre association Smile de Gazelles n'est pas reconnue d'intérêt général&nbsp;: un don de particulier n'ouvre donc pas droit à réduction d'impôt, et un versement d'entreprise n'est pas éligible au régime fiscal du mécénat. En revanche, un <strong>sponsoring</strong> — un partenariat avec contrepartie de visibilité (logo, mentions, communication) — reste une charge déductible du résultat imposable de l'entreprise, comme toute dépense de communication. C'est le cadre dans lequel nous proposons nos partenariats.</p>
+        </div>
+
+        <div class="actions reveal">
+          <a href="sponsors.html" class="btn btn-primary">Devenir sponsor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NOTRE ENGAGEMENT ============ -->
+    <section id="engagement">
       <div class="container container-default">
         <div class="reveal">
           <span class="eyebrow">Notre engagement</span>
-          <h2 class="section-title">La cause que nous portons</h2>
-          <p style="color:var(--color-text-muted)">Depuis 2021, chaque équipage peut mettre en lumière une association reconnue d'intérêt général. À l'issue de l'événement, un jury vote pour l'un des projets présentés et un prix de 10&nbsp;000&nbsp;€ est versé à l'association lauréate. Soutenir Smile de Gazelles, c'est associer votre engagement à une aventure utile, humaine et concrète.</p>
-          <div class="cause-box">
-            <h3>Association soutenue : <em>Cœur de Gazelles</em></h3>
-            <p>Nous avons choisi de mettre en lumière <strong>Cœur de Gazelles</strong>, association reconnue d'intérêt général depuis 2001, qui organise la plus importante caravane médicale itinérante du sud du Maroc&nbsp;: soins gratuits, éducation, développement durable et aide matérielle aux populations les plus isolées. Soutenir Smile de Gazelles, c'est associer votre engagement à cette cause utile, humaine et concrète.</p>
-            <p><a class="cause-box__link" href="https://www.coeurdegazelles.org" target="_blank" rel="noopener">Découvrir Cœur de Gazelles →</a></p>
+          <h2 class="section-title">Ce que nous nous engageons à faire</h2>
+          <p class="section-lead">L'association Smile de Gazelles est l'unique organisme collecteur des sommes versées pour couvrir notre budget de participation. Une fois ces frais couverts, <strong>l'intégralité du reliquat sera reversée à Cœur de Gazelles</strong>.</p>
+          <p style="color:var(--color-text-muted);max-width:68ch;margin-top:var(--space-4)">Le 25 mars 2027, nous accompagnerons la caravane médicale sur le terrain et remettrons les dons collectés. Ce jour-là ne fait pas partie de la compétition&nbsp;: c'est celui qui donne son sens au reste.</p>
+          <h3 class="subhead">Deux façons d'y contribuer</h3>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>En soutenant notre équipage</strong>&nbsp;: chaque euro au-delà de notre budget part directement à l'association.</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>En apportant du matériel</strong>&nbsp;: fournitures scolaires, vêtements, matériel médical, que nous acheminerons sur place.</span></li>
+          </ul>
+          <div class="actions">
+            <a href="soutenir.html" class="btn btn-primary">Nous soutenir</a>
+            <a href="sponsors.html" class="btn btn-outline">Devenir sponsor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EN SAVOIR PLUS ============ -->
+    <section class="section--compact" id="ressources">
+      <div class="container container-default">
+        <div class="note reveal" style="margin-top:0">
+          <h3>En savoir plus</h3>
+          <p>Pour vérifier ces données ou aller plus loin, notamment si vous devez documenter un partenariat en interne.</p>
+          <div class="actions">
+            <a class="btn btn-outline" href="https://www.coeurdegazelles.org" target="_blank" rel="noopener">Le site de Cœur de Gazelles</a>
+            <a class="btn btn-outline" href="https://www.rallyeaichadesgazelles.com" target="_blank" rel="noopener">Le site du rallye</a>
+            <a class="btn btn-outline" href="https://www.rallyeaichadesgazelles.com/wp-content/uploads/2025/09/MAIENGA-PROGRAMME-CAP-2025.pdf" target="_blank" rel="noopener">Télécharger le rapport RSE CAP 2024-2025 (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Chaque soutien nous rapproche du départ — et de ceux qui nous attendent là-bas</h2>
+          <p>Un don, un partenariat, du matériel&nbsp;: toutes les formes de soutien se rejoignent sur la même piste.</p>
+          <div class="hero__cta">
+            <a href="soutenir.html" class="btn btn-light btn-lg">Faire un don</a>
+            <a href="sponsors.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Devenir sponsor</a>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+
+  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
+    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay&amp;lang=fr" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="../index.html" class="logo logo--footer">
-            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
-            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />
+            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="220" height="220" />
+            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="220" height="220" />
           </a>
           <p>Deux femmes, un défi, mille sourires à partager. Équipage engagé au Rallye Aïcha des Gazelles 2027 — l'énergie du défi au service d'une aventure solidaire.</p>
-          <div class="socials">
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>
+          <li><a href="../index.html">Accueil</a></li>
           <li><a href="equipage.html">L'équipage</a></li>
           <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité</a></li>
+          <li><a href="solidarite.html">Solidarité et RSE</a></li>
           <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="soutenir.html">Nous soutenir</a></li>
         </ul></div>
-        <div class="footer__col"><h4>Soutenir</h4><ul>
-          <li><a href="soutenir.html">Faire un don</a></li>
-          <li><a href="sponsors.html">Devenir sponsor</a></li>
-          <li><a href="contact.html">Nous contacter</a></li>
+        <div class="footer__col"><h4>Liens utiles</h4><ul>
+          <li><a href="sponsors.html#formules">Les formules de sponsoring</a></li>
+          <li><a href="equipage.html#budget">Le budget détaillé</a></li>
+          <li><a href="../assets/dossier-sponsoring.pdf" download>Dossier de sponsoring</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul></div>
+        <div class="footer__col footer__col--social"><h4>Suivez-nous</h4>
+          <ul class="socials">
+            <li><a href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook</span></a></li>
+            <li><a href="https://www.linkedin.com/company/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a></li>
+          </ul>
+        </div>
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales</a></span>
+        <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
     </div>
   </footer>
   <script src="../js/main.js"></script>
-<script data-pplx-inline-edit>
-(function () {
-  if (window === window.top) return;
-
-  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
-  const MAX_FONT_BYTES = 500 * 1024;
-  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
-  let scrollForwarding = false;
-  let scrollRaf = 0;
-  let trustedTopOrigin = null;
-
-  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
-  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
-  // across multiple labels.
-  function matchesAllowedOrigin(origin) {
-    if (!origin) return false;
-    for (const entry of allowedParentOrigins) {
-      if (!entry.includes("*")) {
-        if (entry === origin) return true;
-        continue;
-      }
-      const pattern = new RegExp(
-        "^" +
-          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
-          "$",
-      );
-      if (pattern.test(origin)) return true;
-    }
-    return false;
-  }
-
-  // Trust decision: when the sender is same-origin-visible (event.origin is a
-  // real origin like https://www.perplexity.ai) we trust event.origin directly.
-  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
-  // broker's stamped `parentOrigin` to identify the top window. The fallback
-  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
-  // on the response path (see postToTrustedTop) to ensure replies can't be
-  // delivered to anyone but the actual top window of that claimed origin.
-  function getTrustedParentOrigin(event) {
-    const forwardedParentOrigin =
-      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
-    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
-    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
-  }
-
-  // All responses go to window.top with targetOrigin = the allowlisted origin.
-  // An attacker that iframes us inside their own null-origin broker can claim
-  // any parentOrigin they like, but the browser will drop the reply whenever
-  // the real top's origin doesn't match — so the screenshot never leaves.
-  function postToTrustedTop(message) {
-    if (!trustedTopOrigin) return;
-    try {
-      window.top.postMessage(message, trustedTopOrigin);
-    } catch (_error) {}
-  }
-
-  function inlineAll(original, clone) {
-    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
-
-    try {
-      const computedStyle = getComputedStyle(original);
-      // cssText on a computed style is the serialized declaration in modern
-      // Chromium/Safari — a single read beats enumerating ~400 longhand
-      // properties. Firefox returns "" here, so we fall back on empty.
-      const serialized = computedStyle.cssText;
-      if (serialized) {
-        clone.style.cssText = serialized;
-      } else {
-        const parts = new Array(computedStyle.length);
-        for (let index = 0; index < computedStyle.length; index += 1) {
-          const property = computedStyle[index];
-          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
-        }
-        clone.style.cssText = parts.join("");
-      }
-    } catch (_error) {}
-
-    const originalChildren = original.children;
-    const clonedChildren = clone.children;
-    for (
-      let index = 0;
-      index < originalChildren.length && index < clonedChildren.length;
-      index += 1
-    ) {
-      inlineAll(originalChildren[index], clonedChildren[index]);
-    }
-  }
-
-  function extractFontUrl(srcValue) {
-    const matches = [
-      ...srcValue.matchAll(
-        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
-      ),
-    ];
-    if (matches.length === 0) return null;
-    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
-    if (woff2) return woff2[1];
-    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
-    if (woff) return woff[1];
-    return matches[0][1];
-  }
-
-  // Cache resolved font URL -> data URI across captures. Fonts on a page
-  // essentially never change, and a batch run emits multiple captures back to
-  // back — without this we'd refetch + re-base64 every time.
-  const fontDataUriCache = new Map();
-  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
-
-  async function fetchAsDataUri(url) {
-    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
-    let dataUri = null;
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit" });
-      if (response.ok) {
-        const blob = await response.blob();
-        if (blob.size <= MAX_FONT_BYTES) {
-          dataUri = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () =>
-              resolve(typeof reader.result === "string" ? reader.result : null);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(blob);
-          });
-        }
-      }
-    } catch (_error) {
-      dataUri = null;
-    }
-    fontDataUriCache.set(url, dataUri);
-    return dataUri;
-  }
-
-  function collectFontFaceRuleTexts() {
-    const rules = [];
-    for (const sheet of document.styleSheets) {
-      let cssRules;
-      try {
-        cssRules = sheet.cssRules;
-      } catch (_error) {
-        continue;
-      }
-      if (!cssRules) continue;
-      for (const rule of cssRules) {
-        const cssText = rule.cssText || "";
-        if (cssText.startsWith("@font-face")) rules.push(cssText);
-      }
-    }
-    return rules;
-  }
-
-  async function buildInlinedFontCss() {
-    const ruleTexts = collectFontFaceRuleTexts();
-    if (ruleTexts.length === 0) return null;
-
-    const resolved = ruleTexts.map((cssText) => {
-      if (!SRC_DECLARATION_RE.test(cssText)) return null;
-      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
-      if (!srcMatch) return null;
-      const url = extractFontUrl(srcMatch[1]);
-      if (!url) return null;
-      try {
-        return { cssText, url: new URL(url, document.baseURI).href };
-      } catch (_error) {
-        return null;
-      }
-    });
-
-    const dataUris = await Promise.all(
-      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
-    );
-
-    const inlined = [];
-    let totalBytes = 0;
-    for (let index = 0; index < resolved.length; index += 1) {
-      const entry = resolved[index];
-      const dataUri = dataUris[index];
-      if (!entry || !dataUri) continue;
-      const approxBytes = dataUri.length * 0.75;
-      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
-      totalBytes += approxBytes;
-      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
-    }
-    return inlined.length > 0 ? inlined.join("\n") : null;
-  }
-
-  function stripExternal(clone) {
-    const images = clone.querySelectorAll("img");
-    for (let index = 0; index < images.length; index += 1) {
-      const src = images[index].getAttribute("src");
-      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
-    }
-
-    const elements = clone.querySelectorAll("*");
-    for (let index = 0; index < elements.length; index += 1) {
-      const style = elements[index].style.cssText;
-      if (style && style.includes("url(")) {
-        elements[index].style.cssText = style.replace(
-          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
-          "none",
-        );
-      }
-    }
-  }
-
-  function emitScroll() {
-    scrollRaf = 0;
-    if (!scrollForwarding) return;
-    postToTrustedTop({
-      type: "INLINE_EDIT_SCROLL",
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-    });
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!scrollForwarding || scrollRaf) return;
-      scrollRaf = requestAnimationFrame(emitScroll);
-    },
-    { passive: true, capture: true },
-  );
-
-  async function handleCaptureRequest(event) {
-    const requestId = event.data.requestId;
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    function postResult(dataUrl) {
-      postToTrustedTop({
-        type: "INLINE_EDIT_SCREENSHOT_RESULT",
-        requestId,
-        dataUrl,
-        scrollX,
-        scrollY,
-      });
-    }
-
-    try {
-      // Wait for any pending web fonts to resolve so both inline metrics and
-      // the @font-face inlining below see the same loaded faces.
-      if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch (_error) {}
-      }
-
-      const clone = document.documentElement.cloneNode(true);
-      inlineAll(document.documentElement, clone);
-
-      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
-      for (let index = 0; index < removedNodes.length; index += 1) {
-        removedNodes[index].remove();
-      }
-
-      stripExternal(clone);
-
-      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
-      // can resolve them — external font URLs aren't fetched during
-      // foreignObject rendering, which would otherwise force a fallback face
-      // and change text metrics.
-      const inlinedFontCss = await buildInlinedFontCss();
-      if (inlinedFontCss) {
-        const styleEl = document.createElement("style");
-        styleEl.textContent = inlinedFontCss;
-        const head = clone.querySelector("head");
-        if (head) head.appendChild(styleEl);
-        else clone.insertBefore(styleEl, clone.firstChild);
-      }
-
-      const html = new XMLSerializer().serializeToString(clone);
-      const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
-        '<foreignObject width="100%" height="100%">' +
-        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
-        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
-        html +
-        "</div></div></foreignObject></svg>";
-      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      const image = new Image();
-      image.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0);
-        postResult(canvas.toDataURL("image/png"));
-      };
-      image.onerror = function () {
-        postResult(null);
-      };
-      image.src = svgUrl;
-    } catch (_error) {
-      postResult(null);
-    }
-  }
-
-  window.addEventListener("message", function (event) {
-    if (!event.data) return;
-    // Only accept messages from the direct parent frame. Blocks sibling /
-    // unrelated-window postMessage senders that could otherwise reach us.
-    if (event.source !== window.parent) return;
-
-    const trustedParentOrigin = getTrustedParentOrigin(event);
-    if (!trustedParentOrigin) return;
-    trustedTopOrigin = trustedParentOrigin;
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
-      scrollForwarding = true;
-      emitScroll();
-      return;
-    }
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
-      scrollForwarding = false;
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
-      scrollRaf = 0;
-      return;
-    }
-
-    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
-
-    handleCaptureRequest(event);
-  });
-})();
-
-
-</script></body>
+</body>
 </html>

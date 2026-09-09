@@ -4,13 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Smile de Gazelles</title>
-  <meta name="description" content="Contactez l'équipage Smile de Gazelles pour toute question, partenariat ou soutien." />
+  <meta name="description" content="Une question, une proposition de partenariat ou une envie de nous aider autrement : écrivez à l'équipage 134 du Rallye Aïcha des Gazelles, nous répondons à tous les messages." />
   <meta property="og:title" content="Contact — Smile de Gazelles" />
-  <meta property="og:description" content="Contactez l'équipage Smile de Gazelles pour toute question, partenariat ou soutien." />
+  <meta property="og:description" content="Une question, une proposition de partenariat ou une envie de nous aider autrement : écrivez à l'équipage 134 du Rallye Aïcha des Gazelles 2027." />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="../assets/hero-desert.png" />
-  <link rel="icon" href="../assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/clash-display.css" />
+  <link rel="stylesheet" href="../css/general-sans.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
@@ -18,23 +24,80 @@
     <div class="container header__inner">
       <a href="../index.html" class="logo" aria-label="Smile de Gazelles, accueil">
         <img class="logo__img logo__img--light" src="../assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
-        <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <span class="logo__team-mark" aria-hidden="true"><img src="../assets/TEAMRallyeDesGazelles_Logo-01-header.png" alt="" /></span>
       </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
-          <li><a href="../index.html">Accueil</a></li>
-          <li><a href="equipage.html">L'équipage</a></li>
-          <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="soutenir.html">Nous soutenir</a></li>
-          <li><a href="contact.html" aria-current="page">Contact</a></li>
+          <li class="nav__item"><a href="../index.html">Accueil</a></li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="equipage.html">L'équipage</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-equipage" aria-label="Afficher le sous-menu L'équipage"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-equipage">
+              <li><a href="equipage.html#portraits">Notre binôme</a></li>
+              <li><a href="equipage.html#parcours">Notre parcours</a></li>
+              <li><a href="equipage.html#preparation">Se préparer</a></li>
+              <li><a href="equipage.html#budget">Le projet</a></li>
+              <li><a href="equipage.html#association">Notre association</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="le-rallye.html">Le rallye</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-le-rallye" aria-label="Afficher le sous-menu Le rallye"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-le-rallye">
+              <li><a href="le-rallye.html#concept">Le concept</a></li>
+              <li><a href="le-rallye.html#edition-2027">Édition 2027</a></li>
+              <li><a href="le-rallye.html#histoire">L'histoire</a></li>
+              <li><a href="le-rallye.html#environnement">Environnement</a></li>
+              <li><a href="le-rallye.html#reconnaissance">Reconnaissance</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="solidarite.html">Solidarité et RSE</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-solidarite" aria-label="Afficher le sous-menu Solidarité et RSE"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-solidarite">
+              <li><a href="solidarite.html#coeur-de-gazelles">Cœur de Gazelles</a></li>
+              <li><a href="solidarite.html#actions">Nos actions</a></li>
+              <li><a href="solidarite.html#autour-du-rallye">Au-delà du rallye</a></li>
+              <li><a href="solidarite.html#rse-entreprises">RSE entreprises</a></li>
+              <li><a href="solidarite.html#engagement">Notre engagement</a></li>
+              <li><a href="solidarite.html#ressources">Ressources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="sponsors.html">Sponsors</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-sponsors" aria-label="Afficher le sous-menu Sponsors"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-sponsors">
+              <li><a href="sponsors.html#pourquoi">Pourquoi nous soutenir</a></li>
+              <li><a href="sponsors.html#formules">Les formules</a></li>
+              <li><a href="sponsors.html#visibilite">Votre visibilité</a></li>
+              <li><a href="sponsors.html#modalites">Modalités</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="soutenir.html">Nous soutenir</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-soutenir" aria-label="Afficher le sous-menu Nous soutenir"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-soutenir">
+              <li><a href="soutenir.html#don">Faire un don</a></li>
+              <li><a href="soutenir.html#autrement">Nous aider autrement</a></li>
+              <li><a href="soutenir.html#budget">Où va votre argent</a></li>
+              <li><a href="soutenir.html#questions">Questions fréquentes</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="contact.html" aria-current="page">Contact</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-contact" aria-label="Afficher le sous-menu Contact"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-contact">
+              <li><a href="contact.html#ecrire">Nous écrire</a></li>
+              <li><a href="contact.html#presse">Espace presse</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
@@ -42,17 +105,24 @@
     <section class="page-hero">
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / Contact</p>
-        <h1>Contactez-nous</h1>
-        <p>Une question, une envie de nous soutenir ou de nous rejoindre ? Écrivez-nous.</p>
+        <span class="page-hero__eyebrow">Rejoindre l'aventure</span>
+        <h1>Une question&nbsp;? On vous répond</h1>
+        <p>Une proposition de partenariat, une envie de nous aider autrement, ou simplement de la curiosité&nbsp;: écrivez-nous, nous répondons à tous les messages.</p>
       </div>
     </section>
-    <section>
+    <!-- ============ LE FORMULAIRE ============ -->
+    <section class="section-alt" id="ecrire">
       <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Nous écrire</span>
+          <h2 class="section-title">Écrivez-nous</h2>
+          <p class="section-lead">Une question sur le projet, une envie de nous accompagner, une proposition à laquelle nous n'avons pas pensé&nbsp;? Ce formulaire arrive directement dans notre boîte mail. Nous répondons sous quelques jours — souvent bien plus vite.</p>
+        </div>
         <div class="contact-grid">
           <div class="contact-info reveal">
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM22 6l-10 7L2 6"/></svg></div>
-              <div><h4>Email</h4><p><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p></div>
+              <div><h4>Contact direct</h4><p><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p></div>
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -60,385 +130,182 @@
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-              <div><h4>Association Smile de Gazelles</h4><p>453, Enclos des Palourdes, Carnon, 34130 Mauguio</p></div>
+              <div><h4>Association Smile de Gazelles</h4><p>453 Enclos des Palourdes, 34130 Carnon</p></div>
             </div>
             <div class="contact-item">
               <div class="contact-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-              <div><h4>Prenons rendez-vous</h4><p>En présentiel (Montpellier) ou en visioconférence, à votre convenance.</p></div>
+              <div><h4>Prenons rendez-vous</h4><p>En présentiel à Montpellier et alentours, ou en visioconférence, à votre convenance.</p></div>
+            </div>
+            <div class="contact-info__crew">
+              <img src="../assets/duo-signature.jpg" alt="Sandra Aversenq et Stéphanie Falco, l'équipage Smile de Gazelles" loading="lazy" />
             </div>
           </div>
-          <form class="form reveal" onsubmit="return false">
-            <label>Nom<input type="text" name="nom" placeholder="Votre nom" required /></label>
-            <label>Email<input type="email" name="email" placeholder="vous@exemple.fr" required /></label>
-            <label>Sujet<input type="text" name="sujet" placeholder="Sponsoring, don, question…" /></label>
-            <label>Message<textarea name="message" rows="5" placeholder="Votre message"></textarea></label>
-            <button type="submit" class="btn btn-primary btn-lg">Envoyer <em style="font-style:normal;opacity:.7">[formulaire à connecter]</em></button>
-          </form>
+          <div>
+            <form class="form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-contact-form>
+              <input type="hidden" name="form-name" value="contact" />
+              <p class="sr-only"><label>Ne remplissez pas ce champ <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <div class="form__row">
+                <label>Nom et prénom<input type="text" name="nom" placeholder="Votre nom" required /></label>
+                <label>Entreprise ou organisation<input type="text" name="entreprise" placeholder="Facultatif" /></label>
+              </div>
+              <div class="form__row">
+                <label>Adresse email<input type="email" name="email" placeholder="vous@exemple.fr" required /></label>
+                <label>Téléphone<input type="tel" name="telephone" placeholder="Facultatif" /></label>
+              </div>
+              <label>Objet
+                <select name="objet" required>
+                  <option value="" disabled selected>Choisissez un objet</option>
+                  <option value="sponsor">Devenir sponsor</option>
+                  <option value="nature">Partenariat en nature</option>
+                  <option value="rib">Demander les coordonnées bancaires</option>
+                  <option value="presse">Demande presse</option>
+                  <option value="benevolat">Proposition de coup de main ou de bénévolat</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </label>
+              <label>Message<textarea name="message" rows="6" placeholder="Votre message" required></textarea></label>
+              <label class="form__consent"><input type="checkbox" name="consentement" required /> J'accepte que les informations saisies soient utilisées pour répondre à ma demande. Elles ne sont ni cédées ni exploitées à d'autres fins.</label>
+              <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+              <p class="source-note" data-form-error hidden>L'envoi n'a pas abouti. Écrivez-nous directement à <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a>.</p>
+            </form>
+            <div class="note" data-form-success hidden tabindex="-1" style="margin-top:0">
+              <h3>Merci, votre message est parti</h3>
+              <p>Nous vous répondons sous quelques jours — souvent bien plus vite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NOUS SUIVRE ============ -->
+    <section class="section--compact">
+      <div class="container container-default text-center">
+        <div class="reveal">
+          <span class="eyebrow" style="justify-content:center">Nous suivre</span>
+          <h2 class="section-title" style="font-size:var(--text-xl)">L'aventure se raconte au quotidien</h2>
+          <p class="section-lead mx-auto">Photos de préparation, coulisses, avancées du projet, et bientôt le désert en direct&nbsp;: nous partageons tout sur nos réseaux.</p>
+          <div class="social-links">
+            <a class="social-link" href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              facebook.com/smiledegazelles
+            </a>
+            <a class="social-link" href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              instagram.com/smiledegazelles2027
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPACE PRESSE ============
+         Même minimal, un espace presse identifié donne à un journaliste le
+         sentiment d'être attendu. Le bouton « photos en haute définition »
+         ouvre le formulaire avec l'objet « Demande presse » présélectionné
+         (data-objet, géré dans main.js) ; sans script, l'ancre suffit. -->
+    <section class="section-alt" id="presse">
+      <div class="container container-default">
+        <div class="reveal">
+          <span class="eyebrow">Espace presse</span>
+          <h2 class="section-title">Vous êtes journaliste&nbsp;?</h2>
+          <p class="section-lead">Nous sommes disponibles pour toute demande d'interview, de reportage ou d'information. Le dossier de présentation et des photos en haute définition sont à votre disposition.</p>
+          <div class="actions">
+            <a href="../assets/dossier-sponsoring.pdf" class="btn btn-primary" download>Télécharger le dossier</a>
+            <a href="#ecrire" class="btn btn-outline" data-objet="presse">Demander des photos en haute définition</a>
+          </div>
+          <p style="margin-top:var(--space-6);color:var(--color-text-muted)">Contact presse&nbsp;: <a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ L'ASSOCIATION ============ -->
+    <section>
+      <div class="container container-default">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">L'association</span>
+          <h2 class="section-title">Qui reçoit vos messages et vos dons</h2>
+        </div>
+        <div class="id-card reveal">
+          <h3>Association Smile de Gazelles</h3>
+          <dl>
+            <dt>Statut</dt><dd>Association loi 1901 à but non lucratif</dd>
+            <dt>Déclaration</dt><dd>Préfecture n° W343034911 · SIREN 108 320 961</dd>
+            <dt>Siège social</dt><dd>453 Enclos des Palourdes, 34130 Carnon</dd>
+            <dt>Objet</dt><dd>Participation au Rallye Aïcha des Gazelles et actions solidaires associées</dd>
+            <dt>Collecte</dt><dd>Unique organisme collecteur des sommes versées pour la participation au rallye</dd>
+            <dt>Contact</dt><dd><a href="mailto:smiledegazelles@gmail.com">smiledegazelles@gmail.com</a></dd>
+          </dl>
+        </div>
+        <div class="actions reveal">
+          <a href="equipage.html" class="btn btn-outline">Découvrir l'équipage et nos valeurs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
+    <section>
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Rejoignez l'aventure et donnez du sens à votre engagement</h2>
+          <p>Une entreprise qui nous accompagne, un don qui nous rapproche du départ&nbsp;: il y a une place pour chacun dans cette aventure.</p>
+          <div class="hero__cta">
+            <a href="sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
+            <a href="soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Faire un don</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+
+  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
+    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay&amp;lang=fr" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="../index.html" class="logo logo--footer">
-            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
-            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />
+            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="220" height="220" />
+            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="220" height="220" />
           </a>
           <p>Deux femmes, un défi, mille sourires à partager. Équipage engagé au Rallye Aïcha des Gazelles 2027 — l'énergie du défi au service d'une aventure solidaire.</p>
-          <div class="socials">
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>
+          <li><a href="../index.html">Accueil</a></li>
           <li><a href="equipage.html">L'équipage</a></li>
           <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité</a></li>
+          <li><a href="solidarite.html">Solidarité et RSE</a></li>
           <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="soutenir.html">Nous soutenir</a></li>
         </ul></div>
-        <div class="footer__col"><h4>Soutenir</h4><ul>
-          <li><a href="soutenir.html">Faire un don</a></li>
-          <li><a href="sponsors.html">Devenir sponsor</a></li>
-          <li><a href="contact.html">Nous contacter</a></li>
+        <div class="footer__col"><h4>Liens utiles</h4><ul>
+          <li><a href="sponsors.html#formules">Les formules de sponsoring</a></li>
+          <li><a href="equipage.html#budget">Le budget détaillé</a></li>
+          <li><a href="../assets/dossier-sponsoring.pdf" download>Dossier de sponsoring</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul></div>
+        <div class="footer__col footer__col--social"><h4>Suivez-nous</h4>
+          <ul class="socials">
+            <li><a href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook</span></a></li>
+            <li><a href="https://www.linkedin.com/company/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a></li>
+          </ul>
+        </div>
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales</a></span>
+        <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
     </div>
   </footer>
   <script src="../js/main.js"></script>
-<script data-pplx-inline-edit>
-(function () {
-  if (window === window.top) return;
-
-  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
-  const MAX_FONT_BYTES = 500 * 1024;
-  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
-  let scrollForwarding = false;
-  let scrollRaf = 0;
-  let trustedTopOrigin = null;
-
-  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
-  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
-  // across multiple labels.
-  function matchesAllowedOrigin(origin) {
-    if (!origin) return false;
-    for (const entry of allowedParentOrigins) {
-      if (!entry.includes("*")) {
-        if (entry === origin) return true;
-        continue;
-      }
-      const pattern = new RegExp(
-        "^" +
-          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
-          "$",
-      );
-      if (pattern.test(origin)) return true;
-    }
-    return false;
-  }
-
-  // Trust decision: when the sender is same-origin-visible (event.origin is a
-  // real origin like https://www.perplexity.ai) we trust event.origin directly.
-  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
-  // broker's stamped `parentOrigin` to identify the top window. The fallback
-  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
-  // on the response path (see postToTrustedTop) to ensure replies can't be
-  // delivered to anyone but the actual top window of that claimed origin.
-  function getTrustedParentOrigin(event) {
-    const forwardedParentOrigin =
-      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
-    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
-    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
-  }
-
-  // All responses go to window.top with targetOrigin = the allowlisted origin.
-  // An attacker that iframes us inside their own null-origin broker can claim
-  // any parentOrigin they like, but the browser will drop the reply whenever
-  // the real top's origin doesn't match — so the screenshot never leaves.
-  function postToTrustedTop(message) {
-    if (!trustedTopOrigin) return;
-    try {
-      window.top.postMessage(message, trustedTopOrigin);
-    } catch (_error) {}
-  }
-
-  function inlineAll(original, clone) {
-    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
-
-    try {
-      const computedStyle = getComputedStyle(original);
-      // cssText on a computed style is the serialized declaration in modern
-      // Chromium/Safari — a single read beats enumerating ~400 longhand
-      // properties. Firefox returns "" here, so we fall back on empty.
-      const serialized = computedStyle.cssText;
-      if (serialized) {
-        clone.style.cssText = serialized;
-      } else {
-        const parts = new Array(computedStyle.length);
-        for (let index = 0; index < computedStyle.length; index += 1) {
-          const property = computedStyle[index];
-          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
-        }
-        clone.style.cssText = parts.join("");
-      }
-    } catch (_error) {}
-
-    const originalChildren = original.children;
-    const clonedChildren = clone.children;
-    for (
-      let index = 0;
-      index < originalChildren.length && index < clonedChildren.length;
-      index += 1
-    ) {
-      inlineAll(originalChildren[index], clonedChildren[index]);
-    }
-  }
-
-  function extractFontUrl(srcValue) {
-    const matches = [
-      ...srcValue.matchAll(
-        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
-      ),
-    ];
-    if (matches.length === 0) return null;
-    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
-    if (woff2) return woff2[1];
-    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
-    if (woff) return woff[1];
-    return matches[0][1];
-  }
-
-  // Cache resolved font URL -> data URI across captures. Fonts on a page
-  // essentially never change, and a batch run emits multiple captures back to
-  // back — without this we'd refetch + re-base64 every time.
-  const fontDataUriCache = new Map();
-  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
-
-  async function fetchAsDataUri(url) {
-    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
-    let dataUri = null;
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit" });
-      if (response.ok) {
-        const blob = await response.blob();
-        if (blob.size <= MAX_FONT_BYTES) {
-          dataUri = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () =>
-              resolve(typeof reader.result === "string" ? reader.result : null);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(blob);
-          });
-        }
-      }
-    } catch (_error) {
-      dataUri = null;
-    }
-    fontDataUriCache.set(url, dataUri);
-    return dataUri;
-  }
-
-  function collectFontFaceRuleTexts() {
-    const rules = [];
-    for (const sheet of document.styleSheets) {
-      let cssRules;
-      try {
-        cssRules = sheet.cssRules;
-      } catch (_error) {
-        continue;
-      }
-      if (!cssRules) continue;
-      for (const rule of cssRules) {
-        const cssText = rule.cssText || "";
-        if (cssText.startsWith("@font-face")) rules.push(cssText);
-      }
-    }
-    return rules;
-  }
-
-  async function buildInlinedFontCss() {
-    const ruleTexts = collectFontFaceRuleTexts();
-    if (ruleTexts.length === 0) return null;
-
-    const resolved = ruleTexts.map((cssText) => {
-      if (!SRC_DECLARATION_RE.test(cssText)) return null;
-      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
-      if (!srcMatch) return null;
-      const url = extractFontUrl(srcMatch[1]);
-      if (!url) return null;
-      try {
-        return { cssText, url: new URL(url, document.baseURI).href };
-      } catch (_error) {
-        return null;
-      }
-    });
-
-    const dataUris = await Promise.all(
-      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
-    );
-
-    const inlined = [];
-    let totalBytes = 0;
-    for (let index = 0; index < resolved.length; index += 1) {
-      const entry = resolved[index];
-      const dataUri = dataUris[index];
-      if (!entry || !dataUri) continue;
-      const approxBytes = dataUri.length * 0.75;
-      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
-      totalBytes += approxBytes;
-      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
-    }
-    return inlined.length > 0 ? inlined.join("\n") : null;
-  }
-
-  function stripExternal(clone) {
-    const images = clone.querySelectorAll("img");
-    for (let index = 0; index < images.length; index += 1) {
-      const src = images[index].getAttribute("src");
-      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
-    }
-
-    const elements = clone.querySelectorAll("*");
-    for (let index = 0; index < elements.length; index += 1) {
-      const style = elements[index].style.cssText;
-      if (style && style.includes("url(")) {
-        elements[index].style.cssText = style.replace(
-          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
-          "none",
-        );
-      }
-    }
-  }
-
-  function emitScroll() {
-    scrollRaf = 0;
-    if (!scrollForwarding) return;
-    postToTrustedTop({
-      type: "INLINE_EDIT_SCROLL",
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-    });
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!scrollForwarding || scrollRaf) return;
-      scrollRaf = requestAnimationFrame(emitScroll);
-    },
-    { passive: true, capture: true },
-  );
-
-  async function handleCaptureRequest(event) {
-    const requestId = event.data.requestId;
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    function postResult(dataUrl) {
-      postToTrustedTop({
-        type: "INLINE_EDIT_SCREENSHOT_RESULT",
-        requestId,
-        dataUrl,
-        scrollX,
-        scrollY,
-      });
-    }
-
-    try {
-      // Wait for any pending web fonts to resolve so both inline metrics and
-      // the @font-face inlining below see the same loaded faces.
-      if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch (_error) {}
-      }
-
-      const clone = document.documentElement.cloneNode(true);
-      inlineAll(document.documentElement, clone);
-
-      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
-      for (let index = 0; index < removedNodes.length; index += 1) {
-        removedNodes[index].remove();
-      }
-
-      stripExternal(clone);
-
-      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
-      // can resolve them — external font URLs aren't fetched during
-      // foreignObject rendering, which would otherwise force a fallback face
-      // and change text metrics.
-      const inlinedFontCss = await buildInlinedFontCss();
-      if (inlinedFontCss) {
-        const styleEl = document.createElement("style");
-        styleEl.textContent = inlinedFontCss;
-        const head = clone.querySelector("head");
-        if (head) head.appendChild(styleEl);
-        else clone.insertBefore(styleEl, clone.firstChild);
-      }
-
-      const html = new XMLSerializer().serializeToString(clone);
-      const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
-        '<foreignObject width="100%" height="100%">' +
-        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
-        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
-        html +
-        "</div></div></foreignObject></svg>";
-      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      const image = new Image();
-      image.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0);
-        postResult(canvas.toDataURL("image/png"));
-      };
-      image.onerror = function () {
-        postResult(null);
-      };
-      image.src = svgUrl;
-    } catch (_error) {
-      postResult(null);
-    }
-  }
-
-  window.addEventListener("message", function (event) {
-    if (!event.data) return;
-    // Only accept messages from the direct parent frame. Blocks sibling /
-    // unrelated-window postMessage senders that could otherwise reach us.
-    if (event.source !== window.parent) return;
-
-    const trustedParentOrigin = getTrustedParentOrigin(event);
-    if (!trustedParentOrigin) return;
-    trustedTopOrigin = trustedParentOrigin;
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
-      scrollForwarding = true;
-      emitScroll();
-      return;
-    }
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
-      scrollForwarding = false;
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
-      scrollRaf = 0;
-      return;
-    }
-
-    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
-
-    handleCaptureRequest(event);
-  });
-})();
-
-
-</script></body>
+</body>
 </html>

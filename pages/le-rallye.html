@@ -4,13 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le rallye — Smile de Gazelles</title>
-  <meta name="description" content="Tout savoir sur le Rallye Aïcha des Gazelles 2027 : concept, dates, navigation." />
+  <meta name="description" content="Le Rallye Aïcha des Gazelles : navigation sans GPS, calendrier de l'édition 2027, histoire depuis 1990, certification ISO 14001 et reconnaissance de l'épreuve." />
   <meta property="og:title" content="Le rallye — Smile de Gazelles" />
-  <meta property="og:description" content="Tout savoir sur le Rallye Aïcha des Gazelles 2027 : concept, dates, navigation." />
-  <meta property="og:image" content="../assets/hero-desert.png" />
-  <link rel="icon" href="../assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <meta property="og:description" content="Navigation sans GPS, sobriété kilométrique, certification ISO 14001 : découvrez l'épreuve que rejoint l'équipage 134 en 2027." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../assets/Rallye_01.JPG" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preload" href="../assets/fonts/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="../assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/clash-display.css" />
+  <link rel="stylesheet" href="../css/general-sans.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
@@ -18,23 +24,80 @@
     <div class="container header__inner">
       <a href="../index.html" class="logo" aria-label="Smile de Gazelles, accueil">
         <img class="logo__img logo__img--light" src="../assets/logo.png" alt="Smile de Gazelles" width="62" height="62" />
-        <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <img class="logo__img logo__img--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="62" height="62" />
+    <span class="logo__team-mark" aria-hidden="true"><img src="../assets/TEAMRallyeDesGazelles_Logo-01-header.png" alt="" /></span>
       </a>
-      <nav class="nav" aria-label="Navigation principale">
+      <nav class="nav" id="nav" aria-label="Navigation principale">
         <ul class="nav__links">
-          <li><a href="../index.html">Accueil</a></li>
-          <li><a href="equipage.html">L'équipage</a></li>
-          <li><a href="le-rallye.html" aria-current="page">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="soutenir.html">Nous soutenir</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="nav__item"><a href="../index.html">Accueil</a></li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="equipage.html">L'équipage</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-equipage" aria-label="Afficher le sous-menu L'équipage"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-equipage">
+              <li><a href="equipage.html#portraits">Notre binôme</a></li>
+              <li><a href="equipage.html#parcours">Notre parcours</a></li>
+              <li><a href="equipage.html#preparation">Se préparer</a></li>
+              <li><a href="equipage.html#budget">Le projet</a></li>
+              <li><a href="equipage.html#association">Notre association</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="le-rallye.html" aria-current="page">Le rallye</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-le-rallye" aria-label="Afficher le sous-menu Le rallye"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-le-rallye">
+              <li><a href="le-rallye.html#concept">Le concept</a></li>
+              <li><a href="le-rallye.html#edition-2027">Édition 2027</a></li>
+              <li><a href="le-rallye.html#histoire">L'histoire</a></li>
+              <li><a href="le-rallye.html#environnement">Environnement</a></li>
+              <li><a href="le-rallye.html#reconnaissance">Reconnaissance</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="solidarite.html">Solidarité et RSE</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-solidarite" aria-label="Afficher le sous-menu Solidarité et RSE"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-solidarite">
+              <li><a href="solidarite.html#coeur-de-gazelles">Cœur de Gazelles</a></li>
+              <li><a href="solidarite.html#actions">Nos actions</a></li>
+              <li><a href="solidarite.html#autour-du-rallye">Au-delà du rallye</a></li>
+              <li><a href="solidarite.html#rse-entreprises">RSE entreprises</a></li>
+              <li><a href="solidarite.html#engagement">Notre engagement</a></li>
+              <li><a href="solidarite.html#ressources">Ressources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="sponsors.html">Sponsors</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-sponsors" aria-label="Afficher le sous-menu Sponsors"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-sponsors">
+              <li><a href="sponsors.html#pourquoi">Pourquoi nous soutenir</a></li>
+              <li><a href="sponsors.html#formules">Les formules</a></li>
+              <li><a href="sponsors.html#visibilite">Votre visibilité</a></li>
+              <li><a href="sponsors.html#modalites">Modalités</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="soutenir.html">Nous soutenir</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-soutenir" aria-label="Afficher le sous-menu Nous soutenir"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-soutenir">
+              <li><a href="soutenir.html#don">Faire un don</a></li>
+              <li><a href="soutenir.html#autrement">Nous aider autrement</a></li>
+              <li><a href="soutenir.html#budget">Où va votre argent</a></li>
+              <li><a href="soutenir.html#questions">Questions fréquentes</a></li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item--has-sub">
+            <a href="contact.html">Contact</a>
+            <button type="button" class="nav__caret" aria-expanded="false" aria-controls="submenu-contact" aria-label="Afficher le sous-menu Contact"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <ul class="nav__sub" id="submenu-contact">
+              <li><a href="contact.html#ecrire">Nous écrire</a></li>
+              <li><a href="contact.html#presse">Espace presse</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
@@ -42,431 +105,256 @@
     <section class="page-hero">
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / Le rallye</p>
+        <span class="page-hero__eyebrow">L'épreuve</span>
         <h1>Le Rallye Aïcha des Gazelles</h1>
-        <p>Le seul rallye-raid hors-piste 100 % féminin au monde, au cœur du Sahara marocain.</p>
+        <p>Le seul rallye-raid hors-piste certifié ISO 14001 au monde, 100&nbsp;% féminin, au cœur du Sahara marocain.</p>
       </div>
     </section>
-    <section>
+    <!-- ============ LE CONCEPT ============ -->
+    <section id="concept">
       <div class="container">
-        <div class="split reveal">
-          <div class="split__body">
-            <span class="eyebrow">Le concept</span>
-            <h2>Le moins de kilomètres, le plus de balises</h2>
-            <p>Le Rallye des Gazelles est un rallye-raid mythique, 100&nbsp;% féminin, qui se déroule au cœur du désert marocain. L'épreuve est une course uniquement en hors-piste, sans GPS, avec pour seuls moyens de s'orienter&nbsp;: une carte, une boussole, une règle de navigation.</p>
-            <p>Soutenant des valeurs responsables et solidaires, l'équipage gagnant sera celui qui aura parcouru le moins de kilomètres en pointant un maximum de balises&nbsp;: c'est l'éco-concept.</p>
-            <ul class="feature-list">
-              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Pas de critère de vitesse</li>
-              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Navigation authentique&nbsp;: carte, boussole, règle et roadbook</li>
-              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Seul événement de sport mécanique au monde certifié ISO 14001</li>
+        <div class="reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow">Le concept</span>
+          <h2 class="section-title">Ici, la stratégie prime sur la rapidité</h2>
+          <p class="section-lead">Le principe est rare, presque anachronique&nbsp;: naviguer à l'ancienne. Munies d'une carte des années 1950, d'une boussole et d'une règle de navigation, les équipages traversent les regs, les oueds, les dunes et les montagnes du sud marocain. Chaque itinéraire est un choix, chaque décision est assumée.</p>
+          <p style="color:var(--color-text-muted);max-width:68ch">Le classement récompense la sobriété kilométrique&nbsp;: celle qui rallie le plus de balises en parcourant le moins de kilomètres l'emporte. Un principe qui aligne performance sportive et respect de l'environnement — et qui n'a pas d'équivalent dans le sport automobile.</p>
+        </div>
+        <div class="cards-grid reveal">
+          <div class="card card--photo">
+            <img src="../assets/rallye_02.JPG" alt="Navigation à la carte et à la boussole, sans GPS" loading="lazy" />
+            <div class="card__body">
+              <h3>Navigation à l'ancienne</h3>
+              <p>Carte, boussole, règle. Aucun GPS, aucune assistance électronique. Un week-end de formation permet d'acquérir les bases avant le départ.</p>
+            </div>
+          </div>
+          <div class="card card--photo">
+            <img src="../assets/rallye_04.JPG" alt="Regs, oueds, dunes et montagnes du sud marocain" loading="lazy" />
+            <div class="card__body">
+              <h3>Terrain imprévisible</h3>
+              <p>Regs, oueds, dunes, montagnes. Chaque jour est une immersion dans l'inconnu, où l'orientation reste la clé.</p>
+            </div>
+          </div>
+          <div class="card card--photo">
+            <img src="../assets/rallye_feminin.JPG" alt="Des équipages 100 % féminins, débutantes comme expérimentées" loading="lazy" />
+            <div class="card__body">
+              <h3>Accessible à toutes</h3>
+              <p>Débutantes comme expérimentées. Il ne s'agit pas d'être sportive de haut niveau, mais d'avoir l'envie, l'audace et l'esprit d'équipe.</p>
+            </div>
+          </div>
+        </div>
+        <div class="note reveal">
+          <p>Nous concourons en <strong>4x4</strong>, la catégorie historique du rallye — franchissements techniques et terrain mixte.</p>
+        </div>
+        <div class="actions reveal">
+          <a href="sponsors.html" class="btn btn-primary">Nous aider à prendre le départ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ L'ÉDITION 2027 ============ -->
+    <section class="section-alt" id="edition-2027">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">L'agenda</span>
+          <h2 class="section-title">Quinze jours d'aventure, du sud de la France à Essaouira</h2>
+          <p class="section-lead">Une aventure qui se joue en 3 actes</p>
+        </div>
+        <details class="accordion reveal" open>
+          <summary><span class="acte__title">Acte I — Le départ <em>Du sud de la France au Maroc</em></span></summary>
+          <div class="accordion__body">
+            <ul class="agenda">
+              <li><span class="agenda__date">Samedi 20 mars</span> Accueil des équipages, briefing dans le sud de la France, remise des gilets Gazelles.</li>
+              <li><span class="agenda__date">Dimanche 21 mars</span> Vérifications techniques et administratives, départ officiel, embarquement pour le Maroc.</li>
+              <li><span class="agenda__date">Lundi 22 mars</span> Arrivée au Maroc, rencontre des équipages internationaux.</li>
             </ul>
           </div>
-          <div class="split__media"><img src="../assets/navigation.png" alt="Outils de navigation du rallye" /></div>
+        </details>
+        <details class="accordion reveal">
+          <summary><span class="acte__title">Acte II — La course <em>Sept jours dans le désert</em></span></summary>
+          <div class="accordion__body">
+            <ul class="agenda">
+              <li><span class="agenda__date">Jeudi 25 mars</span> Accompagnement de la caravane Cœur de Gazelles et remise des dons. <span class="agenda__aside"><a href="solidarite.html#coeur-de-gazelles">En savoir plus sur Coeur de gazelles</a></span></li>
+              <li><span class="agenda__date">Du 26 mars au 1<sup>er</sup> avril</span> Un prologue puis cinq étapes sans GPS, avec cinq à huit balises à retrouver chaque jour, dont deux étapes marathon&nbsp;: deux nuits en autonomie complète, à la belle étoile, sans retour au bivouac.</li>
+              <li><span class="agenda__date">Jeudi 1<sup>er</sup> avril</span> Fête de fin au bivouac.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="accordion reveal">
+          <summary><span class="acte__title">Acte III — L'arrivée <em>Essaouira</em></span></summary>
+          <div class="accordion__body">
+            <ul class="agenda">
+              <li><span class="agenda__date">Vendredi 2 avril</span> Direction Essaouira, traversée des villages.</li>
+              <li><span class="agenda__date">Samedi 3 avril</span> Arrivée officielle sur la plage, accueil des familles, rencontres presse, remise des prix et soirée de gala.</li>
+            </ul>
+          </div>
+        </details>
+        <div class="pledge reveal" style="margin-top:var(--space-6)">
+          <h3>La soirée de gala</h3>
+          <p>Les partenaires de la formule La Totale sont conviés à la soirée de gala.</p>
+          <div class="actions" style="margin-top:var(--space-6)">
+            <a href="sponsors.html#formules" class="btn btn-outline">Voir les formules de sponsoring</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-alt">
+    <!-- ============ BANDEAU PHOTO ============ -->
+    <div class="band reveal">
+      <img src="../assets/Rallye_01.JPG" alt="Véhicule du Rallye Aïcha des Gazelles dans les dunes du désert marocain" loading="lazy" />
+    </div>
+
+    <!-- ============ L'HISTOIRE ============ -->
+    <section id="histoire">
       <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
-          <span class="eyebrow">Édition 2027</span>
-          <h2 class="section-title">Les dates clés</h2>
-          <p class="section-lead mx-auto">Du 20 mars au 3 avril 2027 — du sud de la France jusqu'à la plage d'Essaouira.</p>
+        <div class="reveal">
+          <span class="eyebrow">Depuis 1990</span>
+          <h2 class="section-title">Un pari audacieux devenu une référence</h2>
+          <p class="section-lead">En 1990, Dominique Serra imagine un rallye à contre-courant&nbsp;: le premier rallye inter-entreprises sans critère de vitesse, où il faut parcourir le moins de kilomètres possible pour gagner. Le 11 octobre 1990, vingt-sept pionnières démarrent les moteurs de leurs Lada Niva pour huit cents kilomètres.</p>
         </div>
-        <div class="cards-grid reveal">
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>20–21 mars</h3><p>Accueil des participantes, vérifications techniques et départ officiel sous l'arche, dans le sud de la France.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>26 mars – 1er avril</h3><p>La compétition&nbsp;: plusieurs étapes en plein désert, réparties sur trois bivouacs différents.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M17 5a5 5 0 0 1-10 0V3h10zM7 5H4a2 2 0 0 0 2 3M17 5h3a2 2 0 0 1-2 3"/></svg></div><h3>3 avril</h3><p>Arrivée officielle sur la plage d'Essaouira, remise des prix et soirée de clôture.</p></div>
+        <div class="tl-carousel reveal" data-carousel aria-roledescription="carrousel" aria-label="Frise historique du rallye depuis 1990">
+          <button class="tl-carousel__arrow tl-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Jalon précédent">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="tl-carousel__viewport">
+            <ul class="tl-carousel__track">
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">1990</div><h3 class="tl-carousel__title">La première édition</h3><p class="tl-carousel__text">Vingt-sept pionnières au départ, en Lada Niva.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2001</div><h3 class="tl-carousel__title">La caravane médicale</h3><p class="tl-carousel__text">Création de Cœur de Gazelles · suivi satellite IRITRACK.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2009</div><h3 class="tl-carousel__title">Les Armoiries du Royaume</h3><p class="tl-carousel__text">Accordées par Sa Majesté le Roi Mohammed VI.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2010</div><h3 class="tl-carousel__title">La certification ISO 14001</h3><p class="tl-carousel__text">Maintenue sans interruption depuis 2010.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2017</div><h3 class="tl-carousel__title">La catégorie E-Gazelle</h3><p class="tl-carousel__text">Une première mondiale en rallye-raid pour les véhicules électriques.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2021</div><h3 class="tl-carousel__title">Le Prix Gazelles Solidaires</h3><p class="tl-carousel__text">10&nbsp;000&nbsp;€ versés chaque année à une association portée par un équipage.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2023</div><h3 class="tl-carousel__title">La COP 28</h3><p class="tl-carousel__text">Participation de l'organisation aux travaux sur le climat.</p></li>
+              <li class="tl-carousel__slide"><div class="tl-carousel__year">2026</div><h3 class="tl-carousel__title">La 35<sup>e</sup> édition</h3><p class="tl-carousel__text">Anniversaire — 12 400 participantes depuis les débuts.</p></li>
+            </ul>
+          </div>
+          <button class="tl-carousel__arrow tl-carousel__arrow--next" type="button" data-carousel-next aria-label="Jalon suivant">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="tl-carousel__dots" data-carousel-dots role="tablist" aria-label="Choisir un jalon"></div>
+        </div>
+        <div class="pledge reveal">
+          <h3>2027, notre édition</h3>
+          <p>Trente-sept ans après la première édition, Smile de Gazelles prend le départ sous le numéro 134. Sandra et Stéphanie rejoignent les douze mille femmes qui ont fait cette route avant elles.</p>
+        </div>
+        <div class="actions reveal">
+          <a href="sponsors.html" class="btn btn-primary">Faire partie de l'aventure</a>
         </div>
       </div>
     </section>
 
+    <!-- ============ L'ENGAGEMENT ENVIRONNEMENTAL ============ -->
+    <section class="section-alt" id="environnement">
+      <div class="container">
+        <div class="eco-panel reveal">
+          <span class="eyebrow">Responsable par engagement</span>
+          <h2>La plus belle trace est celle que l'on ne laisse pas</h2>
+          <p>Maïenga est la première agence au monde, et la seule à ce jour, à proposer des événements dont le système de management environnemental est certifié conforme à la norme ISO 14001 — une démarche engagée en 2007, obtenue en 2010, maintenue sans interruption depuis.</p>
+          <p style="margin-top:var(--space-4)">Le principe même du classement — rallier un maximum de balises en parcourant le moins de kilomètres — aligne performance sportive et sobriété&nbsp;: ce n'est pas un engagement ajouté après coup, c'est le cœur de la compétition.</p>
+          <blockquote class="quote">« Être responsable, ce n'est pas viser la perfection, mais agir, évoluer et montrer l'exemple. »</blockquote>
+          <div class="actions">
+            <a href="solidarite.html#rse-entreprises" class="btn btn-light">Voir notre engagement RSE en détail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UN ÉVÉNEMENT RECONNU ============ -->
+    <section id="reconnaissance">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--space-10)">
+          <span class="eyebrow">Reconnaissance</span>
+          <h2 class="section-title">Trente-cinq ans de crédibilité</h2>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat"><div class="stat__num">12 400+</div><div class="stat__label">Participantes depuis 1990</div></div>
+          <div class="stat"><div class="stat__num">75</div><div class="stat__label">Nationalités représentées</div></div>
+          <div class="stat"><div class="stat__num">2 500</div><div class="stat__label">Entreprises mobilisées chaque année</div></div>
+          <div class="stat"><div class="stat__num">622</div><div class="stat__label">Équipages engagés par des entreprises depuis 1990</div></div>
+        </div>
+        <div class="note reveal">
+          <h3>Soutiens institutionnels</h3>
+          <p>Le rallye est placé sous le Haut Patronage de Sa Majesté le Roi Mohammed VI et bénéficie du soutien de S.A.S. le Prince Albert II de Monaco.</p>
+          <div class="actions" style="margin-top:var(--space-6)">
+            <a href="solidarite.html#rse-entreprises" class="btn btn-outline">En savoir plus sur cette gouvernance</a>
+          </div>
+        </div>
+        <div class="note-pair reveal" style="margin-top:var(--space-8)">
+          <div class="note">
+            <h3>Une aventure ouverte à tous les profils</h3>
+            <p>Des équipages en situation de handicap participent depuis 2002&nbsp;: championne paralympique, participante hémiplégique, roadbooks retranscrits en version audio pour un participant malvoyant, médaillés porteurs de trisomie 21.</p>
+          </div>
+          <div class="note">
+            <h3>Un engagement d'entreprise qui se reconduit</h3>
+            <p>La Poste a engagé six équipages par an pendant seize ans. Total, quinze équipages par an pendant quinze ans. Renault, cinq équipages par an pendant dix ans. Soutenir un équipage n'est pas une démarche exotique&nbsp;: c'est une pratique établie que des milliers d'entreprises reconduisent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPEL FINAL ============ -->
     <section>
       <div class="container">
-        <div class="stats-grid reveal">
-          <div class="stat"><div class="stat__num">160+</div><div class="stat__label">Équipages internationaux</div></div>
-          <div class="stat"><div class="stat__num">100 %</div><div class="stat__label">Féminin</div></div>
-          <div class="stat"><div class="stat__num">ISO 14001</div><div class="stat__label">Seul rallye certifié</div></div>
-          <div class="stat"><div class="stat__num">0</div><div class="stat__label">Déchet abandonné</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-alt">
-      <div class="container">
-        <div class="text-center reveal" style="margin-bottom:var(--space-12)">
-          <span class="eyebrow">Responsable par engagement</span>
-          <h2 class="section-title">Le seul rallye au monde certifié ISO 14001</h2>
-          <p class="section-lead mx-auto">Depuis sa création, le rallye relève un défi automobile tout en structurant une démarche environnementale exigeante et concrète.</p>
-        </div>
-        <div class="cards-grid reveal">
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Certification & exigence</h3><p>Système de management environnemental en place depuis 2010, avec audit annuel par SGS ICS.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div><h3>Des mesures concrètes</h3><p>0 déchet abandonné, 100&nbsp;% des déchets triés, 10&nbsp;000 bouteilles plastiques recyclées, produits sans solvant.</p></div>
-          <div class="card"><div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Une démarche ambitieuse</h3><p>Comité RSE, présence à la COP21 et la COP22, catégorie E-Gazelle pour les véhicules 100&nbsp;% électriques depuis 2017.</p></div>
+        <div class="cta-banner reveal">
+          <h2>Rejoignez l'aventure et donnez du sens à votre engagement</h2>
+          <p>Devenez sponsor ou faites un don&nbsp;: chaque contribution nous rapproche de la ligne de départ.</p>
+          <div class="hero__cta">
+            <a href="sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
+            <a href="soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6)">Faire un don</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+
+  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
+    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="https://www.helloasso.com/associations/smile-de-gazelles/formulaires/3/widget?view=overlay&amp;lang=fr" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="../index.html" class="logo logo--footer">
-            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="130" height="130" />
-            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="130" height="130" />
+            <img class="logo__emblem logo__emblem--light" src="../assets/logo.png" alt="Smile de Gazelles" width="220" height="220" />
+            <img class="logo__emblem logo__emblem--dark" src="../assets/logo-dark.png" alt="Smile de Gazelles" width="220" height="220" />
           </a>
           <p>Deux femmes, un défi, mille sourires à partager. Équipage engagé au Rallye Aïcha des Gazelles 2027 — l'énergie du défi au service d'une aventure solidaire.</p>
-          <div class="socials">
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          </div>
         </div>
         <div class="footer__col"><h4>Navigation</h4><ul>
+          <li><a href="../index.html">Accueil</a></li>
           <li><a href="equipage.html">L'équipage</a></li>
           <li><a href="le-rallye.html">Le rallye</a></li>
-          <li><a href="solidarite.html">Solidarité</a></li>
+          <li><a href="solidarite.html">Solidarité et RSE</a></li>
           <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="soutenir.html">Nous soutenir</a></li>
         </ul></div>
-        <div class="footer__col"><h4>Soutenir</h4><ul>
-          <li><a href="soutenir.html">Faire un don</a></li>
-          <li><a href="sponsors.html">Devenir sponsor</a></li>
-          <li><a href="contact.html">Nous contacter</a></li>
+        <div class="footer__col"><h4>Liens utiles</h4><ul>
+          <li><a href="sponsors.html#formules">Les formules de sponsoring</a></li>
+          <li><a href="equipage.html#budget">Le budget détaillé</a></li>
+          <li><a href="../assets/dossier-sponsoring.pdf" download>Dossier de sponsoring</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul></div>
+        <div class="footer__col footer__col--social"><h4>Suivez-nous</h4>
+          <ul class="socials">
+            <li><a href="https://www.instagram.com/smiledegazelles2027" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook</span></a></li>
+            <li><a href="https://www.linkedin.com/company/smiledegazelles" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a></li>
+          </ul>
+        </div>
       </div>
       <div class="footer__bottom">
         <span>© <span data-year>2027</span> Smile de Gazelles — Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales</a></span>
+        <span>Crédits photos du rallye&nbsp;: © Maïenga.</span>
         <span>Site réalisé avec ❤️ pour l'aventure.</span>
       </div>
     </div>
   </footer>
   <script src="../js/main.js"></script>
-<script data-pplx-inline-edit>
-(function () {
-  if (window === window.top) return;
-
-  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
-  const MAX_FONT_BYTES = 500 * 1024;
-  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
-  let scrollForwarding = false;
-  let scrollRaf = 0;
-  let trustedTopOrigin = null;
-
-  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
-  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
-  // across multiple labels.
-  function matchesAllowedOrigin(origin) {
-    if (!origin) return false;
-    for (const entry of allowedParentOrigins) {
-      if (!entry.includes("*")) {
-        if (entry === origin) return true;
-        continue;
-      }
-      const pattern = new RegExp(
-        "^" +
-          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
-          "$",
-      );
-      if (pattern.test(origin)) return true;
-    }
-    return false;
-  }
-
-  // Trust decision: when the sender is same-origin-visible (event.origin is a
-  // real origin like https://www.perplexity.ai) we trust event.origin directly.
-  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
-  // broker's stamped `parentOrigin` to identify the top window. The fallback
-  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
-  // on the response path (see postToTrustedTop) to ensure replies can't be
-  // delivered to anyone but the actual top window of that claimed origin.
-  function getTrustedParentOrigin(event) {
-    const forwardedParentOrigin =
-      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
-    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
-    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
-  }
-
-  // All responses go to window.top with targetOrigin = the allowlisted origin.
-  // An attacker that iframes us inside their own null-origin broker can claim
-  // any parentOrigin they like, but the browser will drop the reply whenever
-  // the real top's origin doesn't match — so the screenshot never leaves.
-  function postToTrustedTop(message) {
-    if (!trustedTopOrigin) return;
-    try {
-      window.top.postMessage(message, trustedTopOrigin);
-    } catch (_error) {}
-  }
-
-  function inlineAll(original, clone) {
-    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
-
-    try {
-      const computedStyle = getComputedStyle(original);
-      // cssText on a computed style is the serialized declaration in modern
-      // Chromium/Safari — a single read beats enumerating ~400 longhand
-      // properties. Firefox returns "" here, so we fall back on empty.
-      const serialized = computedStyle.cssText;
-      if (serialized) {
-        clone.style.cssText = serialized;
-      } else {
-        const parts = new Array(computedStyle.length);
-        for (let index = 0; index < computedStyle.length; index += 1) {
-          const property = computedStyle[index];
-          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
-        }
-        clone.style.cssText = parts.join("");
-      }
-    } catch (_error) {}
-
-    const originalChildren = original.children;
-    const clonedChildren = clone.children;
-    for (
-      let index = 0;
-      index < originalChildren.length && index < clonedChildren.length;
-      index += 1
-    ) {
-      inlineAll(originalChildren[index], clonedChildren[index]);
-    }
-  }
-
-  function extractFontUrl(srcValue) {
-    const matches = [
-      ...srcValue.matchAll(
-        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
-      ),
-    ];
-    if (matches.length === 0) return null;
-    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
-    if (woff2) return woff2[1];
-    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
-    if (woff) return woff[1];
-    return matches[0][1];
-  }
-
-  // Cache resolved font URL -> data URI across captures. Fonts on a page
-  // essentially never change, and a batch run emits multiple captures back to
-  // back — without this we'd refetch + re-base64 every time.
-  const fontDataUriCache = new Map();
-  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
-
-  async function fetchAsDataUri(url) {
-    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
-    let dataUri = null;
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit" });
-      if (response.ok) {
-        const blob = await response.blob();
-        if (blob.size <= MAX_FONT_BYTES) {
-          dataUri = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () =>
-              resolve(typeof reader.result === "string" ? reader.result : null);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(blob);
-          });
-        }
-      }
-    } catch (_error) {
-      dataUri = null;
-    }
-    fontDataUriCache.set(url, dataUri);
-    return dataUri;
-  }
-
-  function collectFontFaceRuleTexts() {
-    const rules = [];
-    for (const sheet of document.styleSheets) {
-      let cssRules;
-      try {
-        cssRules = sheet.cssRules;
-      } catch (_error) {
-        continue;
-      }
-      if (!cssRules) continue;
-      for (const rule of cssRules) {
-        const cssText = rule.cssText || "";
-        if (cssText.startsWith("@font-face")) rules.push(cssText);
-      }
-    }
-    return rules;
-  }
-
-  async function buildInlinedFontCss() {
-    const ruleTexts = collectFontFaceRuleTexts();
-    if (ruleTexts.length === 0) return null;
-
-    const resolved = ruleTexts.map((cssText) => {
-      if (!SRC_DECLARATION_RE.test(cssText)) return null;
-      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
-      if (!srcMatch) return null;
-      const url = extractFontUrl(srcMatch[1]);
-      if (!url) return null;
-      try {
-        return { cssText, url: new URL(url, document.baseURI).href };
-      } catch (_error) {
-        return null;
-      }
-    });
-
-    const dataUris = await Promise.all(
-      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
-    );
-
-    const inlined = [];
-    let totalBytes = 0;
-    for (let index = 0; index < resolved.length; index += 1) {
-      const entry = resolved[index];
-      const dataUri = dataUris[index];
-      if (!entry || !dataUri) continue;
-      const approxBytes = dataUri.length * 0.75;
-      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
-      totalBytes += approxBytes;
-      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
-    }
-    return inlined.length > 0 ? inlined.join("\n") : null;
-  }
-
-  function stripExternal(clone) {
-    const images = clone.querySelectorAll("img");
-    for (let index = 0; index < images.length; index += 1) {
-      const src = images[index].getAttribute("src");
-      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
-    }
-
-    const elements = clone.querySelectorAll("*");
-    for (let index = 0; index < elements.length; index += 1) {
-      const style = elements[index].style.cssText;
-      if (style && style.includes("url(")) {
-        elements[index].style.cssText = style.replace(
-          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
-          "none",
-        );
-      }
-    }
-  }
-
-  function emitScroll() {
-    scrollRaf = 0;
-    if (!scrollForwarding) return;
-    postToTrustedTop({
-      type: "INLINE_EDIT_SCROLL",
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-    });
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!scrollForwarding || scrollRaf) return;
-      scrollRaf = requestAnimationFrame(emitScroll);
-    },
-    { passive: true, capture: true },
-  );
-
-  async function handleCaptureRequest(event) {
-    const requestId = event.data.requestId;
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    function postResult(dataUrl) {
-      postToTrustedTop({
-        type: "INLINE_EDIT_SCREENSHOT_RESULT",
-        requestId,
-        dataUrl,
-        scrollX,
-        scrollY,
-      });
-    }
-
-    try {
-      // Wait for any pending web fonts to resolve so both inline metrics and
-      // the @font-face inlining below see the same loaded faces.
-      if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch (_error) {}
-      }
-
-      const clone = document.documentElement.cloneNode(true);
-      inlineAll(document.documentElement, clone);
-
-      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
-      for (let index = 0; index < removedNodes.length; index += 1) {
-        removedNodes[index].remove();
-      }
-
-      stripExternal(clone);
-
-      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
-      // can resolve them — external font URLs aren't fetched during
-      // foreignObject rendering, which would otherwise force a fallback face
-      // and change text metrics.
-      const inlinedFontCss = await buildInlinedFontCss();
-      if (inlinedFontCss) {
-        const styleEl = document.createElement("style");
-        styleEl.textContent = inlinedFontCss;
-        const head = clone.querySelector("head");
-        if (head) head.appendChild(styleEl);
-        else clone.insertBefore(styleEl, clone.firstChild);
-      }
-
-      const html = new XMLSerializer().serializeToString(clone);
-      const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
-        '<foreignObject width="100%" height="100%">' +
-        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
-        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
-        html +
-        "</div></div></foreignObject></svg>";
-      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      const image = new Image();
-      image.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0);
-        postResult(canvas.toDataURL("image/png"));
-      };
-      image.onerror = function () {
-        postResult(null);
-      };
-      image.src = svgUrl;
-    } catch (_error) {
-      postResult(null);
-    }
-  }
-
-  window.addEventListener("message", function (event) {
-    if (!event.data) return;
-    // Only accept messages from the direct parent frame. Blocks sibling /
-    // unrelated-window postMessage senders that could otherwise reach us.
-    if (event.source !== window.parent) return;
-
-    const trustedParentOrigin = getTrustedParentOrigin(event);
-    if (!trustedParentOrigin) return;
-    trustedTopOrigin = trustedParentOrigin;
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
-      scrollForwarding = true;
-      emitScroll();
-      return;
-    }
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
-      scrollForwarding = false;
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
-      scrollRaf = 0;
-      return;
-    }
-
-    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
-
-    handleCaptureRequest(event);
-  });
-})();
-
-
-</script></body>
+</body>
 </html>
