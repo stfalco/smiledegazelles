@@ -261,20 +261,17 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 .logo__emblem {
   position: relative;
   z-index: 1;
-  height: 240px;
+  height: clamp(86px, 8vw, 116px);
   width: auto;
   display: block;
-  filter: drop-shadow(0 26px 32px rgba(19, 15, 12, 0.32)) drop-shadow(0 10px 18px rgba(19, 15, 12, 0.18));
+  filter: drop-shadow(0 16px 22px rgba(19, 15, 12, 0.28)) drop-shadow(0 6px 12px rgba(19, 15, 12, 0.16));
   transition: transform 0.3s ease, filter 0.3s ease;
   transform: perspective(1000px) rotateX(2deg);
 }
 .logo--footer:hover .logo__emblem {
-  transform: perspective(1000px) rotateX(2deg) translateY(-5px) scale(1.06);
-  filter: drop-shadow(0 34px 42px rgba(19, 15, 12, 0.38)) drop-shadow(0 12px 20px rgba(19, 15, 12, 0.22));
+  transform: perspective(1000px) rotateX(2deg) translateY(-3px) scale(1.04);
+  filter: drop-shadow(0 20px 28px rgba(19, 15, 12, 0.32)) drop-shadow(0 8px 14px rgba(19, 15, 12, 0.2));
 }
-.logo__emblem--dark { display: none; }
-[data-theme="dark"] .logo__emblem--light { display: none; }
-[data-theme="dark"] .logo__emblem--dark { display: block; }
 .logo__emblem--dark { display: none; }
 [data-theme="dark"] .logo__emblem--light { display: none; }
 [data-theme="dark"] .logo__emblem--dark { display: block; }
@@ -497,15 +494,16 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
 
 /* ---------- FOOTER ---------- */
 .footer { background: var(--color-surface-offset); border-top: 1px solid var(--color-divider); padding-block: var(--space-16) var(--space-8); }
-.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--space-10); margin-bottom: var(--space-12); }
+.footer__grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(9rem, 1fr) minmax(9rem, 1fr) minmax(9rem, 1fr); gap: var(--space-8); align-items: start; margin-bottom: var(--space-12); }
 .footer__brand p { color: var(--color-text-muted); font-size: var(--text-sm); margin-top: var(--space-4); max-width: 40ch; }
 .footer__col h4 { font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-4); color: var(--color-text); }
 .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
 .footer__col a { color: var(--color-text-muted); font-size: var(--text-sm); }
 .footer__col a:hover { color: var(--color-primary); }
-.socials { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
-.socials a { width: 40px; height: 40px; border-radius: var(--radius-full); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); }
-.socials a:hover { color: var(--color-primary); border-color: var(--color-primary); transform: translateY(-2px); }
+.footer__col--social .socials { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.footer__col--social .socials a { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-full); border: 1px solid var(--color-border); background: var(--color-surface-2); color: var(--color-text); font-size: var(--text-sm); font-weight: 600; transition: color .2s, background .2s, border-color .2s, transform .2s; }
+.footer__col--social .socials svg { flex-shrink: 0; }
+.footer__col--social .socials a:hover { color: #fff; background: var(--color-primary); border-color: var(--color-primary); transform: translateX(2px); }
 .footer__bottom { border-top: 1px solid var(--color-divider); padding-top: var(--space-6); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); font-size: var(--text-xs); color: var(--color-text-faint); }
 .footer__bottom a { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
 .footer__bottom a:hover { color: var(--color-primary); }
@@ -1040,7 +1038,8 @@ section { padding-block: clamp(var(--space-10), 8vw, var(--space-20)); }
   .eco-stats, .timeline { grid-template-columns: repeat(2, 1fr); }
   .split__media--portrait { margin-bottom: var(--space-8); }
   .split--reverse .split__media { order: 0; }
-  .footer__grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .footer__brand { grid-column: 1 / -1; }
 }
 @media (max-width: 760px) {
   /* Libellés longs : le white-space:nowrap de .btn fait déborder le bouton hors
