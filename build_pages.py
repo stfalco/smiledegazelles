@@ -1623,10 +1623,8 @@ PAGES["soutenir.html"] = page(
 # porté par la carte « Vous travaillez en entreprise ? » de la section suivante.
 
 # ---- CONTACT ----
-# Page d'aiguillage avant d'être une page de formulaire : beaucoup arrivent ici
-# parce qu'ils cherchent comment aider, pas parce qu'ils veulent écrire. D'où les
-# trois entrées en tête de page, qui renvoient vers sponsors et soutenir ; le
-# formulaire ne récupère que le reste.
+# Page de formulaire : les demandes de sponsoring et de don sont traitées sur
+# leurs pages dédiées ; cette page reste centrée sur la prise de contact.
 #
 # Formulaire branché sur Netlify Forms (data-netlify) : le POST natif suffit et
 # fonctionne sans JavaScript — Netlify affiche alors sa page de confirmation.
@@ -1645,33 +1643,7 @@ PAGES["contact.html"] = page(
     ("Une question&nbsp;? On vous répond",
      "Une proposition de partenariat, une envie de nous aider autrement, ou simplement de la "
      "curiosité&nbsp;: écrivez-nous, nous répondons à tous les messages."),
-    '''    <!-- ============ AIGUILLAGE ============ -->
-    <section>
-      <div class="container">
-        <div class="cards-grid reveal">
-          <div class="card">
-            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-            <h3>Nous sponsoriser</h3>
-            <p>Formules, visibilité, modalités&nbsp;: tout est détaillé sur la page dédiée.</p>
-            <a href="sponsors.html" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
-          </div>
-          <div class="card">
-            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-            <h3>Faire un don</h3>
-            <p>Formulaire de don sécurisé, du montant de votre choix.</p>
-            <a href="soutenir.html" class="btn btn-outline" style="margin-top:var(--space-4)">Faire un don</a>
-          </div>
-          <div class="card">
-            <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h3>Autre demande</h3>
-            <p>Presse, partenariat en nature, coup de main, curiosité.</p>
-            <a href="#ecrire" class="btn btn-outline" style="margin-top:var(--space-4)">Écrivez-nous</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ LE FORMULAIRE ============ -->
+    '''    <!-- ============ LE FORMULAIRE ============ -->
     <section class="section-alt" id="ecrire">
       <div class="container">
         <div class="reveal" style="margin-bottom:var(--space-10)">
