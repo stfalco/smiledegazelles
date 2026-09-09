@@ -71,7 +71,7 @@ NAV_ITEMS = [
     ("le-rallye.html", "Le rallye", "le-rallye"),
     ("solidarite.html", "Solidarité et RSE", "solidarite"),
     ("sponsors.html", "Sponsors", "sponsors"),
-    ("soutenir.html", "Faire un don", "soutenir"),
+    ("soutenir.html", "Nous soutenir", "soutenir"),
     ("contact.html", "Contact", "contact"),
 ]
 
@@ -122,7 +122,7 @@ def footer(root):
           <li><a href="{p}le-rallye.html">Le rallye</a></li>
           <li><a href="{p}solidarite.html">Solidarité et RSE</a></li>
           <li><a href="{p}sponsors.html">Sponsors</a></li>
-          <li><a href="{p}soutenir.html">Faire un don</a></li>
+          <li><a href="{p}soutenir.html">Nous soutenir</a></li>
         </ul></div>
         <div class="footer__col"><h4>Liens utiles</h4><ul>
           <li><a href="{p}sponsors.html#formules">Les formules de sponsoring</a></li>
