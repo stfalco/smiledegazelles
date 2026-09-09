@@ -98,7 +98,7 @@ def header(current, root):
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="{inner(root)}soutenir.html" class="btn btn-primary">Contribuer</a>
+        <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -146,6 +146,20 @@ def footer(root):
   </footer>'''
 
 
+# Formulaire de don en surimpression, disponible depuis n'importe quelle page (bouton
+# « Faire un don » du header, et bouton dédié sur la page soutenir.html) : le bloc est
+# positionné en fixed et ne dépend donc pas de la profondeur (root) de la page.
+HA_OVERLAY = f'''
+  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
+    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
+      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="{URL_HELLOASSO_OVERLAY}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+    </div>
+  </div>'''
+
+
 def document(current, title, desc, main, og_desc=None, og_image="assets/hero-desert.png",
              root=False, before_footer=""):
     """Assemble une page complète : head, en-tête, <main>, pied de page.
@@ -187,6 +201,7 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
 {main}
   </main>
 {before_footer}
+{HA_OVERLAY}
 {footer(root)}
   <script src="{u}js/main.js"></script>
 </body>
@@ -219,16 +234,6 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="assets/h
              if hero_stamp else "")
     actions = f'\n{hero_actions}' if hero_actions else ""
     lead_class = f' class="{hero_lead_class}"' if hero_lead_class else ""
-    # Le formulaire de don en surimpression n'existe que sur la page « Faire un don »
-    ha_overlay = f'''
-  <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
-    <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /><line x1="18" y1="6" x2="6" y2="18" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>
-    </button>
-    <div class="modal-content" style="position: relative; width: 100%; max-width: 950px; height: 100%; overflow: hidden;">
-      <iframe id="haWidget" title="Formulaire de don HelloAsso" src="{URL_HELLOASSO_OVERLAY}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
-    </div>
-  </div>''' if current == "soutenir" else ""
     hero = f'''    <section class="{hero_class}"{hero_style}>
       <div class="container container-default">
         <p class="breadcrumb"><a href="../index.html">Accueil</a> / {title}</p>{eyebrow}
@@ -238,7 +243,7 @@ def page(current, title, desc, page_hero, body, og_desc=None, og_image="assets/h
     </section>'''
     return document(current, f"{title} — Smile de Gazelles", desc,
                     f"{hero}\n{body}", og_desc=og_desc, og_image=og_image,
-                    root=False, before_footer=ha_overlay)
+                    root=False)
 
 # ============ CONTENUS DES PAGES ============
 PAGES = {}
@@ -1608,7 +1613,7 @@ PAGES["soutenir.html"] = page(
     og_image="assets/rallye_feminin.JPG",
     hero_eyebrow="Faire un don",
     hero_actions='''        <div class="actions">
-          <button id="openHaOverlay" type="button" class="btn btn-primary">Faire un don</button>
+          <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
           <a href="#autrement" class="btn btn-outline">Aider autrement</a>
         </div>''')
 # Pas de .page-hero__aside ici : sur cette photo, le bas du bandeau est très clair

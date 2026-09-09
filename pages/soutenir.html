@@ -40,7 +40,7 @@
       </nav>
       <div class="header__actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Basculer le thème"></button>
-        <a href="soutenir.html" class="btn btn-primary">Contribuer</a>
+        <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -53,7 +53,7 @@
         <h1>Chaque geste compte</h1>
         <p>Vous n'avez pas besoin d'être une entreprise pour faire partie de cette aventure. Un don, un coup de main, un partage&nbsp;: tout nous rapproche de la ligne de départ.</p>
         <div class="actions">
-          <button id="openHaOverlay" type="button" class="btn btn-primary">Faire un don</button>
+          <button type="button" class="btn btn-primary open-ha-overlay">Faire un don</button>
           <a href="#autrement" class="btn btn-outline">Aider autrement</a>
         </div>
       </div>
@@ -122,7 +122,7 @@
             <div class="card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
             <h3>Vous travaillez en entreprise&nbsp;?</h3>
             <p>Parlez-en à votre direction. Le sponsoring est déductible du résultat imposable, et la première formule démarre à 500&nbsp;€.</p>
-            <a href="sponsors.html#formules" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
+            <a href="sponsors.html" class="btn btn-outline" style="margin-top:var(--space-4)">Voir les formules</a>
           </div>
         </div>
       </div>
@@ -195,6 +195,7 @@
       </div>
     </section>
   </main>
+
 
   <div id="haWidgetModal" style="position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px) brightness(0.5); z-index: 2147483647;" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso">
     <button id="closeHaWidgetBtn" type="button" aria-label="Fermer le formulaire de don" style="position: absolute; top: .5rem; right: 1.5rem; z-index: 2147483648; background: #EFEFF4; border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">

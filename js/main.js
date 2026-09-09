@@ -23,19 +23,21 @@
   }
 
   /* ----- Formulaire de don HelloAsso en surimpression ----- */
-  const openHaOverlay = document.getElementById('openHaOverlay');
+  const openHaOverlayBtns = document.querySelectorAll('.open-ha-overlay');
   const haWidgetModal = document.getElementById('haWidgetModal');
   const closeHaWidgetBtn = document.getElementById('closeHaWidgetBtn');
-  if (openHaOverlay && haWidgetModal && closeHaWidgetBtn) {
+  if (openHaOverlayBtns.length && haWidgetModal && closeHaWidgetBtn) {
     const closeHaOverlay = () => {
       haWidgetModal.style.display = 'none';
       document.body.style.overflow = '';
       document.body.style.overscrollBehaviorY = '';
     };
-    openHaOverlay.addEventListener('click', () => {
-      haWidgetModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      document.body.style.overscrollBehaviorY = 'none';
+    openHaOverlayBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        haWidgetModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.body.style.overscrollBehaviorY = 'none';
+      });
     });
     closeHaWidgetBtn.addEventListener('click', closeHaOverlay);
     haWidgetModal.addEventListener('click', (event) => {
