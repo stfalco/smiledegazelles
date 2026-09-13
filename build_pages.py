@@ -9,6 +9,7 @@ cas ; elle est gérée par les fonctions up(), inner() et home().
 Aucun fichier HTML du site ne doit être édité à la main : ils sont tous
 réécrits à chaque exécution.
 """
+import json
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -52,6 +53,14 @@ def logo_emblem(root):
 URL_FACEBOOK = "https://www.facebook.com/smiledegazelles"
 URL_INSTAGRAM = "https://www.instagram.com/smiledegazelles2027"
 URL_LINKEDIN = "https://www.linkedin.com/company/smiledegazelles"
+SITE_URL = "https://www.smiledegazelles.fr"
+SITE_NAME = "Smile de Gazelles"
+SITE_ALTERNATE_NAMES = [
+  "Smile de Gazelle",
+  "Smile des Gazelles",
+  "Rallye des Gazelles",
+  "Rallye Aïcha des Gazelles",
+]
 
 # Formulaire de don HelloAsso de l'association (formulaire n° 3). L'URL du widget
 # est celle du code d'intégration fourni par la plateforme ; l'URL publique sert
@@ -244,6 +253,31 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
     before_footer : bloc HTML inséré entre </main> et le pied de page
     """
     u = up(root)
+    canonical_url = f"{SITE_URL}/" if root else f"{SITE_URL}/pages/{current}.html"
+    structured_data = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": f"{SITE_URL}/#organization",
+          "name": SITE_NAME,
+          "alternateName": SITE_ALTERNATE_NAMES,
+          "url": SITE_URL,
+          "logo": f"{SITE_URL}/assets/logo.png",
+          "sameAs": [URL_FACEBOOK, URL_INSTAGRAM, URL_LINKEDIN],
+        },
+        {
+          "@type": "WebSite",
+          "@id": f"{SITE_URL}/#website",
+          "name": SITE_NAME,
+          "alternateName": SITE_ALTERNATE_NAMES,
+          "url": SITE_URL,
+          "publisher": {"@id": f"{SITE_URL}/#organization"},
+          "inLanguage": "fr-FR",
+        },
+      ],
+    }
+    structured_data_json = json.dumps(structured_data, ensure_ascii=False)
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -254,7 +288,16 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{og_desc or desc}" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="{u}{og_image}" />
+  <meta property="og:url" content="{canonical_url}" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="{SITE_URL}/{og_image}" />
+  <meta property="og:image:alt" content="Logo Smile de Gazelles" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{title}" />
+  <meta name="twitter:description" content="{og_desc or desc}" />
+  <meta name="twitter:image" content="{SITE_URL}/{og_image}" />
+  <link rel="canonical" href="{canonical_url}" />
+  <script type="application/ld+json">{structured_data_json}</script>
   <link rel="icon" href="{u}favicon.ico" sizes="any" />
   <link rel="icon" href="{u}assets/favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="{u}assets/favicon-48x48.png" sizes="48x48" type="image/png" />
@@ -1959,7 +2002,8 @@ INDEX = document(
     "accueil",
     "Smile de Gazelles — Rallye Aïcha des Gazelles 2027",
     "Sandra Aversenq & Stéphanie Falco, l'équipage Smile de Gazelles, relève le défi "
-    "du Rallye Aïcha des Gazelles 2027. Rejoignez l'aventure : sponsors, dons et solidarité.",
+    "du Rallye Aïcha des Gazelles 2027, souvent appelé Rallye des Gazelles. "
+    "Rejoignez l'aventure : sponsors, dons et solidarité.",
     '''    <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__bg"><img src="assets/hero-desert.png" alt="Véhicule de rallye dans les dunes du désert marocain au coucher du soleil" fetchpriority="high" /></div>
@@ -1970,7 +2014,7 @@ INDEX = document(
             <img class="hero__logo" src="assets/logo-dark.png" alt="" aria-hidden="true" />
             <h1>Une boussole, du hors-piste et le <em>Smile</em></h1>
           </div>
-          <p class="hero__sub">L'équipage <strong>Smile de Gazelles</strong> prendra le départ du Rallye Aïcha des Gazelles 2027. Quinze jours d'aventure, sept jours de course : une carte, une boussole et aucun GPS. Un défi sportif et humain pour repousser nos limites et faire de chaque kilomètre une action porteuse de sens.</p>
+          <p class="hero__sub">L'équipage <strong>Smile de Gazelles</strong> prendra le départ du Rallye Aïcha des Gazelles 2027, souvent appelé Rallye des Gazelles. Quinze jours d'aventure, sept jours de course : une carte, une boussole et aucun GPS. Un défi sportif et humain pour repousser nos limites et faire de chaque kilomètre une action porteuse de sens.</p>
           <div class="hero__cta">
             <a href="pages/sponsors.html" class="btn btn-light btn-lg">Devenir sponsor</a>
             <a href="pages/soutenir.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.5)">Faire un don</a>
@@ -2246,7 +2290,7 @@ INDEX = document(
     </section>''',
     og_desc="Deux femmes, un désert, un sourire. Soutenez notre aventure solidaire "
             "au Rallye Aïcha des Gazelles 2027.",
-    og_image="assets/hero-desert.png",
+    og_image="assets/logo.png",
     root=True)
 
 # ============ ÉCRITURE ============
