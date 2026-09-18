@@ -11,6 +11,7 @@ réécrits à chaque exécution.
 """
 import json
 import os
+import re
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 PAGES_DIR = os.path.join(ROOT_DIR, "pages")
@@ -55,6 +56,11 @@ URL_INSTAGRAM = "https://www.instagram.com/smiledegazelles2027"
 URL_LINKEDIN = "https://www.linkedin.com/company/smiledegazelles"
 SITE_URL = "https://www.smiledegazelles.fr"
 SITE_NAME = "Smile de Gazelles"
+INTERNAL_PAGE_LINK_RE = re.compile(
+  r'href="(?:(?:\.\./)?(?:pages/)?)?'
+  r'(index|equipage|le-rallye|solidarite|sponsors|soutenir|contact|mentions-legales)'
+  r'\.html(?P<fragment>#[^"]*)?"'
+)
 SITE_ALTERNATE_NAMES = [
   "Smile de Gazelle",
   "Smile des Gazelles",
@@ -225,6 +231,16 @@ def footer(root):
   </footer>'''
 
 
+def clean_internal_links(html):
+    """Convertit les liens de pages en routes canoniques Netlify."""
+    def replace(match):
+        page = match.group(1)
+        path = "/" if page == "index" else f"/pages/{page}"
+        return f'href="{path}{match.group("fragment") or ""}"'
+
+    return INTERNAL_PAGE_LINK_RE.sub(replace, html)
+
+
 # Formulaire de don en surimpression, disponible depuis n'importe quelle page (bouton
 # « Faire un don » du header, et bouton dédié sur la page soutenir.html) : le bloc est
 # positionné en fixed et ne dépend donc pas de la profondeur (root) de la page.
@@ -253,7 +269,7 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
     before_footer : bloc HTML inséré entre </main> et le pied de page
     """
     u = up(root)
-    canonical_url = f"{SITE_URL}/" if root else f"{SITE_URL}/pages/{current}.html"
+    canonical_url = f"{SITE_URL}/" if root else f"{SITE_URL}/pages/{current}"
     structured_data = {
       "@context": "https://schema.org",
       "@graph": [
@@ -278,7 +294,7 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
       ],
     }
     structured_data_json = json.dumps(structured_data, ensure_ascii=False)
-    return f'''<!DOCTYPE html>
+    html = f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -320,6 +336,7 @@ def document(current, title, desc, main, og_desc=None, og_image="assets/hero-des
 </body>
 </html>
 '''
+    return clean_internal_links(html)
 
 
 def page(current, title, desc, page_hero, body, og_desc=None, og_image="assets/hero-desert.png",
