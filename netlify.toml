@@ -16,3 +16,51 @@
     Content-Type = "font/woff"
     Cache-Control = "public, max-age=31536000, immutable"
     Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/pages/equipage.html"
+  to = "/pages/equipage"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/le-rallye.html"
+  to = "/pages/le-rallye"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/solidarite.html"
+  to = "/pages/solidarite"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/sponsors.html"
+  to = "/pages/sponsors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/soutenir.html"
+  to = "/pages/soutenir"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/contact.html"
+  to = "/pages/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/mentions-legales.html"
+  to = "/pages/mentions-legales"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
